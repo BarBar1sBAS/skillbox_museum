@@ -1,0 +1,54 @@
+:root {
+  --spacing-10: 10;
+  --spacing-14: 14;
+  --spacing-20: 20;
+  --spacing-25: 25;
+
+  --font-unbounded: 'Unbounded', sans-serif;
+  --font-manrope: 'Manrope', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+
+  --font-h1-family: var(--font-unbounded);
+  --font-h1-size: 1.625rem;
+  --font-h1-weight: 700;
+
+  --font-h2-family: var(--font-unbounded);
+  --font-h2-size: 1.25rem;
+  --font-h2-weight: 700;
+
+  --font-h3-family: var(--font-unbounded);
+  --font-h3-size: 1rem;
+  --font-h3-weight: 400;
+
+  --font-h3Bold-family: var(--font-unbounded);
+  --font-h3Bold-size: 1rem;
+  --font-h3Bold-weight: 700;
+
+  --font-h4-family: var(--font-unbounded);
+  --font-h4-size: 0.625rem;
+  --font-h4-weight: 400;
+
+  --font-bodyL-family: var(--font-manrope);
+  --font-bodyL-size: 1rem;
+  --font-bodyL-weight: 700;
+
+  --font-bodyM-family: var(--font-manrope);
+  --font-bodyM-size: 0.875rem;
+  --font-bodyM-weight: 400;
+
+  --font-bodyMBold-family: var(--font-manrope);
+  --font-bodyMBold-size: 0.875rem;
+  --font-bodyMBold-weight: 700;
+
+  --font-bodyS-family: var(--font-manrope);
+  --font-bodyS-size: 0.625rem;
+  --font-bodyS-weight: 400;
+
+  --font-logo-family: var(--font-inter);
+  --font-logo-size: 0.625rem;
+  --font-logo-weight: 700;
+
+  --font-cipher-family: var(--font-inter);
+  --font-cipher-size: 0.875rem;
+  --font-cipher-weight: 700;
+}

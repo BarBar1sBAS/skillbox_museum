@@ -1,0 +1,15 @@
+.pill {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: fit-content;
+  height: 1.9375rem;
+  padding: 0.3125rem calc(var(--spacing-10) * 1px);
+  border: 0.0625rem solid var(--color-cyan);
+  border-radius: calc(var(--radius-pill) * 1px);
+  background: var(--background-scene);
+  cursor: pointer;
+  white-space: nowrap;
+}

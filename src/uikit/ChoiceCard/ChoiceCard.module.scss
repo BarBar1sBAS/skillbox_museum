@@ -1,0 +1,39 @@
+.card {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 21.8125rem;
+  height: 4.375rem;
+  padding: calc(var(--spacing-10) * 1px);
+  gap: calc(var(--spacing-10) * 1px);
+  border: 0.0625rem solid #36498d;
+  border-radius: calc(var(--radius-l) * 1px);
+  background: linear-gradient(-29.66deg, #0c143d, #1b2e8a);
+  cursor: pointer;
+  text-align: left;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.selected {
+  border: 0.1875rem solid var(--color-cyan);
+}
+
+.radio {
+  flex-shrink: 0;
+  width: 1.4375rem;
+  height: 1.4375rem;
+}
+
+.label {
+  flex: 1;
+  min-width: 0;
+}

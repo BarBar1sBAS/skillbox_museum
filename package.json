@@ -1,0 +1,39 @@
+{
+  "name": "muzei",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bunx --bun vite",
+    "build": "tsc -b && bunx --bun vite build",
+    "lint": "oxlint",
+    "preview": "bunx --bun vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "storybook": "storybook dev -p 6006 --ci",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router": "^8.3.1",
+    "sass-embedded": "^1.104.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "jsdom": "^30.0.1",
+    "oxlint": "^1.79.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.2.2",
+    "vitest": "^5.0.0",
+    "storybook": "^10.6.0",
+    "@storybook/react-vite": "^10.6.0",
+    "@storybook/addon-docs": "^10.6.0"
+  }
+}

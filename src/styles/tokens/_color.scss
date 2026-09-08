@@ -1,0 +1,19 @@
+:root {
+  --color-navy: #182b7a;
+  --color-navy-deep: #081b55;
+  --color-cyan: #29d8e6;
+  --color-lime: #9be568;
+  --color-orange: #ffb35c;
+  --color-red: #ff5c57;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-violet: #626ffa;
+
+  --background-default: var(--color-navy-deep);
+  --background-scene: rgb(70 71 110 / 0.5);
+  --text-primary: var(--color-white);
+  --text-muted: color-mix(in srgb, var(--color-white) 50%, transparent);
+  --text-on-accent: var(--color-black);
+  --text-accent: var(--color-cyan);
+  --shadow-promo: 4px 4px 5px rgb(0 0 0 / 0.4);
+}
