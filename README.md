@@ -23,7 +23,7 @@ bun run test
 |------|--------|
 | [`src/uikit/`](src/uikit/) | Компоненты и сторисы. Публичный вход — [`src/uikit/index.ts`](src/uikit/index.ts) |
 | [`src/app/`](src/app/) | Роутер и страницы. Сейчас один маршрут `/` → [`Home`](src/app/pages/Home/Home.tsx) |
-| [`src/styles/`](src/styles/) | Токены: `--color-*`, `--font-*`, `--spacing-*`, `--radius-*`. Подключаются один раз в [`src/main.tsx`](src/main.tsx) |
+| [`src/styles/`](src/styles/) | Токены: `--color-*`, `--gradient-*`, `--border-card`, `--shadow-*`, `--font-*`, `--spacing-*`, `--radius-*`. Подключаются один раз в [`src/main.tsx`](src/main.tsx) |
 
 Алиас `@/` указывает на `src/` (см. [`vite.config.ts`](vite.config.ts)). Из приложения импортируют так:
 
@@ -51,7 +51,7 @@ import { Stack, Text, ChoiceCard } from '@/uikit/index.ts'
 3. один маленький `Имя.test.tsx` (проверка, которая падает, если сломать логику)
 4. реэкспорт из [`src/uikit/index.ts`](src/uikit/index.ts)
 
-Абсолютную вёрстку из Figma не копируют — flex и токены. Если кегля или цвета нет в шкале, пишут локально в модуле, новый токен не заводят.
+Абсолютную вёрстку из Figma не копируют — flex и токены. Разовый hex или кегль оставляют в модуле; повторяющееся (градиент и обводка карточки) — в [`src/styles/tokens/`](src/styles/tokens/).
 
 ## Каталог компонентов
 

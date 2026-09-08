@@ -9,5 +9,7 @@ describe('tokens', () => {
     expect(styles.getPropertyValue('--font-h1-size').trim()).toBe('1.625rem')
     expect(styles.getPropertyValue('--radius-l').trim()).toBe('20')
     expect(styles.getPropertyValue('--spacing-10').trim()).toBe('10')
+    expect(styles.getPropertyValue('--border-card').trim()).toBe('#36498d')
+    expect(styles.getPropertyValue('--gradient-chat').trim()).toContain('linear-gradient')
   })
 })

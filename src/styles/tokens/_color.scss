@@ -1,6 +1,8 @@
 :root {
   --color-navy: #182b7a;
   --color-navy-deep: #081b55;
+  --color-navy-ink: #0c143d;
+  --color-navy-mid: #1b2e8a;
   --color-cyan: #29d8e6;
   --color-lime: #9be568;
   --color-orange: #ffb35c;
@@ -15,5 +17,9 @@
   --text-muted: color-mix(in srgb, var(--color-white) 50%, transparent);
   --text-on-accent: var(--color-black);
   --text-accent: var(--color-cyan);
+  --border-card: #36498d;
+  --gradient-choice: linear-gradient(-29.66deg, var(--color-navy-ink), var(--color-navy-mid));
+  --gradient-chat: linear-gradient(-54.36deg, var(--color-navy-ink), var(--color-navy-mid));
   --shadow-promo: 4px 4px 5px rgb(0 0 0 / 0.4);
+  --shadow-card: 0 4px 4px rgb(0 0 0 / 0.25);
 }

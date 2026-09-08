@@ -5,10 +5,10 @@
   width: 21.5rem;
   height: 10.5625rem;
   padding: 0.6875rem 0.875rem;
-  border: 0.0625rem solid #36498d;
+  border: 0.0625rem solid var(--border-card);
   border-radius: calc(var(--radius-l) * 1px);
-  background: linear-gradient(-54.36deg, #0c143d, #1b2e8a);
-  box-shadow: 0 4px 4px rgb(0 0 0 / 0.25);
+  background: var(--gradient-chat);
+  box-shadow: var(--shadow-card);
 }
 
 .header {

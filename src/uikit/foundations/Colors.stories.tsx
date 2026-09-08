@@ -40,3 +40,49 @@ export const Swatches: Story = {
     </div>
   ),
 }
+
+const CARDS = [
+  { name: 'gradient-choice', style: { background: 'var(--gradient-choice)' } },
+  {
+    name: 'gradient-chat',
+    style: {
+      background: 'var(--gradient-chat)',
+      boxShadow: 'var(--shadow-card)',
+    },
+  },
+  {
+    name: 'border-card',
+    style: {
+      background: 'transparent',
+      border: '2px solid var(--border-card)',
+      boxSizing: 'border-box' as const,
+    },
+  },
+]
+
+export const Cards: Story = {
+  render: () => (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 12.8125rem)',
+        gap: 'calc(var(--spacing-20) * 1px)',
+      }}
+    >
+      {CARDS.map(({ name, style }) => (
+        <div key={name}>
+          <div
+            style={{
+              height: '5.6875rem',
+              borderRadius: 'calc(var(--radius-l) * 1px)',
+              ...style,
+            }}
+          />
+          <Text variant="bodyS" style={{ marginTop: 8 }}>
+            {name} · {`var(--${name})`}
+          </Text>
+        </div>
+      ))}
+    </div>
+  ),
+}

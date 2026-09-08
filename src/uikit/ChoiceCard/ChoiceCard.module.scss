@@ -7,9 +7,9 @@
   height: 4.375rem;
   padding: calc(var(--spacing-10) * 1px);
   gap: calc(var(--spacing-10) * 1px);
-  border: 0.0625rem solid #36498d;
+  border: 0.0625rem solid var(--border-card);
   border-radius: calc(var(--radius-l) * 1px);
-  background: linear-gradient(-29.66deg, #0c143d, #1b2e8a);
+  background: var(--gradient-choice);
   cursor: pointer;
   text-align: left;
 }
