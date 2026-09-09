@@ -1,4 +1,4 @@
-import { Button, Logo, SceneCount, Stack, Text } from '@/uikit/index.ts'
+import { Button, Logo, Stack, Text } from '@/uikit/index.ts'
 import styles from './Rules.module.scss'
 
 const STEPS = [
@@ -30,7 +30,9 @@ export function Rules() {
     <main className={styles.page}>
       <header className={styles.header}>
         <Logo />
-        <SceneCount />
+        <Text as="span" variant="bodyM" className={styles.scenes}>
+          10 сцен
+        </Text>
       </header>
 
       <Stack gap={20}>
@@ -38,7 +40,7 @@ export function Rules() {
           Правила игры
         </Text>
 
-        <Text variant="bodyMBold" className={styles.body}>
+        <Text variant="bodyMBold" className={styles.dim}>
           Тебя ждут 10 ситуаций из повседневной цифровой жизни. В каждой — 3
           варианта действий.
         </Text>
@@ -46,19 +48,14 @@ export function Rules() {
         <ol className={styles.steps}>
           {STEPS.map((step) => (
             <li key={step.n} className={styles.step}>
-              <Text
-                as="span"
-                variant="h3"
-                color="accent"
-                style={{ fontSize: '0.875rem' }}
-              >
+              <Text as="span" variant="subtitle" color="accent">
                 {step.n}
               </Text>
               <div className={styles.stepBody}>
                 <Text as="span" variant="bodyL">
                   {step.title}
                 </Text>
-                <Text variant="bodyM" className={styles.body}>
+                <Text variant="bodyM" color="muted">
                   {step.text}
                 </Text>
               </div>
@@ -69,7 +66,7 @@ export function Rules() {
         <div className={styles.keysCard}>
           <Text variant="bodyL">Как получить ключи</Text>
           {KEY_RULES.map((rule) => (
-            <Text key={rule} variant="bodyM" className={styles.body}>
+            <Text key={rule} variant="bodyM" color="muted">
               {rule}
             </Text>
           ))}

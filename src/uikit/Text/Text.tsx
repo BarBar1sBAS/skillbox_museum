@@ -33,7 +33,7 @@ export function Text({
         fontFamily: `var(--font-${variant}-family)`,
         fontSize: `var(--font-${variant}-size)`,
         fontWeight: `var(--font-${variant}-weight)`,
-        opacity: variant === 'cipher' ? 0.7 : undefined,
+        opacity: variant === 'cipher' || variant === 'fineprint' ? 0.7 : undefined,
         ...style,
       }}
       {...rest}

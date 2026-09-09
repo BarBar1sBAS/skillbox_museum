@@ -7,6 +7,8 @@ describe('tokens', () => {
     expect(styles.getPropertyValue('--color-cyan').trim()).toBe('#29d8e6')
     expect(styles.getPropertyValue('--color-navy-deep').trim()).toBe('#081b55')
     expect(styles.getPropertyValue('--font-h1-size').trim()).toBe('1.625rem')
+    expect(styles.getPropertyValue('--font-eyebrow-size').trim()).toBe('0.75rem')
+    expect(styles.getPropertyValue('--font-cta-size').trim()).toBe('1.375rem')
     expect(styles.getPropertyValue('--radius-l').trim()).toBe('20')
     expect(styles.getPropertyValue('--spacing-10').trim()).toBe('10')
     expect(styles.getPropertyValue('--border-card').trim()).toBe('#36498d')

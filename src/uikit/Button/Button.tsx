@@ -12,11 +12,6 @@ type ButtonProps = {
   onClick?: () => void
 }
 
-const FONT_SIZE: Record<ButtonSize, string | undefined> = {
-  m: undefined,
-  l: '1.375rem',
-}
-
 export function Button({
   children,
   size = 'm',
@@ -31,12 +26,7 @@ export function Button({
         .join(' ')}
       onClick={onClick}
     >
-      <Text
-        as="span"
-        variant="h3"
-        color="onAccent"
-        style={{ fontSize: FONT_SIZE[size], lineHeight: 1.25 }}
-      >
+      <Text as="span" variant={size === 'l' ? 'cta' : 'h3'} color="onAccent">
         {children}
       </Text>
       {arrow && (

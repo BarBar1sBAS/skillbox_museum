@@ -3,7 +3,6 @@ import {
   Button,
   ChatCard,
   Logo,
-  SceneCount,
   Stack,
   Text,
   TrustChip,
@@ -26,7 +25,9 @@ export function Start() {
       <Stack gap={25}>
         <header className={styles.header}>
           <Logo />
-          <SceneCount />
+          <Text as="span" variant="bodyM" className={styles.scenes}>
+            10 сцен
+          </Text>
         </header>
 
         <Text as="h1" variant="h1" className={styles.title}>
@@ -54,7 +55,7 @@ export function Start() {
           ))}
         </div>
 
-        <Text variant="bodyM" className={styles.discount}>
+        <Text variant="bodyM" color="muted" className={styles.discount}>
           Каждый ключ увеличивает скидку на выставку: 5%
           <img
             className={styles.inlineArrow}

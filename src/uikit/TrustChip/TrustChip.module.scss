@@ -1,5 +1,4 @@
 .chip {
-  appearance: none;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +11,6 @@
   border: 0.0625rem solid color-mix(in srgb, var(--color-white) 50%, transparent);
   border-radius: calc(var(--radius-l) * 1px);
   background: transparent;
-  cursor: pointer;
 }
 
 .active {

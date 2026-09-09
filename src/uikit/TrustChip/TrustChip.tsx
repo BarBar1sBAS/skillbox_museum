@@ -6,20 +6,15 @@ import styles from './TrustChip.module.scss'
 type TrustChipProps = {
   label?: string
   active?: boolean
-  onClick?: () => void
 }
 
 export function TrustChip({
   label = 'ДОВЕРИЕ',
   active = false,
-  onClick,
 }: TrustChipProps) {
   return (
-    <button
-      type="button"
+    <div
       className={[styles.chip, active && styles.active].filter(Boolean).join(' ')}
-      aria-pressed={active}
-      onClick={onClick}
     >
       <span className={styles.icon}>
         <img src={active ? keyLime : key} alt="" width={30} height={16} />
@@ -32,6 +27,6 @@ export function TrustChip({
       >
         {label}
       </Text>
-    </button>
+    </div>
   )
 }

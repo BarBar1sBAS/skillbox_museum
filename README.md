@@ -9,7 +9,7 @@ UI kit живёт в Storybook. Экраны приложения собираю
 ```bash
 bun install
 bun run storybook   # http://localhost:6006 — каталог компонентов
-bun run dev         # приложение; сейчас только каркас Home
+bun run dev         # приложение: / лендинг, /start, /rules
 bun run test
 ```
 
@@ -22,7 +22,7 @@ bun run test
 | Путь | Зачем |
 |------|--------|
 | [`src/uikit/`](src/uikit/) | Компоненты и сторисы. Публичный вход — [`src/uikit/index.ts`](src/uikit/index.ts) |
-| [`src/app/`](src/app/) | Роутер и страницы. Сейчас один маршрут `/` → [`Home`](src/app/pages/Home/Home.tsx) |
+| [`src/app/`](src/app/) | Роутер и страницы: `/` → [`Landing`](src/app/pages/Landing/Landing.tsx), `/start` → [`Start`](src/app/pages/Start/Start.tsx), `/rules` → [`Rules`](src/app/pages/Rules/Rules.tsx) |
 | [`src/styles/`](src/styles/) | Токены: `--color-*`, `--gradient-*`, `--border-card`, `--shadow-*`, `--font-*`, `--spacing-*`, `--radius-*`. Подключаются один раз в [`src/main.tsx`](src/main.tsx) |
 
 Алиас `@/` указывает на `src/` (см. [`vite.config.ts`](vite.config.ts)). Из приложения импортируют так:
@@ -63,11 +63,11 @@ import { Stack, Text, ChoiceCard } from '@/uikit/index.ts'
 
 | Проп | Значения | По умолчанию |
 |------|----------|----------------|
-| `variant` | `h1` `h2` `h3` `h3Bold` `h4` `bodyL` `bodyM` `bodyMBold` `bodyS` `logo` `cipher` | `bodyM` |
+| `variant` | `h1` `h2` `h3` `h3Bold` `cta` `h4` `eyebrow` `subtitle` `kicker` `fineprint` `bodyL` `bodyM` `bodyMBold` `bodyS` `logo` `cipher` | `bodyM` |
 | `color` | `primary` `muted` `onAccent` `accent` | `primary` |
 | `as` | `p` `span` `h1` `h2` `h3` `h4` | `p` |
 
-У `cipher` в самом `Text` уже `opacity: 0.7`. `muted` — 50% белого, не подгонять под другие прозрачности макета.
+У `cipher` и `fineprint` в самом `Text` уже `opacity: 0.7`. `muted` — 50% белого, не подгонять под другие прозрачности макета.
 
 **Stack** — вертикальный flex. `gap` только `10 | 14 | 20 | 25` (пиксели из `--spacing-*`). По умолчанию `20`.
 
@@ -79,7 +79,7 @@ import { Stack, Text, ChoiceCard } from '@/uikit/index.ts'
 
 **StatusMark** — `tone: 'lime' | 'orange' | 'red'` (успех / внимание / ошибка).
 
-**TrustChip** — `active?`, `onClick?`. Кнопка с `aria-pressed`.
+**TrustChip** — `label?`, `active?`. Блок-чип ключа, не кнопка.
 
 **ChoiceCard** — `children: string`, `selected?`, `onClick?`. Внутри `<label>` и нативный `<input type="radio">`. Состояние выбранности держит родитель.
 
@@ -91,13 +91,13 @@ import { Stack, Text, ChoiceCard } from '@/uikit/index.ts'
 
 ## Интеграция в лейаут
 
-Экран живёт в `src/app/pages/…`. Каркас как у Home: `<main>` и модуль страницы с `min-height: 100dvh`, фон `--background-default`, отступы из `--spacing-*`.
+Экран живёт в `src/app/pages/…`. Каркас как у Landing / Start / Rules: `<main>` и модуль страницы с `min-height: 100dvh`, фон `--background-default`, отступы из `--spacing-*`.
 
 Сборка — `Stack` по вертикали, компоненты рядом, без лишних обёрток. Состояние экрана (выбранный ответ, шаг ключа) — в странице, не внутри UI kit.
 
 В своей вёрстке страницы используют токены: `var(--spacing-20)`, `var(--radius-l)`, `var(--color-cyan)`. Цвет или кегль, которого нет в шкале, оставляют локально в SCSS модуля.
 
-Пример controlled-сборки (в `Home.tsx` это не вставлять — только образец для новой страницы):
+Пример controlled-сборки (это образец для игрового экрана, не копировать в существующие страницы):
 
 ```tsx
 import { useState } from 'react'

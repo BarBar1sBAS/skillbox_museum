@@ -4,6 +4,8 @@ import arrowRightWhite from '@/uikit/icons/arrow-right-white.svg'
 import museum from '@/uikit/icons/museum.svg'
 import styles from './Landing.module.scss'
 
+const EXHIBITION_URL = '#'
+
 export function Landing() {
   const navigate = useNavigate()
 
@@ -13,14 +15,10 @@ export function Landing() {
         <header className={styles.header}>
           <Logo />
           <div className={styles.intro}>
-            <Text
-              variant="h4"
-              color="accent"
-              style={{ fontSize: '0.75rem', fontWeight: 300, lineHeight: 1.25 }}
-            >
+            <Text variant="eyebrow" color="accent">
               интерактивная игра
             </Text>
-            <Text as="h1" variant="bodyL">
+            <Text as="h1" variant="subtitle">
               о цифровой безопасности
             </Text>
           </div>
@@ -36,15 +34,15 @@ export function Landing() {
             alt="Подросток с ноутбуком в окружении замков, паролей и сообщений"
           />
 
-          <Text
-            className={styles.days}
-            variant="bodyL"
-            style={{ fontWeight: 500 }}
-          >
-            Один день
+          <div className={styles.days}>
+            <Text as="span" variant="kicker">
+              Один день
+            </Text>
             <span className={styles.count}>10</span>
-            ситуаций
-          </Text>
+            <Text as="span" variant="h3">
+              ситуаций
+            </Text>
+          </div>
         </div>
 
         <Text className={styles.question} variant="bodyM" color="accent">
@@ -70,20 +68,16 @@ export function Landing() {
           <img src={museum} alt="" width={27} height={25} />
           <div className={styles.bannerText}>
             <Text variant="bodyS">ЧАСТЬ ВЫСТАВКИ</Text>
-            <Text
-              className={styles.bannerQuote}
-              variant="h4"
-              style={{ fontSize: '0.5rem', lineHeight: 1.25, opacity: 0.7 }}
-            >
+            <Text className={styles.bannerQuote} variant="fineprint">
               “КЛЮЧ К ДОВЕРИЮ БЕЗОПАСНОСТЬ В ЭПОХУ ВЫСОКИХ ТЕХНОЛОГИЙ”
             </Text>
           </div>
-          <span className={styles.bannerLink}>
+          <a className={styles.bannerLink} href={EXHIBITION_URL}>
             <Text as="span" variant="bodyS">
               О ВЫСТАВКЕ
             </Text>
             <img src={arrowRightWhite} alt="" width={15} height={8} />
-          </span>
+          </a>
         </div>
       </div>
     </main>
