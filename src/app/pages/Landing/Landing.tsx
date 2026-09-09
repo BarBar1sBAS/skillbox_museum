@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router'
-import { Button, Logo, Stack, Text } from '@/uikit/index.ts'
+import { Button, Logo, Page, Stack, Text } from '@/uikit/index.ts'
 import arrowRightWhite from '@/uikit/icons/arrow-right-white.svg'
 import museum from '@/uikit/icons/museum.svg'
 import styles from './Landing.module.scss'
@@ -10,7 +10,7 @@ export function Landing() {
   const navigate = useNavigate()
 
   return (
-    <main className={styles.page}>
+    <Page tone="landing">
       <Stack gap={14}>
         <header className={styles.header}>
           <Logo />
@@ -38,7 +38,11 @@ export function Landing() {
             <Text as="span" variant="kicker">
               Один день
             </Text>
-            <span className={styles.count}>10</span>
+            <span className={styles.count}>
+              <Text as="span" variant="h3">
+                10
+              </Text>
+            </span>
             <Text as="span" variant="h3">
               ситуаций
             </Text>
@@ -73,13 +77,13 @@ export function Landing() {
             </Text>
           </div>
           <a className={styles.bannerLink} href={EXHIBITION_URL}>
-            <Text as="span" variant="bodyS">
+            <Text as="span" variant="fineprint">
               О ВЫСТАВКЕ
             </Text>
             <img src={arrowRightWhite} alt="" width={15} height={8} />
           </a>
         </div>
       </div>
-    </main>
+    </Page>
   )
 }

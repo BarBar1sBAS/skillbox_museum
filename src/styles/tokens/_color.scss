@@ -5,6 +5,8 @@
   --color-navy-mid: #1b2e8a;
   --color-navy-night: #01011e;
   --color-navy-abyss: #000243;
+  --color-navy-screen: #071a52;
+  --color-navy-bar: #192b83;
   --color-cyan: #29d8e6;
   --color-lime: #9be568;
   --color-orange: #ffb35c;
@@ -16,6 +18,10 @@
   --background-default: var(--color-navy-deep);
   --background-scene: rgb(70 71 110 / 0.5);
   --background-banner: #00177c;
+  --background-glass: rgb(34 43 101 / 0.7);
+  --background-glass-mid: rgb(34 43 101 / 0.6);
+  --background-glass-soft: rgb(34 43 101 / 0.5);
+  --background-modal: #0e1849;
   --text-primary: var(--color-white);
   --text-muted: color-mix(in srgb, var(--color-white) 50%, transparent);
   --text-on-accent: var(--color-black);
@@ -28,4 +34,5 @@
   --shadow-card: 0 4px 4px rgb(0 0 0 / 0.25);
   --gradient-page: linear-gradient(11.6deg, var(--color-navy-deep), var(--color-navy));
   --gradient-landing: linear-gradient(191.41deg, var(--color-navy-night), var(--color-navy-abyss));
+  --gradient-result: linear-gradient(23.7deg, #0d1642 2.14%, var(--color-navy-bar) 111%);
 }

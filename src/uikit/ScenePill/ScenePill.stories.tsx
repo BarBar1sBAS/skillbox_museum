@@ -15,6 +15,10 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
 
+export const Label: Story = {
+  args: { n: undefined, label: '10 сцен' },
+}
+
 export const All: Story = {
   render: () => (
     <div
@@ -22,7 +26,7 @@ export const All: Story = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        gap: '0.3125rem',
+        gap: 'calc(var(--spacing-5) * 1px)',
       }}
     >
       {NUMBERS.map((n) => (

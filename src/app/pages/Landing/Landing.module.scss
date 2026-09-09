@@ -1,14 +1,3 @@
-.page {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  min-height: 100dvh;
-  max-width: 24.375rem;
-  margin: 0 auto;
-  padding: calc(var(--spacing-25) * 1px) 1.4375rem;
-  background: var(--gradient-landing);
-}
-
 .header {
   display: flex;
   align-items: flex-start;
@@ -21,13 +10,13 @@
   max-width: 11rem;
   margin-left: calc(var(--spacing-14) * 1px);
   padding-left: calc(var(--spacing-14) * 1px);
-  border-left: 0.0625rem solid var(--color-cyan);
+  border-left: calc(var(--border-width) * 1px) solid var(--color-cyan);
 }
 
 .hero {
   display: block;
-  width: calc(100% + 2.875rem);
-  margin: 0 -1.4375rem;
+  width: calc(100% + var(--layout-gutter) * 2px);
+  margin: 0 calc(var(--layout-gutter) * -1px);
 }
 
 .question {
@@ -55,7 +44,7 @@
   justify-content: center;
   width: 2rem;
   height: 2rem;
-  border: 0.0625rem solid var(--color-cyan);
+  border: calc(var(--border-width) * 1px) solid var(--color-cyan);
   border-radius: 50%;
 }
 
@@ -67,12 +56,12 @@
 .banner {
   display: flex;
   align-items: center;
-  min-height: 5.625rem;
+  min-height: 6.125rem;
   gap: calc(var(--spacing-14) * 1px);
   box-sizing: border-box;
-  width: calc(100% + 2.875rem);
-  margin: 0 -1.4375rem;
-  padding: calc(var(--spacing-14) * 1px) 1.4375rem;
+  width: calc(100% + var(--layout-gutter) * 2px);
+  margin: 0 calc(var(--layout-gutter) * -1px);
+  padding: calc(var(--spacing-14) * 1px) calc(var(--layout-gutter) * 1px);
   border-radius: calc(var(--radius-m) * 1px);
   background: var(--background-banner);
 }

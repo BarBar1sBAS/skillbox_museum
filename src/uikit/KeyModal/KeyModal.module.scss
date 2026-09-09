@@ -5,10 +5,10 @@
   box-sizing: border-box;
   width: 20.4375rem;
   height: 20.4375rem;
-  padding: 1.1875rem 1.4375rem 1.75rem;
-  border: 0.0625rem solid var(--color-cyan);
+  padding: 1.1875rem calc(var(--layout-gutter) * 1px) 1.75rem;
+  border: calc(var(--border-width) * 1px) solid var(--color-cyan);
   border-radius: calc(var(--radius-l) * 1px);
-  background: #0e1849;
+  background: var(--background-modal);
 }
 
 .icon {
@@ -56,6 +56,6 @@
   margin-top: 2.3125rem;
   width: 4.375rem;
   height: 2.625rem;
-  border: 0.0625rem solid #00e5ff;
+  border: calc(var(--border-width) * 1px) solid var(--color-cyan);
   border-radius: calc(var(--radius-l) * 1px);
 }

@@ -7,7 +7,7 @@
   height: 4.375rem;
   padding: calc(var(--spacing-10) * 1px);
   gap: calc(var(--spacing-10) * 1px);
-  border: 0.0625rem solid var(--border-card);
+  border: calc(var(--border-width) * 1px) solid var(--border-card);
   border-radius: calc(var(--radius-l) * 1px);
   background: var(--gradient-choice);
   cursor: pointer;

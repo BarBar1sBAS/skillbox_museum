@@ -1,6 +1,8 @@
 export const PALETTE = [
   'navy',
   'navy-deep',
+  'navy-screen',
+  'navy-bar',
   'cyan',
   'lime',
   'orange',

@@ -35,8 +35,8 @@
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 0.3125rem;
-  border: 0.0625rem dashed var(--color-black);
+  padding: calc(var(--spacing-5) * 1px);
+  border: calc(var(--border-width) * 1px) dashed var(--color-black);
   border-radius: calc(var(--radius-s) * 1px);
   background: transparent;
   cursor: pointer;

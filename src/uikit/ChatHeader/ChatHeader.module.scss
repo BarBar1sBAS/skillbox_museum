@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-10) * 1px);
+}
+
+.back {
+  appearance: none;
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.peer {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: calc(var(--spacing-10) * 1px);
+  min-width: 0;
+  height: 2.6875rem;
+  padding-right: calc(var(--spacing-10) * 1px);
+  border-radius: calc(var(--radius-pill) * 1px);
+  background: var(--color-navy-bar);
+}
+
+.avatar {
+  width: 2.3617rem;
+  height: 2.3617rem;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 5.375rem;
+  height: 2.6875rem;
+  padding: 0.625rem 1.25rem 0.5rem 0.75rem;
+  border-radius: 1.875rem;
+  background: var(--color-navy-bar);
+}
+
+.call {
+  width: 3.125rem;
+  height: 1.4375rem;
+}

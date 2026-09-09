@@ -3,6 +3,8 @@ import {
   Button,
   ChatCard,
   Logo,
+  Page,
+  ScenePill,
   Stack,
   Text,
   TrustChip,
@@ -21,13 +23,11 @@ export function Start() {
   const navigate = useNavigate()
 
   return (
-    <main className={styles.page}>
+    <Page>
       <Stack gap={25}>
         <header className={styles.header}>
           <Logo />
-          <Text as="span" variant="bodyM" className={styles.scenes}>
-            10 сцен
-          </Text>
+          <ScenePill label="10 сцен" />
         </header>
 
         <Text as="h1" variant="h1" className={styles.title}>
@@ -81,6 +81,6 @@ export function Start() {
           НАЧАТЬ ДЕНЬ
         </Button>
       </div>
-    </main>
+    </Page>
   )
 }

@@ -6,7 +6,7 @@
   width: 6.9375rem;
   height: 6.9375rem;
   overflow: visible;
-  border: 0.0625rem solid var(--tone);
+  border: calc(var(--border-width) * 1px) solid var(--tone);
   border-radius: 50%;
   background: color-mix(in srgb, var(--tone) 30%, transparent);
   box-shadow:

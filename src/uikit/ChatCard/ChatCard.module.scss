@@ -5,7 +5,7 @@
   width: 21.5rem;
   height: 10.5625rem;
   padding: 0.6875rem 0.875rem;
-  border: 0.0625rem solid var(--border-card);
+  border: calc(var(--border-width) * 1px) solid var(--border-card);
   border-radius: calc(var(--radius-l) * 1px);
   background: var(--gradient-chat);
   box-shadow: var(--shadow-card);
@@ -24,9 +24,9 @@
   justify-content: center;
   width: 2.0625rem;
   height: 2.0625rem;
-  border: 0.0625rem solid var(--color-cyan);
+  border: calc(var(--border-width) * 1px) solid var(--color-cyan);
   border-radius: 50%;
-  background: #071a52;
+  background: var(--color-navy-screen);
   color: var(--color-cyan);
   font-family: var(--font-manrope);
   font-size: 1.125rem;
@@ -43,7 +43,7 @@
 .rule {
   margin: 0.625rem 0;
   border: 0;
-  border-top: 0.0625rem solid color-mix(in srgb, var(--color-white) 20%, transparent);
+  border-top: calc(var(--border-width) * 1px) solid color-mix(in srgb, var(--color-white) 20%, transparent);
 }
 
 .body {

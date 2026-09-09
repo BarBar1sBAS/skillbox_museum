@@ -7,4 +7,9 @@ describe('ScenePill', () => {
     render(<ScenePill n={10} />)
     expect(screen.getByRole('button', { name: 'сцена 10' })).toBeInTheDocument()
   })
+
+  it('renders a custom label', () => {
+    render(<ScenePill label="10 сцен" />)
+    expect(screen.getByRole('button', { name: '10 сцен' })).toBeInTheDocument()
+  })
 })
