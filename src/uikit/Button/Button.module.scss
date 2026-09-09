@@ -1,0 +1,27 @@
+.button {
+  appearance: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 4rem;
+  padding: calc(var(--spacing-25) * 1px);
+  gap: calc(var(--spacing-10) * 1px);
+  border: 0;
+  border-radius: calc(var(--radius-l) * 1px);
+  background: var(--color-cyan);
+  cursor: pointer;
+}
+
+.large {
+  min-height: 3.125rem;
+  padding: calc(var(--spacing-10) * 1px) calc(var(--spacing-25) * 1px);
+  border-radius: calc(var(--radius-m) * 1px);
+}
+
+.arrow {
+  display: block;
+  flex-shrink: 0;
+}

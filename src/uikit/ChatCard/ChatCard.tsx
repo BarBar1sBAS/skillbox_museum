@@ -3,7 +3,7 @@ import styles from './ChatCard.module.scss'
 
 export type ChatReveal = 0 | 1 | 2 | 3
 
-const CIPHER_SHAPES = '◈ □ △ ◇ ◈ □ △ ◇ ◈ □ △ ◇ ◈ □'
+const CIPHER_SHAPES = '◈ □ △ ◇  ◈ □ △ ◇  ◈ □ △ ◇  ◈ □'
 const CIPHER_BITS = '0101^0110001”;1001”00@1!1001**10'
 
 const LINES = [
@@ -52,7 +52,17 @@ export function ChatCard({ reveal = 0 }: ChatCardProps) {
               {line.plain}
             </p>
           ) : (
-            <Text key={line.plain} variant="cipher" color="primary">
+            <Text
+              key={line.plain}
+              className={[
+                styles.cipher,
+                line.cipher === CIPHER_SHAPES && styles.shapes,
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              variant="cipher"
+              color="primary"
+            >
               {line.cipher}
             </Text>
           ),

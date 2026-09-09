@@ -3,6 +3,8 @@
   --color-navy-deep: #081b55;
   --color-navy-ink: #0c143d;
   --color-navy-mid: #1b2e8a;
+  --color-navy-night: #01011e;
+  --color-navy-abyss: #000243;
   --color-cyan: #29d8e6;
   --color-lime: #9be568;
   --color-orange: #ffb35c;
@@ -13,6 +15,7 @@
 
   --background-default: var(--color-navy-deep);
   --background-scene: rgb(70 71 110 / 0.5);
+  --background-banner: #00177c;
   --text-primary: var(--color-white);
   --text-muted: color-mix(in srgb, var(--color-white) 50%, transparent);
   --text-on-accent: var(--color-black);
@@ -20,6 +23,9 @@
   --border-card: #36498d;
   --gradient-choice: linear-gradient(-29.66deg, var(--color-navy-ink), var(--color-navy-mid));
   --gradient-chat: linear-gradient(-54.36deg, var(--color-navy-ink), var(--color-navy-mid));
+  --gradient-note: linear-gradient(289.41deg, var(--color-navy-ink), var(--color-navy-mid));
   --shadow-promo: 4px 4px 5px rgb(0 0 0 / 0.4);
   --shadow-card: 0 4px 4px rgb(0 0 0 / 0.25);
+  --gradient-page: linear-gradient(11.6deg, var(--color-navy-deep), var(--color-navy));
+  --gradient-landing: linear-gradient(191.41deg, var(--color-navy-night), var(--color-navy-abyss));
 }

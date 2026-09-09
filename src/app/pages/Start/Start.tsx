@@ -1,0 +1,85 @@
+import { useNavigate } from 'react-router'
+import {
+  Button,
+  ChatCard,
+  Logo,
+  SceneCount,
+  Stack,
+  Text,
+  TrustChip,
+} from '@/uikit/index.ts'
+import arrowRightWhite from '@/uikit/icons/arrow-right-white.svg'
+import styles from './Start.module.scss'
+
+const STEPS = [
+  'Пройди 10 ситуаций цифрового дня.',
+  'Принимай решения, открывай ключи и расшифруй послание.',
+]
+
+const KEYS = ['ДОВЕРИЕ', 'ДАННЫЕ', 'ДОСТУП']
+
+export function Start() {
+  const navigate = useNavigate()
+
+  return (
+    <main className={styles.page}>
+      <Stack gap={25}>
+        <header className={styles.header}>
+          <Logo />
+          <SceneCount />
+        </header>
+
+        <Text as="h1" variant="h1" className={styles.title}>
+          МУЗЕЙ ПРИСЛАЛ ТЕБЕ{' '}
+          <Text as="span" variant="h1" color="accent">
+            ЗАШИФРОВАННОЕ СООБЩЕНИЕ
+          </Text>
+        </Text>
+
+        <ChatCard />
+
+        <ul className={styles.steps}>
+          {STEPS.map((step) => (
+            <li key={step}>
+              <Text as="span" variant="bodyM">
+                {step}
+              </Text>
+            </li>
+          ))}
+        </ul>
+
+        <div className={styles.keys}>
+          {KEYS.map((label) => (
+            <TrustChip key={label} label={label} />
+          ))}
+        </div>
+
+        <Text variant="bodyM" className={styles.discount}>
+          Каждый ключ увеличивает скидку на выставку: 5%
+          <img
+            className={styles.inlineArrow}
+            src={arrowRightWhite}
+            alt=""
+            width={15}
+            height={8}
+          />
+          7%
+          <img
+            className={styles.inlineArrow}
+            src={arrowRightWhite}
+            alt=""
+            width={15}
+            height={8}
+          />
+          10%.
+        </Text>
+      </Stack>
+
+      <div className={styles.cta}>
+        <Button arrow onClick={() => navigate('/rules')}>
+          НАЧАТЬ ДЕНЬ
+        </Button>
+      </div>
+    </main>
+  )
+}

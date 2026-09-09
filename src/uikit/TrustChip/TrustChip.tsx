@@ -4,11 +4,16 @@ import { Text } from '../Text/Text.tsx'
 import styles from './TrustChip.module.scss'
 
 type TrustChipProps = {
+  label?: string
   active?: boolean
   onClick?: () => void
 }
 
-export function TrustChip({ active = false, onClick }: TrustChipProps) {
+export function TrustChip({
+  label = 'ДОВЕРИЕ',
+  active = false,
+  onClick,
+}: TrustChipProps) {
   return (
     <button
       type="button"
@@ -25,7 +30,7 @@ export function TrustChip({ active = false, onClick }: TrustChipProps) {
         color={active ? 'primary' : 'muted'}
         style={active ? { color: 'var(--color-lime)' } : undefined}
       >
-        ДОВЕРИЕ
+        {label}
       </Text>
     </button>
   )

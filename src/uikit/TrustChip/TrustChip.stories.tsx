@@ -21,6 +21,8 @@ export const All: Story = {
   render: () => (
     <Stack gap={20}>
       <TrustChip />
+      <TrustChip label="ДАННЫЕ" />
+      <TrustChip label="ДОСТУП" />
       <TrustChip active />
     </Stack>
   ),
