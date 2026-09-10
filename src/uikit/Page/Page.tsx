@@ -7,12 +7,19 @@ type PageProps = {
   tone?: PageTone
   className?: string
   children?: ReactNode
+  'data-scene'?: number
 }
 
-export function Page({ tone = 'default', className, children }: PageProps) {
+export function Page({
+  tone = 'default',
+  className,
+  children,
+  'data-scene': dataScene,
+}: PageProps) {
   return (
     <main
       className={[styles.page, styles[tone], className].filter(Boolean).join(' ')}
+      data-scene={dataScene}
     >
       {children}
     </main>

@@ -57,14 +57,14 @@
   padding: 0 1.5rem 4.8125rem;
 }
 
-.introPage3 .bg {
+.introPage[data-scene="3"] .bg {
   left: 0;
   top: 0.21%;
   width: 121.28%;
   height: 99.81%;
 }
 
-.introPage3 .titleCard {
+.introPage[data-scene="3"] .titleCard {
   position: absolute;
   top: 4.25rem;
   left: 1rem;
@@ -74,18 +74,18 @@
   background: var(--background-glass-soft);
 }
 
-.introPage3 .introTitle {
+.introPage[data-scene="3"] .introTitle {
   line-height: normal;
 }
 
-.introPage4 .bg {
+.introPage[data-scene="4"] .bg {
   left: 0;
   top: -1.47%;
   width: 125.38%;
   height: 102.95%;
 }
 
-.introPage4 .titleCard {
+.introPage[data-scene="4"] .titleCard {
   position: absolute;
   top: 4.9375rem;
   left: 0.625rem;
@@ -96,11 +96,11 @@
   background: var(--background-glass-soft);
 }
 
-.introPage4 .introTitle {
+.introPage[data-scene="4"] .introTitle {
   line-height: normal;
 }
 
-.introPage5 .bg {
+.introPage[data-scene="5"] .bg {
   left: 0;
   top: 0;
   width: 100%;
@@ -108,7 +108,7 @@
   object-position: bottom;
 }
 
-.introPage5 .titleCard {
+.introPage[data-scene="5"] .titleCard {
   position: absolute;
   top: 4.9375rem;
   left: 0.5625rem;
@@ -117,7 +117,7 @@
   margin: 0;
 }
 
-.introPage5 .introTitle {
+.introPage[data-scene="5"] .introTitle {
   line-height: normal;
 }
 
@@ -164,22 +164,22 @@
   padding-top: 0;
 }
 
-.photoQuizPage3 {
+.photoQuizPage[data-scene="3"] {
   background: #1f3d82;
 }
 
-.photoQuizPage3 .photoFrame {
+.photoQuizPage[data-scene="3"] .photoFrame {
   height: 44.625rem;
 }
 
-.photoQuizPage3 .photoFrame .bg {
+.photoQuizPage[data-scene="3"] .photoFrame .bg {
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
 }
 
-.photoQuizPage3 .situationCard {
+.photoQuizPage[data-scene="3"] .situationCard {
   top: 2.0625rem;
   left: 0.8125rem;
   width: 22.3125rem;
@@ -187,12 +187,12 @@
   margin: 0;
 }
 
-.photoQuizPage3 .situationCard p {
+.photoQuizPage[data-scene="3"] .situationCard p {
   white-space: pre-line;
   line-height: normal;
 }
 
-.photoQuizPage4 .photoFrame .bg {
+.photoQuizPage[data-scene="4"] .photoFrame .bg {
   inset: auto;
   left: -1.25rem;
   top: -9.125rem;
@@ -200,7 +200,7 @@
   height: 46.625rem;
 }
 
-.photoQuizPage4 .situationCard {
+.photoQuizPage[data-scene="4"] .situationCard {
   top: 3.0625rem;
   left: 0.9375rem;
   width: 17.875rem;
@@ -208,22 +208,22 @@
   margin: 0;
 }
 
-.photoQuizPage4 .situationCard p {
+.photoQuizPage[data-scene="4"] .situationCard p {
   line-height: normal;
 }
 
-.photoQuizPage5 .photoFrame {
+.photoQuizPage[data-scene="5"] .photoFrame {
   height: 52.75rem;
 }
 
-.photoQuizPage5 .photoFrame .bg {
+.photoQuizPage[data-scene="5"] .photoFrame .bg {
   width: 121.8%;
   height: 100%;
   top: -18.96%;
   left: -0.92%;
 }
 
-.photoQuizPage5 .situationCard {
+.photoQuizPage[data-scene="5"] .situationCard {
   top: 3.9375rem;
   left: 0.8125rem;
   width: 22.3125rem;
@@ -231,11 +231,11 @@
   margin: 0;
 }
 
-.photoQuizPage5 .situationCard p {
+.photoQuizPage[data-scene="5"] .situationCard p {
   line-height: normal;
 }
 
-.photoQuizPage5 .sheet {
+.photoQuizPage[data-scene="5"] .sheet {
   height: 24.125rem;
 }
 
@@ -310,6 +310,18 @@
   justify-content: center;
   padding-top: 14.4375rem;
   background: rgb(0 0 0 / 0.7);
+}
+
+.keyBackdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.keyModal {
+  position: relative;
 }
 
 .resultPage .header {

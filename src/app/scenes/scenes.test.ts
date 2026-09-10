@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { parseSceneNumber, scenes } from './index.ts'
+import { parseSceneNumber, resultCopy, scenes } from './index.ts'
 
 const OUTCOMES = ['correct', 'partial', 'wrong'] as const
 
@@ -14,6 +14,7 @@ describe('scenes', () => {
 
     for (const n of [1, 2, 3, 4, 5] as const) {
       expect(scenes[n].situation.length).toBeGreaterThan(0)
+      expect(scenes[n].remember.length).toBeGreaterThan(0)
       for (const choice of scenes[n].choices) {
         expect(choice.text.length).toBeGreaterThan(0)
         expect(OUTCOMES).toContain(choice.outcome)
@@ -24,5 +25,17 @@ describe('scenes', () => {
     expect(parseSceneNumber('10')).toBe(10)
     expect(parseSceneNumber('0')).toBeUndefined()
     expect(parseSceneNumber('11')).toBeUndefined()
+  })
+
+  it('derives keyLine; scene 5 partial keeps the override', () => {
+    expect(resultCopy(scenes[1], 'partial').keyLine).toBe(
+      'Фрагмент ключа “Доверие” получен',
+    )
+    expect(resultCopy(scenes[1], 'wrong').keyLine).toBe(
+      'Фрагмент ключа “Доверие” не получен',
+    )
+    expect(resultCopy(scenes[5], 'partial').keyLine).toBe(
+      'Фрагмент ключа “Доверие” не получен',
+    )
   })
 })

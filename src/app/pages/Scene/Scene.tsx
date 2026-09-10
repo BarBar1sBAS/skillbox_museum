@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router'
-import { parseSceneNumber, scenes } from '@/app/scenes/index.ts'
+import {
+  KEY_LABEL,
+  parseSceneNumber,
+  resultCopy,
+  scenes,
+} from '@/app/scenes/index.ts'
 import type { SceneContent, SceneKey, SceneOutcome } from '@/app/scenes/types.ts'
-import type { KeyStep, SceneNumber } from '@/uikit/index.ts'
 import {
   Button,
   ChatBubble,
@@ -15,34 +19,26 @@ import {
   StatusMark,
   Text,
   VoiceBubble,
+  type KeyStep,
+  type SceneNumber,
   type StatusTone,
 } from '@/uikit/index.ts'
 import styles from './Scene.module.scss'
 
-const TONE: Record<SceneOutcome, StatusTone> = {
-  correct: 'lime',
-  partial: 'orange',
-  wrong: 'red',
+const STATUS: Record<SceneOutcome, { tone: StatusTone; color: string }> = {
+  correct: { tone: 'lime', color: 'var(--color-lime)' },
+  partial: { tone: 'orange', color: 'var(--color-orange)' },
+  wrong: { tone: 'red', color: 'var(--color-red)' },
 }
 
-const EYEBROW: Record<SceneOutcome, string> = {
-  correct: 'var(--color-lime)',
-  partial: 'var(--color-orange)',
-  wrong: 'var(--color-red)',
-}
-
-const KEY_NAME: Record<SceneKey, string> = {
-  trust: 'ДОВЕРИЕ',
-  data: 'ДАННЫЕ',
-  access: 'ДОСТУП',
-}
+const PROMPT = 'Как ты поступишь?'
 
 function keyStep(n: SceneNumber, key: SceneKey): KeyStep {
   let step = 0
   for (let i = 1; i <= n; i++) {
     if (scenes[i as SceneNumber].key === key) step++
   }
-  return (step === 2 || step === 3 ? step : 1)
+  return step === 2 || step === 3 ? step : 1
 }
 
 type Step = 'intro' | 'quiz' | 'result'
@@ -61,21 +57,14 @@ function ScenePlay({ n }: { n: SceneNumber }) {
   const [picked, setPicked] = useState<0 | 1 | 2 | null>(null)
   const [showKey, setShowKey] = useState(false)
   const outcome = picked != null ? scene.choices[picked].outcome : null
-  const result = step === 'result' && outcome ? scene.results[outcome] : null
+  const result = step === 'result' && outcome ? resultCopy(scene, outcome) : null
 
   if (step === 'intro' && scene.intro) {
     return (
       <Page
         tone="chat"
-        className={[
-          styles.photoPage,
-          styles.introPage,
-          n === 3 && styles.introPage3,
-          n === 4 && styles.introPage4,
-          n === 5 && styles.introPage5,
-        ]
-          .filter(Boolean)
-          .join(' ')}
+        data-scene={n}
+        className={[styles.photoPage, styles.introPage].join(' ')}
       >
         <img className={styles.bg} src={scene.intro.image} alt="" />
         <header className={styles.photoHeader}>
@@ -95,6 +84,7 @@ function ScenePlay({ n }: { n: SceneNumber }) {
 
   if (result && outcome) {
     const pad = String(n).padStart(2, '0')
+    const status = STATUS[outcome]
     return (
       <Page tone="result" className={styles.resultPage}>
         <header className={styles.header}>
@@ -106,12 +96,12 @@ function ScenePlay({ n }: { n: SceneNumber }) {
           </Text>
         </header>
         <div className={styles.mark}>
-          <StatusMark tone={TONE[outcome]} />
+          <StatusMark tone={status.tone} />
         </div>
         <Text
           variant="eyebrow"
           className={styles.resultEyebrow}
-          style={{ color: EYEBROW[outcome] }}
+          style={{ color: status.color }}
         >
           {result.eyebrow}
         </Text>
@@ -126,7 +116,7 @@ function ScenePlay({ n }: { n: SceneNumber }) {
           <div className={styles.keyLine}>
             <span
               className={styles.dot}
-              style={{ ['--tone' as string]: EYEBROW[outcome] }}
+              style={{ ['--tone' as string]: status.color }}
             />
             <Text as="span" variant="h4">
               {result.keyLine}
@@ -139,13 +129,19 @@ function ScenePlay({ n }: { n: SceneNumber }) {
           </div>
         ) : null}
         {showKey ? (
-          <div
-            className={styles.keyOverlay}
-            onClick={(e) => {
-              if (e.target === e.currentTarget) setShowKey(false)
-            }}
-          >
-            <KeyModal keyName={KEY_NAME[scene.key]} step={keyStep(n, scene.key)} />
+          <div className={styles.keyOverlay}>
+            <button
+              type="button"
+              className={styles.keyBackdrop}
+              aria-label="Закрыть"
+              onClick={() => setShowKey(false)}
+            />
+            <div className={styles.keyModal}>
+              <KeyModal
+                keyName={KEY_LABEL[scene.key].chip}
+                step={keyStep(n, scene.key)}
+              />
+            </div>
           </div>
         ) : null}
       </Page>
@@ -204,23 +200,33 @@ function Quiz({
     </div>
   )
 
-  if (scene.quiz === 'chat') {
+  if (scene.quiz === 'chat' && scene.chat) {
     return (
       <Page tone="chat" className={styles.chatPage}>
-        <ChatHeader name="Друг" status="в сети" onBack={() => navigate('/rules')} />
+        <ChatHeader
+          name={scene.chat.name}
+          status={scene.chat.status}
+          onBack={() => navigate('/rules')}
+        />
         <Text variant="bodyS" className={styles.today}>
           Сегодня
         </Text>
         <div className={styles.thread}>
-          <VoiceBubble duration="00:05" time="08:00">
-            Бро, привет, скинь 2000, пожалуйста, вечером верну.
-          </VoiceBubble>
-          <ChatBubble time="08:00">По этому номеру 8808080808</ChatBubble>
-          <ChatBubble time="08:01">Это новый, я поменял</ChatBubble>
+          {scene.chat.messages.map((m) =>
+            m.kind === 'voice' ? (
+              <VoiceBubble key={m.text} duration={m.duration} time={m.time}>
+                {m.text}
+              </VoiceBubble>
+            ) : (
+              <ChatBubble key={m.text} time={m.time}>
+                {m.text}
+              </ChatBubble>
+            ),
+          )}
         </div>
         <div className={styles.chatQuiz}>
           <Text as="h1" variant="h1">
-            Как ты поступишь?
+            {PROMPT}
           </Text>
           {choices}
         </div>
@@ -233,15 +239,8 @@ function Quiz({
     return (
       <Page
         tone="chat"
-        className={[
-          styles.photoPage,
-          styles.photoQuizPage,
-          n === 3 && styles.photoQuizPage3,
-          n === 4 && styles.photoQuizPage4,
-          n === 5 && styles.photoQuizPage5,
-        ]
-          .filter(Boolean)
-          .join(' ')}
+        data-scene={n}
+        className={[styles.photoPage, styles.photoQuizPage].join(' ')}
       >
         <div className={styles.photoFrame}>
           <img className={styles.bg} src={scene.photo} alt="" />
@@ -253,7 +252,7 @@ function Quiz({
         ) : null}
         <div className={styles.sheet}>
           <Text as="h1" variant="h1">
-            Как ты поступишь?
+            {PROMPT}
           </Text>
           {choices}
           {confirm}
@@ -273,7 +272,7 @@ function Quiz({
       <Stack gap={20}>
         {scene.situation ? <Text variant="bodyM">{scene.situation}</Text> : null}
         <Text as="h3" variant="bodyL">
-          Как ты поступишь?
+          {PROMPT}
         </Text>
         {choices}
       </Stack>

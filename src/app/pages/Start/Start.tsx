@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router'
+import { KEY_LABEL } from '@/app/scenes/index.ts'
 import {
   Button,
   ChatCard,
@@ -16,8 +17,6 @@ const STEPS = [
   'Пройди 10 ситуаций цифрового дня.',
   'Принимай решения, открывай ключи и расшифруй послание.',
 ]
-
-const KEYS = ['ДОВЕРИЕ', 'ДАННЫЕ', 'ДОСТУП']
 
 export function Start() {
   const navigate = useNavigate()
@@ -50,8 +49,8 @@ export function Start() {
         </ul>
 
         <div className={styles.keys}>
-          {KEYS.map((label) => (
-            <TrustChip key={label} label={label} />
+          {Object.values(KEY_LABEL).map((key) => (
+            <TrustChip key={key.chip} label={key.chip} />
           ))}
         </div>
 

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
 import { describe, expect, it } from 'vitest'
@@ -30,7 +30,7 @@ describe('Scene steps', () => {
     expect(screen.getByText('1/3')).toBeInTheDocument()
     await user.click(screen.getByText('ПОЛУЧЕН'))
     expect(screen.getByText('1/3')).toBeInTheDocument()
-    fireEvent.click(screen.getByText('ПОЛУЧЕН').closest('[class*="keyOverlay"]')!)
+    await user.click(screen.getByRole('button', { name: 'Закрыть' }))
     expect(screen.queryByText('1/3')).not.toBeInTheDocument()
   })
 })
