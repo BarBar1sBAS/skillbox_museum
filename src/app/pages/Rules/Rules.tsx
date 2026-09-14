@@ -49,14 +49,14 @@ export function Rules() {
 				<ol className={styles.steps}>
 					{STEPS.map((step) => (
 						<li key={step.n} className={styles.step}>
-							<Text as="span" variant="subtitle" color="accent">
+							<Text as="span" variant="subtitle" color="accent" className={styles.stepTitle}>
 								{step.n}
 							</Text>
 							<div className={styles.stepBody}>
-								<Text as="span" variant="bodyL">
+								<Text as="span" variant="bodyL" className={styles.stepTitle}>
 									{step.title}
 								</Text>
-								<Text variant="bodyM" color="muted">
+								<Text variant="bodyM" className={styles.dim}>
 									{step.text}
 								</Text>
 							</div>
@@ -67,7 +67,7 @@ export function Rules() {
 				<div className={styles.keysCard}>
 					<Text variant="bodyMBold">Как получить ключи</Text>
 					{KEY_RULES.map((rule) => (
-						<Text key={rule} variant="bodyM" color="muted">
+						<Text key={rule} variant="bodyM" className={styles.dim}>
 							{rule}
 						</Text>
 					))}
