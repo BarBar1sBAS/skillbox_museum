@@ -2,7 +2,6 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 4,
-  key: 'data',
   quiz: 'photo',
   intro: {
     title: 'ТЕБЕ СРОЧНО НУЖНО СКАЧАТЬ ФАЙЛ ИЗ ОБЛАКА ПО РАБОТЕ',

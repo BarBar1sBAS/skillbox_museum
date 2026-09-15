@@ -2,7 +2,6 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 2,
-  key: 'data',
   quiz: 'photo',
   intro: {
     title:
