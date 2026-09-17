@@ -39,7 +39,7 @@ export function Landing() {
               Один день
             </Text>
             <span className={styles.count}>
-              <Text as="span" variant="h3">
+              <Text as="span" variant="h3" style={{ color: '#24bdce' }}>
                 10
               </Text>
             </span>
@@ -49,7 +49,7 @@ export function Landing() {
           </div>
         </div>
 
-        <Text className={styles.question} variant="bodyM" color="accent">
+        <Text className={styles.question} variant="subtitle" color="accent">
           Сможешь сохранить свою цифровую безопасность?
         </Text>
 
@@ -77,7 +77,7 @@ export function Landing() {
             </Text>
           </div>
           <a className={styles.bannerLink} href={EXHIBITION_URL}>
-            <Text as="span" variant="fineprint">
+            <Text as="span" variant="fineprint" style={{ opacity: 1 }}>
               О ВЫСТАВКЕ
             </Text>
             <img src={arrowRightWhite} alt="" width={15} height={8} />

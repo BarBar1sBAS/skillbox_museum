@@ -1,0 +1,38 @@
+.page {
+  --chat-card-gap: 1.125rem;
+  --chat-card-align: left;
+  --chat-card-text-left: 1.75rem;
+  --chat-card-text-right: 0.125rem;
+  --chat-card-rule-left: 1.875rem;
+  --chat-card-rule-right: 1.0625rem;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: calc(var(--spacing-20) * 1px);
+  margin-bottom: 2.8125rem;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  line-height: 1.25rem;
+}
+
+.title {
+  margin: 0 0 2rem;
+  line-height: 1;
+}
+
+.keys {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 5rem;
+}
+
+.cta {
+  margin-top: auto;
+  padding-top: calc(var(--spacing-25) * 1px);
+}

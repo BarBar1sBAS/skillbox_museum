@@ -41,7 +41,7 @@
 }
 
 .rule {
-  margin: 0.625rem 0;
+  margin: 0.625rem var(--chat-card-rule-right, 0) 0.625rem var(--chat-card-rule-left, 0);
   border: 0;
   border-top: calc(var(--border-width) * 1px) solid color-mix(in srgb, var(--color-white) 20%, transparent);
 }
@@ -49,8 +49,9 @@
 .body {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--spacing-25) * 1px);
-  text-align: center;
+  gap: var(--chat-card-gap, calc(var(--spacing-25) * 1px));
+  padding: 0 var(--chat-card-text-right, 0) 0 var(--chat-card-text-left, 0);
+  text-align: var(--chat-card-align, center);
 }
 
 .plain {
