@@ -2,7 +2,6 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 1,
-  key: 'trust',
   quiz: 'chat',
   situation:
     'Друг пишет: «Бро, привет, скинь 2000, пожалуйста, вечером верну. По этому номеру 8808080808. Это новый, я поменял».',

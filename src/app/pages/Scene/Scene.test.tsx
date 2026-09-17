@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react'
+import { cleanup, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { routes } from '@/app/routes.tsx'
+import { loadAnswers, resetProgress, saveAnswer, totalScore } from '@/app/scenes/index.ts'
 
 function renderPath(path: string) {
   const router = createMemoryRouter(routes, { initialEntries: [path] })
@@ -10,6 +11,14 @@ function renderPath(path: string) {
 }
 
 describe('Scene steps', () => {
+  beforeEach(() => {
+    resetProgress()
+  })
+
+  afterEach(() => {
+    cleanup()
+  })
+
   it('opens scene 1 on the chat quiz', () => {
     renderPath('/scene/1')
     expect(screen.getByText('Друг')).toBeInTheDocument()
@@ -21,16 +30,48 @@ describe('Scene steps', () => {
     expect(screen.getByRole('button', { name: 'ЗАЙТИ В ВАГОН' })).toBeInTheDocument()
   })
 
-  it('shows the key modal after a correct answer', async () => {
+  it('does not show the key modal before the block is finished', async () => {
     const user = userEvent.setup()
     renderPath('/scene/1')
     await user.click(screen.getAllByRole('radio')[1])
     await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
+    expect(screen.getByText('ВЕРНОЕ РЕШЕНИЕ')).toBeInTheDocument()
+    expect(screen.queryByText('ПОЛУЧЕН')).not.toBeInTheDocument()
+  })
+
+  it('shows the trust key after scene 3 when scenes 1–3 are correct', async () => {
+    saveAnswer(1, 'correct')
+    saveAnswer(2, 'correct')
+    const user = userEvent.setup()
+    renderPath('/scene/3')
+    await user.click(screen.getByRole('button', { name: 'СЕСТЬ ЗА СТОЛИК' }))
+    await user.click(screen.getAllByRole('radio')[1])
+    await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
+    expect(screen.getByText(/КЛЮЧ “ДОВЕРИЕ”/)).toBeInTheDocument()
     expect(screen.getByText('ПОЛУЧЕН')).toBeInTheDocument()
-    expect(screen.getByText('1/3')).toBeInTheDocument()
-    await user.click(screen.getByText('ПОЛУЧЕН'))
     expect(screen.getByText('1/3')).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'Закрыть' }))
     expect(screen.queryByText('1/3')).not.toBeInTheDocument()
+  })
+
+  it('does not show the key when one scene of the block is not correct', async () => {
+    saveAnswer(1, 'correct')
+    saveAnswer(2, 'partial')
+    const user = userEvent.setup()
+    renderPath('/scene/3')
+    await user.click(screen.getByRole('button', { name: 'СЕСТЬ ЗА СТОЛИК' }))
+    await user.click(screen.getAllByRole('radio')[1])
+    await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
+    expect(screen.getByText('ВЕРНОЕ РЕШЕНИЕ')).toBeInTheDocument()
+    expect(screen.queryByText('ПОЛУЧЕН')).not.toBeInTheDocument()
+  })
+
+  it('saves points for the confirmed answer', async () => {
+    const user = userEvent.setup()
+    renderPath('/scene/1')
+    await user.click(screen.getAllByRole('radio')[0])
+    await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
+    expect(loadAnswers()).toEqual({ 1: 'partial' })
+    expect(totalScore()).toBe(4)
   })
 })

@@ -2,7 +2,6 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 5,
-  key: 'trust',
   quiz: 'photo',
   intro: {
     title:
@@ -35,7 +34,6 @@ export const scene: SceneContent = {
     partial: {
       title: 'ОДНОЙ ОСТОРОЖНОСТИ НЕДОСТАТОЧНО',
       body: 'Ты понимаешь, что все разрешения могут быть не нужны, но решаешь разобраться позже. Проблема в том, что приложение получит доступ к данным уже сейчас, а до настроек можно так и не дойти.',
-      keyLine: 'Фрагмент ключа “Доверие” не получен',
     },
     wrong: {
       title: 'ТАК ДЕЛАТЬ НЕБЕЗОПАСНО',

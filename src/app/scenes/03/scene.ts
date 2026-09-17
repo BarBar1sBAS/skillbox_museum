@@ -2,7 +2,6 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 3,
-  key: 'data',
   quiz: 'photo',
   intro: {
     title: 'ЗАВТРАКАТЬ БЫЛО НЕКОГДА,\nИ ТЫ РЕШАЕШЬ ЗАСКОЧИТЬ В КАФЕ ЗА КОФЕ',

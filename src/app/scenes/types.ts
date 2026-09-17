@@ -10,6 +10,18 @@ export const KEY_LABEL = {
   access: { chip: 'ДОСТУП', line: 'Доступ' },
 } as const
 
+export const KEY_BLOCKS: Record<SceneKey, SceneNumber[]> = {
+  trust: [1, 2, 3],
+  data: [4, 5, 6],
+  access: [7, 8, 9, 10],
+}
+
+export function keyOf(n: SceneNumber): SceneKey {
+  if (KEY_BLOCKS.trust.includes(n)) return 'trust'
+  if (KEY_BLOCKS.data.includes(n)) return 'data'
+  return 'access'
+}
+
 const EYEBROW: Record<SceneOutcome, string> = {
   correct: 'ВЕРНОЕ РЕШЕНИЕ',
   partial: 'НЕ СОВСЕМ ПРАВИЛЬНО',
@@ -45,7 +57,6 @@ export type SceneChat = {
 
 export type SceneContent = {
   n: SceneNumber
-  key: SceneKey
   quiz: SceneQuiz
   intro?: SceneIntro
   photo?: string
@@ -57,7 +68,7 @@ export type SceneContent = {
 }
 
 export function resultCopy(scene: SceneContent, outcome: SceneOutcome) {
-  const got = outcome !== 'wrong'
+  const got = outcome === 'correct'
   return {
     eyebrow: EYEBROW[outcome],
     title: scene.results[outcome].title,
@@ -65,7 +76,7 @@ export function resultCopy(scene: SceneContent, outcome: SceneOutcome) {
     remember: scene.remember,
     keyLine:
       scene.results[outcome].keyLine ??
-      `Фрагмент ключа “${KEY_LABEL[scene.key].line}” ${got ? 'получен' : 'не получен'}`,
+      `Фрагмент ключа “${KEY_LABEL[keyOf(scene.n)].line}” ${got ? 'получен' : 'не получен'}`,
   }
 }
 
@@ -74,7 +85,6 @@ const EMPTY_RESULT: SceneResult = { title: '', body: '' }
 export function emptyScene(n: SceneNumber): SceneContent {
   return {
     n,
-    key: 'access',
     quiz: 'photo',
     situation: '',
     remember: '',

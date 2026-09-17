@@ -239,6 +239,84 @@
   height: 24.125rem;
 }
 
+.introPage[data-scene="6"] .titleCard {
+  min-height: 0;
+}
+
+.photoQuizPage[data-scene="6"] .situationCard {
+  top: 1.5rem;
+  left: 0.8125rem;
+  width: 22.3125rem;
+  margin: 0;
+}
+
+.photoQuizPage[data-scene="6"] .situationCard p {
+  white-space: pre-line;
+  line-height: normal;
+}
+
+.introPage[data-scene="7"] .titleCard {
+  min-height: 0;
+}
+
+.photoQuizPage[data-scene="7"] .situationCard {
+  top: 1.5rem;
+  left: 0.8125rem;
+  width: 22.3125rem;
+  margin: 0;
+}
+
+.photoQuizPage[data-scene="7"] .situationCard p {
+  line-height: normal;
+}
+
+.introPage[data-scene="8"] .titleCard {
+  min-height: 0;
+}
+
+.photoQuizPage[data-scene="8"] .situationCard {
+  top: 1.5rem;
+  left: 0.8125rem;
+  width: 22.3125rem;
+  margin: 0;
+}
+
+.photoQuizPage[data-scene="8"] .situationCard p {
+  line-height: normal;
+}
+
+.introPage[data-scene="9"] .titleCard {
+  min-height: 0;
+}
+
+.photoQuizPage[data-scene="9"] .situationCard {
+  top: 1.5rem;
+  left: 0.8125rem;
+  width: 22.3125rem;
+  margin: 0;
+}
+
+.photoQuizPage[data-scene="9"] .situationCard p {
+  white-space: pre-line;
+  line-height: normal;
+}
+
+.introPage[data-scene="10"] .titleCard {
+  min-height: 0;
+}
+
+.photoQuizPage[data-scene="10"] .situationCard {
+  top: 1.5rem;
+  left: 0.8125rem;
+  width: 22.3125rem;
+  margin: 0;
+}
+
+.photoQuizPage[data-scene="10"] .situationCard p {
+  white-space: pre-line;
+  line-height: normal;
+}
+
 .bg {
   position: absolute;
   inset: 0;

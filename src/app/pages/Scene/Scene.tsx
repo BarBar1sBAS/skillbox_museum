@@ -1,10 +1,15 @@
 import { useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router'
 import {
+  collectedKeys,
   KEY_LABEL,
+  keyEarnedAt,
   parseSceneNumber,
   resultCopy,
+  safeDecisions,
+  saveAnswer,
   scenes,
+  totalScore,
 } from '@/app/scenes/index.ts'
 import type { SceneContent, SceneKey, SceneOutcome } from '@/app/scenes/types.ts'
 import {
@@ -33,15 +38,9 @@ const STATUS: Record<SceneOutcome, { tone: StatusTone; color: string }> = {
 
 const PROMPT = 'Как ты поступишь?'
 
-function keyStep(n: SceneNumber, key: SceneKey): KeyStep {
-  let step = 0
-  for (let i = 1; i <= n; i++) {
-    if (scenes[i as SceneNumber].key === key) step++
-  }
-  return step === 2 || step === 3 ? step : 1
-}
-
 type Step = 'intro' | 'quiz' | 'result'
+
+type EarnedKey = { key: SceneKey; step: KeyStep }
 
 export function Scene() {
   const { n: raw } = useParams()
@@ -55,7 +54,7 @@ function ScenePlay({ n }: { n: SceneNumber }) {
   const scene = scenes[n]
   const [step, setStep] = useState<Step>(scene.intro ? 'intro' : 'quiz')
   const [picked, setPicked] = useState<0 | 1 | 2 | null>(null)
-  const [showKey, setShowKey] = useState(false)
+  const [earned, setEarned] = useState<EarnedKey | null>(null)
   const outcome = picked != null ? scene.choices[picked].outcome : null
   const result = step === 'result' && outcome ? resultCopy(scene, outcome) : null
 
@@ -128,19 +127,16 @@ function ScenePlay({ n }: { n: SceneNumber }) {
             <Button onClick={() => navigate(`/scene/${n + 1}`)}>ПРОДОЛЖИТЬ</Button>
           </div>
         ) : null}
-        {showKey ? (
+        {earned ? (
           <div className={styles.keyOverlay}>
             <button
               type="button"
               className={styles.keyBackdrop}
               aria-label="Закрыть"
-              onClick={() => setShowKey(false)}
+              onClick={() => setEarned(null)}
             />
             <div className={styles.keyModal}>
-              <KeyModal
-                keyName={KEY_LABEL[scene.key].chip}
-                step={keyStep(n, scene.key)}
-              />
+              <KeyModal keyName={KEY_LABEL[earned.key].chip} step={earned.step} />
             </div>
           </div>
         ) : null}
@@ -156,7 +152,15 @@ function ScenePlay({ n }: { n: SceneNumber }) {
       onPick={setPicked}
       onConfirm={() => {
         if (picked != null) {
-          setShowKey(scene.choices[picked].outcome === 'correct')
+          const chosen = scene.choices[picked].outcome
+          const answers = saveAnswer(n, chosen)
+          console.log({
+            score: totalScore(answers),
+            safeDecisions: safeDecisions(answers),
+            keys: collectedKeys(answers),
+          })
+          const key = keyEarnedAt(n, answers)
+          setEarned(key ? { key, step: collectedKeys(answers).length as KeyStep } : null)
           setStep('result')
         }
       }}
