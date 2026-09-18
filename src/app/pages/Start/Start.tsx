@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router'
 import { KEY_LABEL } from '@/app/scenes/index.ts'
+import { useTheme } from '@/app/theme.ts'
 import {
   Button,
   ChatCard,
@@ -8,6 +9,7 @@ import {
   ScenePill,
   Stack,
   Text,
+  ThemeToggle,
   TrustChip,
 } from '@/uikit/index.ts'
 import arrowRightWhite from '@/uikit/icons/arrow-right-white.svg'
@@ -20,12 +22,14 @@ const STEPS = [
 
 export function Start() {
   const navigate = useNavigate()
+  const [theme, setTheme] = useTheme()
 
   return (
     <Page>
       <Stack gap={25}>
         <header className={styles.header}>
           <Logo />
+          <ThemeToggle theme={theme} onChange={setTheme} />
           <ScenePill label="10 сцен" />
         </header>
 

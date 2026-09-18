@@ -32,3 +32,16 @@
   height: 1rem;
   transform: rotate(-45deg);
 }
+
+[data-theme='light'] .chip {
+  border: calc(var(--border-width) * 1px) solid rgb(0 0 0 / 0.5);
+}
+
+[data-theme='light'] .chip:not(.active) .icon img {
+  filter: brightness(0);
+  opacity: 0.5;
+}
+
+[data-theme='light'] .active {
+  border-color: var(--color-lime);
+}

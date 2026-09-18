@@ -6,12 +6,11 @@ import {
   keyEarnedAt,
   parseSceneNumber,
   resultCopy,
-  safeDecisions,
   saveAnswer,
   scenes,
-  totalScore,
 } from '@/app/scenes/index.ts'
 import type { SceneContent, SceneKey, SceneOutcome } from '@/app/scenes/types.ts'
+import { useTheme } from '@/app/theme.ts'
 import {
   Button,
   ChatBubble,
@@ -23,6 +22,7 @@ import {
   Stack,
   StatusMark,
   Text,
+  ThemeToggle,
   VoiceBubble,
   type KeyStep,
   type SceneNumber,
@@ -51,6 +51,7 @@ export function Scene() {
 
 function ScenePlay({ n }: { n: SceneNumber }) {
   const navigate = useNavigate()
+  const [theme, setTheme] = useTheme()
   const scene = scenes[n]
   const [step, setStep] = useState<Step>(scene.intro ? 'intro' : 'quiz')
   const [picked, setPicked] = useState<0 | 1 | 2 | null>(null)
@@ -67,6 +68,7 @@ function ScenePlay({ n }: { n: SceneNumber }) {
       >
         <img className={styles.bg} src={scene.intro.image} alt="" />
         <header className={styles.photoHeader}>
+          <ThemeToggle theme={theme} onChange={setTheme} />
           <ScenePill n={n} />
         </header>
         <div className={styles.titleCard}>
@@ -122,11 +124,11 @@ function ScenePlay({ n }: { n: SceneNumber }) {
             </Text>
           </div>
         ) : null}
-        {n < 10 ? (
-          <div className={styles.cta}>
-            <Button onClick={() => navigate(`/scene/${n + 1}`)}>ПРОДОЛЖИТЬ</Button>
-          </div>
-        ) : null}
+        <div className={styles.cta}>
+          <Button onClick={() => navigate(n < 10 ? `/scene/${n + 1}` : '/final')}>
+            {n < 10 ? 'ПРОДОЛЖИТЬ' : 'УЗНАТЬ РЕЗУЛЬТАТ'}
+          </Button>
+        </div>
         {earned ? (
           <div className={styles.keyOverlay}>
             <button
@@ -154,11 +156,6 @@ function ScenePlay({ n }: { n: SceneNumber }) {
         if (picked != null) {
           const chosen = scene.choices[picked].outcome
           const answers = saveAnswer(n, chosen)
-          console.log({
-            score: totalScore(answers),
-            safeDecisions: safeDecisions(answers),
-            keys: collectedKeys(answers),
-          })
           const key = keyEarnedAt(n, answers)
           setEarned(key ? { key, step: collectedKeys(answers).length as KeyStep } : null)
           setStep('result')

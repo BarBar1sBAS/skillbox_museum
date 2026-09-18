@@ -1,0 +1,40 @@
+import { useEffect, useState } from 'react'
+import type { Theme } from '@/uikit/index.ts'
+
+const STORAGE_KEY = 'theme'
+
+export function loadTheme(): Theme {
+  try {
+    return localStorage.getItem(STORAGE_KEY) === 'light' ? 'light' : 'dark'
+  } catch {
+    return 'dark'
+  }
+}
+
+export function saveTheme(theme: Theme) {
+  try {
+    localStorage.setItem(STORAGE_KEY, theme)
+  } catch {
+    return
+  }
+}
+
+export function applyTheme(theme: Theme) {
+  document.documentElement.dataset.theme = theme
+}
+
+export function useTheme(): [Theme, (theme: Theme) => void] {
+  const [theme, setTheme] = useState<Theme>(loadTheme)
+
+  useEffect(() => {
+    applyTheme(theme)
+  }, [theme])
+
+  return [
+    theme,
+    (next: Theme) => {
+      saveTheme(next)
+      setTheme(next)
+    },
+  ]
+}

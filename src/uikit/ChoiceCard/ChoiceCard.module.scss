@@ -37,3 +37,15 @@
   flex: 1;
   min-width: 0;
 }
+
+.radioLight {
+  display: none;
+}
+
+[data-theme='light'] .radioDark {
+  display: none;
+}
+
+[data-theme='light'] .radioLight {
+  display: block;
+}

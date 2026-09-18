@@ -1,4 +1,5 @@
 import avatar from '../icons/avatar.svg'
+import backLight from '../icons/back-light.svg'
 import back from '../icons/back.svg'
 import callMenu from '../icons/call-menu.svg'
 import { Text } from '../Text/Text.tsx'
@@ -14,7 +15,8 @@ export function ChatHeader({ name, status, onBack }: ChatHeaderProps) {
   return (
     <header className={styles.header}>
       <button type="button" className={styles.back} aria-label="Назад" onClick={onBack}>
-        <img src={back} alt="" width={43} height={43} />
+        <img className={styles.backDark} src={back} alt="" width={43} height={43} />
+        <img className={styles.backLight} src={backLight} alt="" width={43} height={43} />
       </button>
       <div className={styles.peer}>
         <img className={styles.avatar} src={avatar} alt="" width={38} height={38} />

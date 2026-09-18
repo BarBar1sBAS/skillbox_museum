@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router'
-import { KEY_LABEL } from '@/app/scenes/index.ts'
+import { collectedKeys, KEY_LABEL, resetProgress } from '@/app/scenes/index.ts'
+import { useTheme } from '@/app/theme.ts'
 import {
   Button,
   ChatCard,
@@ -9,50 +10,60 @@ import {
   ScenePill,
   Stack,
   Text,
+  ThemeToggle,
   TrustChip,
+  type ChatReveal,
   type PromoPercent,
 } from '@/uikit/index.ts'
 import styles from './Final.module.scss'
 
-type KeyCount = 1 | 2 | 3
+type KeyCount = 0 | 1 | 2 | 3
 
-const FINAL: Record<
-  KeyCount,
-  { eyebrow: string; title: string; accent: string; percent: PromoPercent; code: string }
-> = {
+type FinalCopy = {
+  eyebrow: string
+  title: string
+  accent: string
+  promo?: { percent: PromoPercent; code: string }
+}
+
+const FINAL: Record<KeyCount, FinalCopy> = {
+  0: {
+    eyebrow: 'КЛЮЧИ НЕ СОБРАНЫ',
+    title: 'ПОСЛАНИЕ',
+    accent: 'НЕ РАСШИФРОВАНО',
+  },
   1: {
     eyebrow: 'ПОЛУЧЕН НОВЫЙ КЛЮЧ',
     title: 'ЧАСТЬ ПОСЛАНИЯ',
     accent: 'РАСШИФРОВАНА',
-    percent: 5,
-    code: 'CRYPTO5',
+    promo: { percent: 5, code: 'CRYPTO5' },
   },
   2: {
     eyebrow: 'ПОЛУЧЕН ВТОРОЙ КЛЮЧ',
     title: 'ЧАСТЬ ПОСЛАНИЯ',
     accent: 'РАСШИФРОВАНА',
-    percent: 7,
-    code: 'CRYPTO7',
+    promo: { percent: 7, code: 'CRYPTO7' },
   },
   3: {
     eyebrow: 'ВСЕ КЛЮЧИ СОБРАНЫ',
     title: 'ПОСЛАНИЕ',
     accent: 'РАСШИФРОВАНО',
-    percent: 10,
-    code: 'CRYPTO10',
+    promo: { percent: 10, code: 'CRYPTO10' },
   },
 }
 
-const keys: KeyCount = 2
-
 export function Final() {
   const navigate = useNavigate()
-  const final = FINAL[keys]
+  const [theme, setTheme] = useTheme()
+  const keys = collectedKeys()
+  const count = keys.length as KeyCount
+  const final = FINAL[count]
 
   return (
     <Page className={styles.page}>
       <header className={styles.header}>
         <Logo />
+        <ThemeToggle theme={theme} onChange={setTheme} />
         <ScenePill label="10 сцен" />
       </header>
 
@@ -66,18 +77,30 @@ export function Final() {
         </Text>
       </Text>
 
-      <ChatCard reveal={keys} />
+      <ChatCard reveal={count as ChatReveal} />
 
       <div className={styles.keys}>
-        {Object.values(KEY_LABEL).map((key, i) => (
-          <TrustChip key={key.chip} label={key.chip} active={i < keys} />
+        {(Object.keys(KEY_LABEL) as (keyof typeof KEY_LABEL)[]).map((key) => (
+          <TrustChip
+            key={key}
+            label={KEY_LABEL[key].chip}
+            active={keys.includes(key)}
+          />
         ))}
       </div>
 
       <div className={styles.cta}>
         <Stack gap={20}>
-          <PromoCode percent={final.percent} code={final.code} />
-          <Button arrow onClick={() => navigate('/start')}>
+          {final.promo ? (
+            <PromoCode percent={final.promo.percent} code={final.promo.code} />
+          ) : null}
+          <Button
+            arrow
+            onClick={() => {
+              resetProgress()
+              navigate('/start')
+            }}
+          >
             ПОВТОРИТЬ
           </Button>
         </Stack>
