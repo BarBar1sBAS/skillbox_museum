@@ -329,7 +329,8 @@
   position: relative;
   z-index: 1;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   padding: 1.5rem 1.5rem 0;
 }
 
@@ -466,4 +467,39 @@
 
 .dim {
   opacity: 0.5;
+}
+
+.introPage[data-scene="6"] .bg,
+.introPage[data-scene="7"] .bg,
+.introPage[data-scene="8"] .bg,
+.introPage[data-scene="9"] .bg,
+.introPage[data-scene="10"] .bg {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.photoQuizPage[data-scene="6"] .photoFrame .bg,
+.photoQuizPage[data-scene="7"] .photoFrame .bg,
+.photoQuizPage[data-scene="8"] .photoFrame .bg,
+.photoQuizPage[data-scene="9"] .photoFrame .bg,
+.photoQuizPage[data-scene="10"] .photoFrame .bg {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.photoQuizPage[data-scene="8"] .photoFrame {
+  height: calc(100dvh - 23.625rem);
+  min-height: 26.125rem;
+}
+
+.photoQuizPage[data-scene="8"] .photoFrame .bg {
+  object-position: top;
+}
+
+[data-theme='light'] .remember {
+  border: 0.03125rem solid rgb(0 0 0 / 0.5);
+  border-radius: calc(var(--radius-l) * 1px);
+  background: #edf6ff;
 }

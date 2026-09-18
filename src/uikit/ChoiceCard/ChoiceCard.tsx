@@ -1,3 +1,4 @@
+import radioLight from '../icons/radio-light.svg'
 import radioOn from '../icons/radio-on.svg'
 import radio from '../icons/radio.svg'
 import { Text } from '../Text/Text.tsx'
@@ -19,8 +20,15 @@ export function ChoiceCard({ selected = false, children, onClick }: ChoiceCardPr
         onChange={() => onClick?.()}
       />
       <img
-        className={styles.radio}
+        className={[styles.radio, styles.radioDark].join(' ')}
         src={selected ? radioOn : radio}
+        alt=""
+        width={23}
+        height={23}
+      />
+      <img
+        className={[styles.radio, styles.radioLight].join(' ')}
+        src={selected ? radioOn : radioLight}
         alt=""
         width={23}
         height={23}

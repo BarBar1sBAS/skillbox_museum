@@ -68,3 +68,15 @@
   align-self: flex-end;
   opacity: 0.75;
 }
+
+[data-theme='light'] .bubble {
+  background: #dde6ff;
+}
+
+[data-theme='light'] .bar {
+  background: rgb(0 0 0 / 0.5);
+}
+
+[data-theme='light'] .transcribe {
+  background: rgb(0 0 0 / 0.05);
+}

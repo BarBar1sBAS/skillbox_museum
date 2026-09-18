@@ -1,0 +1,59 @@
+.toggle {
+  appearance: none;
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: 3.25rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: calc(var(--radius-pill) * 1px);
+  background: var(--background-toggle);
+  cursor: pointer;
+}
+
+.knob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--color-cyan);
+  transition: transform 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+.light .knob {
+  transform: translateX(1.5rem);
+}
+
+.moon,
+.sun {
+  position: absolute;
+  top: 50%;
+  pointer-events: none;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.3, 0.64, 1),
+    opacity 0.3s ease;
+}
+
+.moon {
+  left: 0.5rem;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.sun {
+  right: 0.4375rem;
+  transform: translateY(-50%) scale(0.9);
+  opacity: 0.85;
+}
+
+.light .moon {
+  transform: translateY(-50%) scale(0.9);
+  opacity: 0.85;
+}
+
+.light .sun {
+  transform: translateY(-50%) scale(1.1);
+  opacity: 1;
+}

@@ -1,5 +1,14 @@
 import { useNavigate } from "react-router";
-import { Button, Logo, Page, ScenePill, Stack, Text } from "@/uikit/index.ts";
+import { useTheme } from "@/app/theme.ts";
+import {
+	Button,
+	Logo,
+	Page,
+	ScenePill,
+	Stack,
+	Text,
+	ThemeToggle,
+} from "@/uikit/index.ts";
 import styles from "./Rules.module.scss";
 
 const STEPS = [
@@ -28,11 +37,13 @@ const KEY_RULES = [
 
 export function Rules() {
 	const navigate = useNavigate();
+	const [theme, setTheme] = useTheme();
 
 	return (
 		<Page>
 			<header className={styles.header}>
 				<Logo />
+				<ThemeToggle theme={theme} onChange={setTheme} />
 				<ScenePill label="10 сцен" />
 			</header>
 

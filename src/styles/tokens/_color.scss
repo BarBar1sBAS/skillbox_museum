@@ -18,6 +18,7 @@
   --background-default: var(--color-navy-deep);
   --background-scene: rgb(70 71 110 / 0.5);
   --background-banner: #00177c;
+  --background-toggle: #696969;
   --background-glass: rgb(34 43 101 / 0.7);
   --background-glass-mid: rgb(34 43 101 / 0.6);
   --background-glass-soft: rgb(34 43 101 / 0.5);
@@ -35,4 +36,29 @@
   --gradient-page: linear-gradient(11.6deg, var(--color-navy-deep), var(--color-navy));
   --gradient-landing: linear-gradient(191.41deg, var(--color-navy-night), var(--color-navy-abyss));
   --gradient-result: linear-gradient(23.7deg, #0d1642 2.14%, var(--color-navy-bar) 111%);
+}
+
+[data-theme='light'] {
+  --background-default: #f5f7ff;
+  --background-scene: rgb(255 255 255 / 0.7);
+  --background-glass: rgb(245 247 255 / 0.85);
+  --background-glass-mid: rgb(245 247 255 / 0.8);
+  --background-glass-soft: rgb(245 247 255 / 0.7);
+  --background-banner: #e3eaff;
+  --background-modal: #ffffff;
+  --text-primary: #070a2b;
+  --text-muted: rgb(0 0 0 / 0.75);
+  --text-on-accent: #070a2b;
+  --text-accent: #008da0;
+  --border-card: rgb(0 0 0 / 0.1);
+  --color-navy-screen: #f5f7ff;
+  --color-navy-bar: #dde6ff;
+  --gradient-page: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
+  --gradient-landing: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
+  --gradient-result: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
+  --gradient-chat: linear-gradient(-54.36deg, #ffffff, #f5f7ff);
+  --gradient-note: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
+  --gradient-choice: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
+  --shadow-card: 0 4px 12px rgb(7 10 43 / 0.08);
+  --shadow-promo: 4px 4px 5px rgb(7 10 43 / 0.15);
 }
