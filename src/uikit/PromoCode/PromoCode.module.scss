@@ -4,8 +4,8 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  width: 21.3125rem;
-  height: 3.375rem;
+  width: 100%;
+  min-height: 3.375rem;
   padding: calc(var(--spacing-10) * 1px) 1.1875rem
     calc(var(--spacing-10) * 1px) calc(var(--spacing-10) * 1px);
   background: var(--color-lime);

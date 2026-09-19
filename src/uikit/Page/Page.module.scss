@@ -27,3 +27,9 @@
 [data-theme='light'] .chat {
   background: var(--gradient-page);
 }
+
+@media (min-width: 600px) {
+  .page {
+    max-width: var(--layout-desktop);
+  }
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router'
 import {
   collectedKeys,
@@ -27,6 +27,7 @@ import {
   type KeyStep,
   type SceneNumber,
   type StatusTone,
+  type Theme,
 } from '@/uikit/index.ts'
 import styles from './Scene.module.scss'
 
@@ -66,7 +67,7 @@ function ScenePlay({ n }: { n: SceneNumber }) {
         data-scene={n}
         className={[styles.photoPage, styles.introPage].join(' ')}
       >
-        <img className={styles.bg} src={scene.intro.image} alt="" />
+        <SceneImage className={styles.bg} src={scene.intro.image} theme={theme} />
         <header className={styles.photoHeader}>
           <ThemeToggle theme={theme} onChange={setTheme} />
           <ScenePill n={n} />
@@ -179,6 +180,7 @@ function Quiz({
   onConfirm: () => void
 }) {
   const navigate = useNavigate()
+  const [theme] = useTheme()
   const choices = (
     <>
       {scene.choices.map((choice, i) => (
@@ -244,7 +246,7 @@ function Quiz({
         className={[styles.photoPage, styles.photoQuizPage].join(' ')}
       >
         <div className={styles.photoFrame}>
-          <img className={styles.bg} src={scene.photo} alt="" />
+          <SceneImage className={styles.bg} src={scene.photo} theme={theme} />
         </div>
         {scene.situation ? (
           <div className={styles.situationCard}>
@@ -279,6 +281,59 @@ function Quiz({
       </Stack>
       {confirm}
     </Page>
+  )
+}
+
+const DESKTOP = '(min-width: 600px)'
+
+function desktopQuery() {
+  return typeof window.matchMedia === 'function' ? window.matchMedia(DESKTOP) : null
+}
+
+function useDesktop() {
+  const [desktop, setDesktop] = useState(() => desktopQuery()?.matches ?? false)
+
+  useEffect(() => {
+    const query = desktopQuery()
+    if (!query) return
+    const update = () => setDesktop(query.matches)
+    query.addEventListener('change', update)
+    return () => query.removeEventListener('change', update)
+  }, [])
+
+  return desktop
+}
+
+export function sceneImageSources(src: string, theme: Theme, desktop: boolean) {
+  const suffixes = []
+  if (desktop && theme === 'light') suffixes.push('-desktop-light')
+  if (desktop) suffixes.push('-desktop')
+  if (theme === 'light') suffixes.push('-light')
+  suffixes.push('')
+  return suffixes.map((suffix) => src.replace(/\.png$/, `${suffix}.png`))
+}
+
+function SceneImage({
+  src,
+  theme,
+  className,
+}: {
+  src: string
+  theme: Theme
+  className?: string
+}) {
+  const desktop = useDesktop()
+  const sources = sceneImageSources(src, theme, desktop)
+  const [step, setStep] = useState(0)
+
+  return (
+    <img
+      key={`${theme}-${desktop}`}
+      className={className}
+      src={sources[Math.min(step, sources.length - 1)]}
+      alt=""
+      onError={() => setStep((current) => current + 1)}
+    />
   )
 }
 

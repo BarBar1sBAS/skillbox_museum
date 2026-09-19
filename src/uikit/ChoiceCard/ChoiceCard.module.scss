@@ -3,8 +3,8 @@
   display: inline-flex;
   align-items: center;
   box-sizing: border-box;
-  width: 21.8125rem;
-  height: 4.375rem;
+  width: 100%;
+  min-height: 4.375rem;
   padding: calc(var(--spacing-10) * 1px);
   gap: calc(var(--spacing-10) * 1px);
   border: calc(var(--border-width) * 1px) solid var(--border-card);

@@ -44,3 +44,23 @@
   line-height: 1;
   color: var(--color-orange);
 }
+
+[data-theme='light'] .mark {
+  background: var(--tone-bg);
+  box-shadow: none;
+}
+
+[data-theme='light'] .lime {
+  --tone: #9be569;
+  --tone-bg: rgb(166 243 107 / 0.2);
+}
+
+[data-theme='light'] .orange {
+  --tone: #ffb35c;
+  --tone-bg: rgb(255 179 92 / 0.3);
+}
+
+[data-theme='light'] .red {
+  --tone: #ff5c57;
+  --tone-bg: rgb(255 92 87 / 0.3);
+}
