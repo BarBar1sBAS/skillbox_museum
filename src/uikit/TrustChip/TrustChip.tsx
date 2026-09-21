@@ -22,8 +22,8 @@ export function TrustChip({
       <Text
         as="span"
         variant="bodyS"
-        color={active ? 'primary' : 'muted'}
-        style={active ? { color: 'var(--color-lime)' } : undefined}
+        className={styles.label}
+        style={{ color: 'var(--chip-label)' }}
       >
         {label}
       </Text>
