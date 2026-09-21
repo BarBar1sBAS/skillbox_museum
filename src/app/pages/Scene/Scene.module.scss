@@ -101,7 +101,8 @@
 
 .photoFrame {
   position: relative;
-  height: 41.9375rem;
+  flex: 1;
+  min-height: 41.9375rem;
   overflow: hidden;
 }
 
@@ -111,6 +112,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
 }
 
 .photoQuizPage .situationCard {
@@ -145,7 +147,7 @@
 }
 
 .photoQuizPage[data-scene="3"] .photoFrame {
-  height: 44.625rem;
+  min-height: 44.625rem;
 }
 
 .photoQuizPage[data-scene="3"] .situationCard {
@@ -171,10 +173,6 @@
 
 .photoQuizPage[data-scene="4"] .situationCard p {
   line-height: normal;
-}
-
-.photoQuizPage[data-scene="5"] .photoFrame {
-  height: 52.75rem;
 }
 
 .photoQuizPage[data-scene="5"] .situationCard {
@@ -421,15 +419,6 @@
 
 .dim {
   opacity: 0.5;
-}
-
-.photoQuizPage[data-scene="8"] .photoFrame {
-  height: calc(100dvh - 23.625rem);
-  min-height: 26.125rem;
-}
-
-.photoQuizPage[data-scene="8"] .photoFrame .bg {
-  object-position: top;
 }
 
 [data-theme='light'] .remember {
