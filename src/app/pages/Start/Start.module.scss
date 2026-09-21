@@ -46,3 +46,12 @@
   filter: brightness(0);
   opacity: 0.6;
 }
+
+.steps li::marker {
+  font-size: 0.65em;
+}
+
+[data-theme='light'] .steps {
+  --text-primary: rgb(0 0 0 / 0.7);
+  color: rgb(0 0 0 / 0.7);
+}
