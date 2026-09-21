@@ -22,6 +22,7 @@ describe('scenes', () => {
     expect(parseSceneNumber('10')).toBe(10)
     expect(parseSceneNumber('0')).toBeUndefined()
     expect(parseSceneNumber('11')).toBeUndefined()
+    expect(parseSceneNumber(undefined)).toBeUndefined()
   })
 
   it('splits scenes into key blocks 1–3, 4–6, 7–10', () => {
@@ -48,5 +49,17 @@ describe('scenes', () => {
     expect(resultCopy(scenes[7], 'correct').keyLine).toBe(
       'Фрагмент ключа “Доступ” получен',
     )
+    expect(
+      resultCopy(
+        {
+          ...scenes[1],
+          results: {
+            ...scenes[1].results,
+            correct: { ...scenes[1].results.correct, keyLine: 'свой текст' },
+          },
+        },
+        'correct',
+      ).keyLine,
+    ).toBe('свой текст')
   })
 })

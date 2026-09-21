@@ -333,28 +333,6 @@
   padding: 1.6875rem 2.0625rem 4.25rem;
 }
 
-.keyOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  padding-top: 14.4375rem;
-  background: rgb(0 0 0 / 0.7);
-}
-
-.keyBackdrop {
-  position: absolute;
-  inset: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-}
-
-.keyModal {
-  position: relative;
-}
-
 .resultPage .header {
   margin-bottom: 3.5rem;
 }

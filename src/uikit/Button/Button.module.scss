@@ -15,6 +15,13 @@
   cursor: pointer;
 }
 
+.small {
+  width: auto;
+  min-height: 2.5rem;
+  padding: calc(var(--spacing-10) * 1px) calc(var(--spacing-25) * 1px);
+  border-radius: calc(var(--radius-s) * 1px);
+}
+
 .large {
   min-height: 3.125rem;
   padding: calc(var(--spacing-10) * 1px) calc(var(--spacing-25) * 1px);
@@ -24,4 +31,9 @@
 .arrow {
   display: block;
   flex-shrink: 0;
+}
+
+.outline {
+  border: calc(var(--border-width) * 1px) solid var(--color-cyan);
+  background: transparent;
 }

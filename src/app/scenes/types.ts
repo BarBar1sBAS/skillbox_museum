@@ -80,23 +80,3 @@ export function resultCopy(scene: SceneContent, outcome: SceneOutcome) {
   }
 }
 
-const EMPTY_RESULT: SceneResult = { title: '', body: '' }
-
-export function emptyScene(n: SceneNumber): SceneContent {
-  return {
-    n,
-    quiz: 'photo',
-    situation: '',
-    remember: '',
-    choices: [
-      { text: '', outcome: 'correct' },
-      { text: '', outcome: 'partial' },
-      { text: '', outcome: 'wrong' },
-    ],
-    results: {
-      correct: EMPTY_RESULT,
-      partial: EMPTY_RESULT,
-      wrong: EMPTY_RESULT,
-    },
-  }
-}

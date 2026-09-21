@@ -9,4 +9,14 @@ describe('ChatCard', () => {
       screen.getByText('Узнай больше на выставке Музея криптографии'),
     ).toBeInTheDocument()
   })
+
+  it('keeps later lines ciphered until they are revealed', () => {
+    render(<ChatCard reveal={1} />)
+    expect(
+      screen.getByText('Каждый день ты оставляешь цифровой след'),
+    ).toBeInTheDocument()
+    expect(
+      screen.queryByText('Но технологий не нужно бояться - их нужно понимать.'),
+    ).not.toBeInTheDocument()
+  })
 })

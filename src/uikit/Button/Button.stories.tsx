@@ -14,12 +14,27 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
 
+export const Outline: Story = {
+  args: { children: 'ПОДРОБНЕЕ О РЕЗУЛЬТАТЕ', arrow: false, variant: 'outline' },
+}
+
+export const Small: Story = {
+  args: {
+    children: 'ПОДРОБНЕЕ О РЕЗУЛЬТАТЕ',
+    arrow: false,
+    size: 's',
+    variant: 'outline',
+  },
+}
+
 export const All: Story = {
   render: () => (
     <Stack gap={20}>
       <Button arrow>НАЧАТЬ ДЕНЬ</Button>
       <Button>БЕЗ СТРЕЛКИ</Button>
       <Button size="l" arrow>Начать игру</Button>
+      <Button variant="outline">ПОДРОБНЕЕ О РЕЗУЛЬТАТЕ</Button>
+      <Button size="s" variant="outline">ПОДРОБНЕЕ О РЕЗУЛЬТАТЕ</Button>
     </Stack>
   ),
 }

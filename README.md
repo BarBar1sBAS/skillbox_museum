@@ -9,8 +9,9 @@ UI kit живёт в Storybook. Экраны приложения собираю
 ```bash
 bun install
 bun run storybook   # http://localhost:6006 — каталог компонентов
-bun run dev         # приложение: / лендинг, /start, /rules
+bun run dev         # приложение: / лендинг, /start, /rules, /scene/:n, /result, /final
 bun run test
+bun run test:coverage
 ```
 
 Сторисы подхватываются из `src/uikit/**/*.stories.tsx` (см. [`.storybook/main.ts`](.storybook/main.ts)). Фон превью — `#081B55`, как в макете ([`.storybook/preview.tsx`](.storybook/preview.tsx)).
@@ -22,7 +23,7 @@ bun run test
 | Путь | Зачем |
 |------|--------|
 | [`src/uikit/`](src/uikit/) | Компоненты и сторисы. Публичный вход — [`src/uikit/index.ts`](src/uikit/index.ts) |
-| [`src/app/`](src/app/) | Роутер и страницы: `/` → [`Landing`](src/app/pages/Landing/Landing.tsx), `/start` → [`Start`](src/app/pages/Start/Start.tsx), `/rules` → [`Rules`](src/app/pages/Rules/Rules.tsx) |
+| [`src/app/`](src/app/) | Роутер и страницы: `/` → [`Landing`](src/app/pages/Landing/Landing.tsx), `/start` → [`Start`](src/app/pages/Start/Start.tsx), `/rules` → [`Rules`](src/app/pages/Rules/Rules.tsx), `/scene/:n` → [`Scene`](src/app/pages/Scene/Scene.tsx), `/result` → [`Result`](src/app/pages/Result/Result.tsx), `/final` → [`Final`](src/app/pages/Final/Final.tsx) |
 | [`src/styles/`](src/styles/) | Токены: `--color-*`, `--gradient-*`, `--border-card`, `--shadow-*`, `--font-*`, `--spacing-*`, `--radius-*`. Подключаются один раз в [`src/main.tsx`](src/main.tsx) |
 
 Алиас `@/` указывает на `src/` (см. [`vite.config.ts`](vite.config.ts)). Из приложения импортируют так:
@@ -85,7 +86,15 @@ import { Stack, Text, ChoiceCard } from '@/uikit/index.ts'
 
 **ChatCard** — `reveal?: 0 | 1 | 2 | 3` (по умолчанию `0`). Тексты зашиты: сколько первых строк уже расшифровано.
 
-**KeyModal** — `step?: 1 | 2 | 3` (по умолчанию `1`). Карточка 327×327 «ключ получен». Это не `<dialog>` и не оверлей: портал и закрытие в компонент не входят.
+**Button** — `size?: 'm' | 'l'`, `variant?: 'solid' | 'outline'`, `arrow?`. Outline — прозрачный фон и обводка `--color-cyan`.
+
+**ScoreRing** — `value: number` (клэмп 0…100). Кольцо индекса, `role="progressbar"`.
+
+**StatBar** — `label: string`, `value: number` (клэмп 0…100). Подпись, `N/100` и линейный бар.
+
+**Modal** — `onClose`, `closeButton?` (по умолчанию нет). Оверлей: фон, Esc, клик по подложке. Крестик опционален, чтобы не плодить вторую кнопку «Закрыть» вокруг `KeyModal`.
+
+**KeyModal** — `step?: 1 | 2 | 3` (по умолчанию `1`). Карточка 327×327 «ключ получен». Это не оверлей: оборачивают в `Modal`.
 
 Иконки лежат в [`src/uikit/icons/`](src/uikit/icons/), витрина — сторис `UIkit/Icons`. Новые глифы — экспорт из Figma, SVG руками не рисуют.
 
@@ -134,8 +143,8 @@ export function Scene() {
 - Из `src/app` не импортировать компонент минуя [`src/uikit/index.ts`](src/uikit/index.ts).
 - Не ставить Tailwind.
 - Не копировать absolute-вёрстку из Figma.
+- `KeyModal` — только карточка. Оверлей — `Modal` (`onClose`, Esc, фон). Фокус-трап и lock скролла в комплект не входят.
 - `ChoiceCard` — выбор через `onClick` родителя и проп `selected`. Не вешать `role="radio"` на `button`.
-- `KeyModal` — только карточка. Оверлей, фокус-трап и `onClose` — ответственность экрана, если они понадобятся.
 
 ## Команды
 
@@ -144,6 +153,7 @@ export function Scene() {
 | `bun run dev` | Vite, приложение |
 | `bun run storybook` | Storybook на порту 6006 |
 | `bun run test` | Vitest, один прогон |
+| `bun run test:coverage` | Vitest с v8-покрытием, порог 100% |
 | `bun run test:watch` | Vitest в watch |
 | `bun run lint` | oxlint |
 | `bun run build` | `tsc -b` и production-сборка Vite |

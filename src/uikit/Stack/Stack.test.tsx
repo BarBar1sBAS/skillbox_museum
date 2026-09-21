@@ -16,4 +16,15 @@ describe('Stack', () => {
       gap: 'calc(var(--spacing-25) * 1px)',
     })
   })
+
+  it('defaults the gap to 20', () => {
+    const { container } = render(
+      <Stack>
+        <span>а</span>
+      </Stack>,
+    )
+    expect(container.firstChild).toHaveStyle({
+      gap: 'calc(var(--spacing-20) * 1px)',
+    })
+  })
 })

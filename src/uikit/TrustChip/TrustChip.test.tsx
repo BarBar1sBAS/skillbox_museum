@@ -8,4 +8,9 @@ describe('TrustChip', () => {
     expect(screen.getByText('ДОВЕРИЕ')).toBeInTheDocument()
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
   })
+
+  it('renders an inactive chip with a custom label', () => {
+    render(<TrustChip label="ДАННЫЕ" />)
+    expect(screen.getByText('ДАННЫЕ')).toBeInTheDocument()
+  })
 })

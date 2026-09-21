@@ -22,4 +22,18 @@ describe('Text', () => {
       fontWeight: 'var(--font-h1-weight)',
     })
   })
+
+  it('dims cipher and fineprint and keeps a custom style', () => {
+    const { rerender } = render(
+      <Text as="span" variant="cipher" className="extra" style={{ letterSpacing: '1px' }}>
+        шифр
+      </Text>,
+    )
+    const el = screen.getByText('шифр')
+    expect(el.tagName).toBe('SPAN')
+    expect(el).toHaveStyle({ opacity: '0.7', letterSpacing: '1px' })
+
+    rerender(<Text variant="fineprint">мелочь</Text>)
+    expect(screen.getByText('мелочь')).toHaveStyle({ opacity: '0.7' })
+  })
 })

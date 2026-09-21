@@ -1,0 +1,39 @@
+.ring {
+  position: relative;
+  flex-shrink: 0;
+  width: 6rem;
+  height: 6rem;
+}
+
+.svg {
+  display: block;
+  transform: rotate(-90deg);
+}
+
+.disc {
+  fill: var(--background-modal);
+}
+
+.track {
+  stroke: color-mix(in srgb, var(--text-primary) 10%, transparent);
+}
+
+.fill {
+  stroke: var(--color-cyan);
+  stroke-linecap: round;
+}
+
+.value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  --font-h1-size: 2.25rem;
+}
+
+.score {
+  line-height: 1;
+}

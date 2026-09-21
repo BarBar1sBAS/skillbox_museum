@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   collectedKeys,
   hasKey,
@@ -10,6 +10,7 @@ import {
   safeDecisions,
   saveAnswer,
   totalScore,
+  type SceneAnswers,
 } from './index.ts'
 
 describe('progress', () => {
@@ -67,5 +68,32 @@ describe('progress', () => {
     for (const n of [7, 8, 9, 10] as const) saveAnswer(n, 'correct')
     expect(keyEarnedAt(10)).toBe('access')
     expect(collectedKeys()).toEqual(['trust', 'access'])
+  })
+
+  it('survives broken sessionStorage', () => {
+    sessionStorage.setItem('progress', '{')
+    expect(loadAnswers()).toEqual({})
+
+    const getItem = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new Error('blocked')
+    })
+    expect(loadAnswers()).toEqual({})
+    getItem.mockRestore()
+
+    const setItem = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new Error('blocked')
+    })
+    expect(saveAnswer(1, 'correct')).toEqual({ 1: 'correct' })
+    setItem.mockRestore()
+
+    const removeItem = vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {
+      throw new Error('blocked')
+    })
+    resetProgress()
+    removeItem.mockRestore()
+  })
+
+  it('skips missing outcomes when summing', () => {
+    expect(totalScore({ 1: undefined } as SceneAnswers)).toBe(0)
   })
 })

@@ -37,6 +37,11 @@ describe('Final', () => {
     cleanup()
 
     answerBlock([4, 5, 6], 'correct')
+    renderFinal()
+    expect(screen.getByText('ПОЛУЧЕН ВТОРОЙ КЛЮЧ')).toBeInTheDocument()
+    expect(screen.getByText('ОТКРЫТА СКИДКА 7%')).toBeInTheDocument()
+    cleanup()
+
     answerBlock([7, 8, 9, 10], 'correct')
     renderFinal()
     expect(screen.getByText('ВСЕ КЛЮЧИ СОБРАНЫ')).toBeInTheDocument()

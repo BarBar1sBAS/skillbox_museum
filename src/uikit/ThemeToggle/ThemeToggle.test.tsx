@@ -15,4 +15,15 @@ describe('ThemeToggle', () => {
     await user.click(toggle)
     expect(onChange).toHaveBeenCalledWith('light')
   })
+
+  it('toggles light back to dark and ignores a missing onChange', async () => {
+    const onChange = vi.fn()
+    const user = userEvent.setup()
+    const { rerender } = render(<ThemeToggle theme="light" onChange={onChange} />)
+    await user.click(screen.getByRole('switch'))
+    expect(onChange).toHaveBeenCalledWith('dark')
+
+    rerender(<ThemeToggle theme="dark" />)
+    await user.click(screen.getByRole('switch'))
+  })
 })

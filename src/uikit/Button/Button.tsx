@@ -1,32 +1,52 @@
 import type { ReactNode } from 'react'
 import arrowRight from '../icons/arrow-right.svg'
+import type { TextVariant } from '../tokens.ts'
 import { Text } from '../Text/Text.tsx'
 import styles from './Button.module.scss'
 
-export type ButtonSize = 'm' | 'l'
+export type ButtonSize = 's' | 'm' | 'l'
+export type ButtonVariant = 'solid' | 'outline'
 
 type ButtonProps = {
   children: ReactNode
   size?: ButtonSize
+  variant?: ButtonVariant
   arrow?: boolean
   onClick?: () => void
+}
+
+const SIZE_CLASS: Record<ButtonSize, string> = {
+  s: styles.small,
+  m: '',
+  l: styles.large,
+}
+
+const LABEL: Record<ButtonSize, TextVariant> = {
+  s: 'eyebrow',
+  m: 'h3',
+  l: 'cta',
 }
 
 export function Button({
   children,
   size = 'm',
+  variant = 'solid',
   arrow = false,
   onClick,
 }: ButtonProps) {
   return (
     <button
       type="button"
-      className={[styles.button, size === 'l' && styles.large]
+      className={[styles.button, SIZE_CLASS[size], variant === 'outline' && styles.outline]
         .filter(Boolean)
         .join(' ')}
       onClick={onClick}
     >
-      <Text as="span" variant={size === 'l' ? 'cta' : 'h3'} color="onAccent">
+      <Text
+        as="span"
+        variant={LABEL[size]}
+        color={variant === 'outline' ? 'accent' : 'onAccent'}
+      >
         {children}
       </Text>
       {arrow && (

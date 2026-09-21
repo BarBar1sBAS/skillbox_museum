@@ -1,10 +1,18 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 import { ChatHeader } from './ChatHeader.tsx'
 
 describe('ChatHeader', () => {
   it('renders peer name', () => {
     render(<ChatHeader name="Друг" status="в сети" />)
     expect(screen.getByText('Друг')).toBeInTheDocument()
+  })
+
+  it('calls onBack', async () => {
+    const onBack = vi.fn()
+    render(<ChatHeader name="Друг" status="в сети" onBack={onBack} />)
+    await userEvent.click(screen.getByRole('button', { name: 'Назад' }))
+    expect(onBack).toHaveBeenCalledTimes(1)
   })
 })

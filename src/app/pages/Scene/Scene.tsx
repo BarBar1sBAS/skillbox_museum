@@ -17,9 +17,9 @@ import {
   ChatHeader,
   ChoiceCard,
   KeyModal,
+  Modal,
   Page,
   ScenePill,
-  Stack,
   StatusMark,
   Text,
   ThemeToggle,
@@ -113,35 +113,25 @@ function ScenePlay({ n }: { n: SceneNumber }) {
         <Text variant="bodyM" className={styles.resultBody}>
           {result.body}
         </Text>
-        {result.remember ? <Remember text={result.remember} /> : null}
-        {result.keyLine ? (
-          <div className={styles.keyLine}>
-            <span
-              className={styles.dot}
-              style={{ ['--tone' as string]: status.color }}
-            />
-            <Text as="span" variant="h4">
-              {result.keyLine}
-            </Text>
-          </div>
-        ) : null}
+        <Remember text={result.remember} />
+        <div className={styles.keyLine}>
+          <span
+            className={styles.dot}
+            style={{ ['--tone' as string]: status.color }}
+          />
+          <Text as="span" variant="h4">
+            {result.keyLine}
+          </Text>
+        </div>
         <div className={styles.cta}>
-          <Button onClick={() => navigate(n < 10 ? `/scene/${n + 1}` : '/final')}>
+          <Button onClick={() => navigate(n < 10 ? `/scene/${n + 1}` : '/result')}>
             {n < 10 ? 'ПРОДОЛЖИТЬ' : 'УЗНАТЬ РЕЗУЛЬТАТ'}
           </Button>
         </div>
         {earned ? (
-          <div className={styles.keyOverlay}>
-            <button
-              type="button"
-              className={styles.keyBackdrop}
-              aria-label="Закрыть"
-              onClick={() => setEarned(null)}
-            />
-            <div className={styles.keyModal}>
-              <KeyModal keyName={KEY_LABEL[earned.key].chip} step={earned.step} />
-            </div>
-          </div>
+          <Modal onClose={() => setEarned(null)}>
+            <KeyModal keyName={KEY_LABEL[earned.key].chip} step={earned.step} />
+          </Modal>
         ) : null}
       </Page>
     )
@@ -185,7 +175,7 @@ function Quiz({
     <>
       {scene.choices.map((choice, i) => (
         <ChoiceCard
-          key={choice.text || i}
+          key={choice.text}
           selected={picked === i}
           onClick={() => onPick(i as 0 | 1 | 2)}
         >
@@ -197,13 +187,13 @@ function Quiz({
 
   const confirm = (
     <div className={[styles.cta, picked == null && styles.dim].filter(Boolean).join(' ')}>
-      <Button size={scene.photo || scene.quiz === 'chat' ? 'l' : 'm'} onClick={onConfirm}>
+      <Button size="l" onClick={onConfirm}>
         ПОДТВЕРДИТЬ ВЫБОР
       </Button>
     </div>
   )
 
-  if (scene.quiz === 'chat' && scene.chat) {
+  if (scene.chat) {
     return (
       <Page tone="chat" className={styles.chatPage}>
         <ChatHeader
@@ -238,48 +228,25 @@ function Quiz({
     )
   }
 
-  if (scene.photo) {
-    return (
-      <Page
-        tone="chat"
-        data-scene={n}
-        className={[styles.photoPage, styles.photoQuizPage].join(' ')}
-      >
-        <div className={styles.photoFrame}>
-          <SceneImage className={styles.bg} src={scene.photo} theme={theme} />
-        </div>
-        {scene.situation ? (
-          <div className={styles.situationCard}>
-            <Text variant="bodyL">{scene.situation}</Text>
-          </div>
-        ) : null}
-        <div className={styles.sheet}>
-          <Text as="h1" variant="h1">
-            {PROMPT}
-          </Text>
-          {choices}
-          {confirm}
-        </div>
-      </Page>
-    )
-  }
-
   return (
-    <Page>
-      <header className={styles.header}>
-        <Text as="span" variant="kicker">
-          СИТУАЦИЯ
-        </Text>
-        <ScenePill n={n} />
-      </header>
-      <Stack gap={20}>
-        {scene.situation ? <Text variant="bodyM">{scene.situation}</Text> : null}
-        <Text as="h3" variant="bodyL">
+    <Page
+      tone="chat"
+      data-scene={n}
+      className={[styles.photoPage, styles.photoQuizPage].join(' ')}
+    >
+      <div className={styles.photoFrame}>
+        <SceneImage className={styles.bg} src={scene.photo!} theme={theme} />
+      </div>
+      <div className={styles.situationCard}>
+        <Text variant="bodyL">{scene.situation}</Text>
+      </div>
+      <div className={styles.sheet}>
+        <Text as="h1" variant="h1">
           {PROMPT}
         </Text>
         {choices}
-      </Stack>
-      {confirm}
+        {confirm}
+      </div>
     </Page>
   )
 }
@@ -337,18 +304,21 @@ function SceneImage({
   )
 }
 
-function Remember({ text }: { text: string }) {
+export function splitLead(text: string) {
   const i = text.indexOf(':')
-  const lead = i >= 0 ? text.slice(0, i + 1) : ''
-  const rest = i >= 0 ? text.slice(i + 1) : text
+  return i >= 0
+    ? { lead: text.slice(0, i + 1), rest: text.slice(i + 1) }
+    : { lead: '', rest: text }
+}
+
+function Remember({ text }: { text: string }) {
+  const { lead, rest } = splitLead(text)
   return (
     <div className={styles.remember}>
       <Text variant="bodyL">
-        {lead ? (
-          <Text as="span" variant="bodyL" style={{ color: 'var(--color-lime)' }}>
-            {lead}
-          </Text>
-        ) : null}
+        <Text as="span" variant="bodyL" style={{ color: 'var(--color-lime)' }}>
+          {lead}
+        </Text>
         {rest}
       </Text>
     </div>

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 import { ChoiceCard } from './ChoiceCard.tsx'
 
 const SAMPLE =
@@ -9,5 +10,12 @@ describe('ChoiceCard', () => {
   it('renders selected as a checked radio', () => {
     render(<ChoiceCard selected>{SAMPLE}</ChoiceCard>)
     expect(screen.getByRole('radio', { name: SAMPLE })).toBeChecked()
+  })
+
+  it('notifies the parent when chosen', async () => {
+    const onClick = vi.fn()
+    render(<ChoiceCard onClick={onClick}>{SAMPLE}</ChoiceCard>)
+    await userEvent.click(screen.getByRole('radio', { name: SAMPLE }))
+    expect(onClick).toHaveBeenCalledTimes(1)
   })
 })

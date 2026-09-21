@@ -19,7 +19,7 @@ export type {
   SceneOutcome,
   SceneResult,
 } from './types.ts'
-export { emptyScene, KEY_BLOCKS, KEY_LABEL, keyOf, resultCopy } from './types.ts'
+export { KEY_BLOCKS, KEY_LABEL, keyOf, resultCopy } from './types.ts'
 export type { SceneAnswers } from './progress.ts'
 export {
   collectedKeys,
@@ -33,6 +33,7 @@ export {
   saveAnswer,
   totalScore,
 } from './progress.ts'
+export { GROWTH, INSIGHT, keyScore, keyScores, strongestKey, weakestKey } from './stats.ts'
 
 export const scenes: Record<SceneNumber, SceneContent> = {
   1: scene01,

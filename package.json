@@ -10,6 +10,7 @@
     "preview": "bunx --bun vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "storybook": "storybook dev -p 6006 --ci",
     "build-storybook": "storybook build"
   },
@@ -20,6 +21,8 @@
     "sass-embedded": "^1.104.0"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/react-vite": "^10.6.0",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",
@@ -27,13 +30,12 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.1.0",
+    "@vitest/coverage-v8": "5.0.0",
     "jsdom": "^30.0.1",
     "oxlint": "^1.79.0",
+    "storybook": "^10.6.0",
     "typescript": "~6.0.2",
     "vite": "^8.2.2",
-    "vitest": "^5.0.0",
-    "storybook": "^10.6.0",
-    "@storybook/react-vite": "^10.6.0",
-    "@storybook/addon-docs": "^10.6.0"
+    "vitest": "^5.0.0"
   }
 }

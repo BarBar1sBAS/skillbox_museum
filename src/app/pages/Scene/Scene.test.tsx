@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
@@ -73,5 +73,65 @@ describe('Scene steps', () => {
     await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
     expect(loadAnswers()).toEqual({ 1: 'partial' })
     expect(totalScore()).toBe(4)
+  })
+
+  it('goes to /result after the last scene', async () => {
+    const user = userEvent.setup()
+    renderPath('/scene/10')
+    await user.click(screen.getByRole('button', { name: 'ПРОЧИТАТЬ УВЕДОМЛЕНИЕ' }))
+    await user.click(screen.getAllByRole('radio')[1])
+    await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
+    await user.click(screen.getByRole('button', { name: 'УЗНАТЬ РЕЗУЛЬТАТ' }))
+    expect(screen.getByText('Твой результат')).toBeInTheDocument()
+  })
+
+  it('sends an unknown scene to the rules', () => {
+    renderPath('/scene/99')
+    expect(screen.getByText('Правила игры')).toBeInTheDocument()
+  })
+
+  it('goes back to rules from the chat header', async () => {
+    const user = userEvent.setup()
+    renderPath('/scene/1')
+    await user.click(screen.getByRole('button', { name: 'Назад' }))
+    expect(screen.getByText('Правила игры')).toBeInTheDocument()
+  })
+
+  it('shows a wrong-result screen and continues to the next scene', async () => {
+    const user = userEvent.setup()
+    renderPath('/scene/1')
+    await user.click(screen.getAllByRole('radio')[2])
+    await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
+    expect(screen.getByText('НЕВЕРНОЕ РЕШЕНИЕ')).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'ПРОДОЛЖИТЬ' }))
+    expect(screen.getByRole('button', { name: 'ЗАЙТИ В ВАГОН' })).toBeInTheDocument()
+  })
+
+  it('does not save if confirm is pressed with no choice', async () => {
+    const user = userEvent.setup()
+    renderPath('/scene/1')
+    await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
+    expect(loadAnswers()).toEqual({})
+  })
+
+  it('retries a missing scene image and follows the desktop query', async () => {
+    const listeners = new Set<() => void>()
+    const media = {
+      matches: true,
+      addEventListener: (_: string, fn: () => void) => listeners.add(fn),
+      removeEventListener: (_: string, fn: () => void) => listeners.delete(fn),
+    }
+    window.matchMedia = () => media as unknown as MediaQueryList
+
+    const user = userEvent.setup()
+    renderPath('/scene/2')
+    const img = document.querySelector('img[src*="scenes"]') as HTMLImageElement
+    fireEvent.error(img)
+    expect(img.getAttribute('src')).toContain('02-intro')
+
+    await user.click(screen.getByRole('switch', { name: 'Светлая тема' }))
+    media.matches = false
+    listeners.forEach((fn) => fn())
+    expect(document.documentElement.dataset.theme).toBe('light')
   })
 })
