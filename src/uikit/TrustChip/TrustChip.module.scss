@@ -9,17 +9,25 @@
   width: 5.25rem;
   height: 4.625rem;
   padding: calc(var(--spacing-20) * 1px);
-  gap: calc(var(--spacing-14) * 1px);
+  gap: calc(var(--spacing-10) * 1px);
   border: calc(var(--border-width) * 1px) solid color-mix(in srgb, var(--color-white) 50%, transparent);
-  border-radius: calc(var(--radius-l) * 1px);
+  border-radius: calc(var(--radius-xs) * 1px);
   background: transparent;
 }
 
-.active {
-  --chip-label: var(--color-lime);
+.chip:not(.active) .icon img {
+  opacity: 0.5;
+}
 
-  border-color: var(--color-lime);
-  background: color-mix(in srgb, var(--color-lime) 30%, transparent);
+.active {
+  --chip-label: #000000;
+
+  border-color: #ffffff;
+  background: #ffffff;
+}
+
+.active .icon img {
+  filter: brightness(0);
 }
 
 .icon {
@@ -37,30 +45,43 @@
   transform: rotate(-45deg);
 }
 
-[data-theme='light'] .chip {
+[data-theme='light'] .chip:not(.active) {
   --chip-label: #000000;
 
   border: 1px solid #000000;
-  border-radius: 20px;
+  opacity: 0.5;
 }
 
-// opacity 0.5 уже задана внутри key.svg
 [data-theme='light'] .chip:not(.active) .icon img {
   filter: brightness(0);
-  transform: rotate(-45deg);
-}
-
-[data-theme='light'] .chip:not(.active) .label {
-  opacity: 0.75;
+  opacity: 1;
 }
 
 [data-theme='light'] .active {
+  --chip-label: #000000;
+
   border: 1px solid #44a700;
-  border-radius: 20px;
-  background: #9be568;
+  border-radius: 5px;
+  background: #c9e4eb;
 }
 
 [data-theme='light'] .active .icon img {
   filter: brightness(0);
-  transform: rotate(-45deg);
+}
+
+@media (min-width: 600px) {
+  .chip {
+    width: 6.5rem;
+    height: 5.75rem;
+  }
+
+  .icon {
+    width: 2.3125rem;
+    height: 2.3125rem;
+  }
+
+  .icon img {
+    width: 2.3125rem;
+    height: 1.25rem;
+  }
 }

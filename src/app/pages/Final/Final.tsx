@@ -4,6 +4,7 @@ import { useTheme } from '@/app/theme.ts'
 import {
   Button,
   ChatCard,
+  Decor,
   Logo,
   Page,
   PromoCode,
@@ -61,6 +62,7 @@ export function Final() {
 
   return (
     <Page className={styles.page}>
+      <Decor />
       <header className={styles.header}>
         <Logo />
         <ThemeToggle theme={theme} onChange={setTheme} />

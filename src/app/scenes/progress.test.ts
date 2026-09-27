@@ -42,17 +42,18 @@ describe('progress', () => {
     expect(totalScore()).toBe(0)
   })
 
-  it('gives a key only when every scene of the block is correct', () => {
+  it('gives a key for every three correct answers', () => {
     saveAnswer(1, 'correct')
     saveAnswer(2, 'correct')
     saveAnswer(3, 'partial')
     expect(hasKey('trust')).toBe(false)
 
-    saveAnswer(3, 'correct')
+    saveAnswer(4, 'correct')
     expect(hasKey('trust')).toBe(true)
+    expect(collectedKeys()).toEqual(['trust'])
   })
 
-  it('reports the key only on the last scene of its block', () => {
+  it('reports the key on the scene where the third correct answer lands', () => {
     saveAnswer(1, 'correct')
     saveAnswer(2, 'correct')
     expect(keyEarnedAt(2)).toBeUndefined()
@@ -60,14 +61,23 @@ describe('progress', () => {
     saveAnswer(3, 'correct')
     expect(keyEarnedAt(3)).toBe('trust')
 
-    saveAnswer(4, 'partial')
-    saveAnswer(5, 'correct')
-    saveAnswer(6, 'correct')
+    // одна ошибка не мешает: ключи идут за 3-й, 6-й и 9-й верный ответ
+    saveAnswer(4, 'wrong')
+    for (const n of [5, 6, 7] as const) saveAnswer(n, 'correct')
     expect(keyEarnedAt(6)).toBeUndefined()
+    expect(keyEarnedAt(7)).toBe('data')
 
-    for (const n of [7, 8, 9, 10] as const) saveAnswer(n, 'correct')
+    for (const n of [8, 9, 10] as const) saveAnswer(n, 'correct')
     expect(keyEarnedAt(10)).toBe('access')
-    expect(collectedKeys()).toEqual(['trust', 'access'])
+    expect(collectedKeys()).toEqual(['trust', 'data', 'access'])
+  })
+
+  it('does not give a key on a partial answer', () => {
+    saveAnswer(1, 'correct')
+    saveAnswer(2, 'correct')
+    saveAnswer(3, 'partial')
+    expect(keyEarnedAt(3)).toBeUndefined()
+    expect(collectedKeys()).toEqual([])
   })
 
   it('survives broken sessionStorage', () => {

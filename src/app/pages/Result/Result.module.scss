@@ -21,7 +21,7 @@
   box-sizing: border-box;
   padding: calc(var(--spacing-20) * 1px);
   border: calc(var(--border-width) * 1px) solid var(--border-card);
-  border-radius: calc(var(--radius-l) * 1px);
+  border-radius: 1px;
   background: var(--background-modal);
 }
 
@@ -115,7 +115,15 @@
 }
 
 .bastion {
-  flex-shrink: 0;
+  min-width: 0;
+  max-width: 7.375rem;
+  height: auto;
+  object-fit: contain;
+}
+
+// логотип нарисован белым контуром, на светлом фоне делаем его тёмным
+[data-theme='light'] .bastion {
+  filter: brightness(0);
 }
 
 .cta {
@@ -154,3 +162,40 @@
   background: var(--color-lime);
 }
 
+
+// светлая тема: карточки того же цвета, что фон, с тонкой серой рамкой
+[data-theme='light'] .scoreCard,
+[data-theme='light'] .exhibit,
+[data-theme='light'] .partner,
+[data-theme='light'] .details,
+[data-theme='light'] .insight {
+  border: 1px solid #b2b5bb;
+  background: #dfe3ea;
+}
+
+// акцентный квадрат в левом нижнем углу карточки с индексом
+[data-theme='light'] .scoreCard {
+  position: relative;
+}
+
+[data-theme='light'] .scoreCard::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  background: #0c4af9;
+}
+
+// кнопка-контур: в светлой теме почти чёрная, в тёмной — цвета кнопок
+[data-theme='light'] .scoreAction button {
+  --text-accent: #000000;
+
+  border-color: #38393a;
+}
+
+.scoreAction button {
+  border-color: var(--color-button);
+  --text-accent: var(--color-button);
+}

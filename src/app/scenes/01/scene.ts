@@ -3,6 +3,12 @@ import type { SceneContent } from '../types.ts'
 export const scene: SceneContent = {
   n: 1,
   quiz: 'chat',
+  intro: {
+    kicker: 'начало цифрового дня',
+    title: 'ТЕБЕ ПРИШЛО\nСООБЩЕНИЕ',
+    cta: 'ВЗЯТЬ ТЕЛЕФОН',
+    image: '/images/scenes/01-intro.png',
+  },
   situation:
     'Друг пишет: «Бро, привет, скинь 2000, пожалуйста, вечером верну. По этому номеру 8808080808. Это новый, я поменял».',
   chat: {

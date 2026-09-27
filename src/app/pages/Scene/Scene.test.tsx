@@ -10,6 +10,11 @@ function renderPath(path: string) {
   return render(<RouterProvider router={router} />)
 }
 
+async function openScene1(user: ReturnType<typeof userEvent.setup>) {
+  renderPath('/scene/1')
+  await user.click(screen.getByRole('button', { name: 'ВЗЯТЬ ТЕЛЕФОН' }))
+}
+
 describe('Scene steps', () => {
   beforeEach(() => {
     resetProgress()
@@ -19,8 +24,11 @@ describe('Scene steps', () => {
     cleanup()
   })
 
-  it('opens scene 1 on the chat quiz', () => {
+  it('opens scene 1 on the intro and goes to the chat quiz', async () => {
+    const user = userEvent.setup()
     renderPath('/scene/1')
+    expect(screen.getByText('начало цифрового дня')).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'ВЗЯТЬ ТЕЛЕФОН' }))
     expect(screen.getByText('Друг')).toBeInTheDocument()
     expect(screen.getAllByRole('radio')).toHaveLength(3)
   })
@@ -32,7 +40,7 @@ describe('Scene steps', () => {
 
   it('does not show the key modal before the block is finished', async () => {
     const user = userEvent.setup()
-    renderPath('/scene/1')
+    await openScene1(user)
     await user.click(screen.getAllByRole('radio')[1])
     await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
     expect(screen.getByText('ВЕРНОЕ РЕШЕНИЕ')).toBeInTheDocument()
@@ -68,7 +76,7 @@ describe('Scene steps', () => {
 
   it('saves points for the confirmed answer', async () => {
     const user = userEvent.setup()
-    renderPath('/scene/1')
+    await openScene1(user)
     await user.click(screen.getAllByRole('radio')[0])
     await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
     expect(loadAnswers()).toEqual({ 1: 'partial' })
@@ -78,7 +86,7 @@ describe('Scene steps', () => {
   it('goes to /result after the last scene', async () => {
     const user = userEvent.setup()
     renderPath('/scene/10')
-    await user.click(screen.getByRole('button', { name: 'ПРОЧИТАТЬ УВЕДОМЛЕНИЕ' }))
+    await user.click(screen.getByRole('button', { name: 'ОТКРЫТЬ ОПОВЕЩЕНИЕ' }))
     await user.click(screen.getAllByRole('radio')[1])
     await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
     await user.click(screen.getByRole('button', { name: 'УЗНАТЬ РЕЗУЛЬТАТ' }))
@@ -92,14 +100,14 @@ describe('Scene steps', () => {
 
   it('goes back to rules from the chat header', async () => {
     const user = userEvent.setup()
-    renderPath('/scene/1')
+    await openScene1(user)
     await user.click(screen.getByRole('button', { name: 'Назад' }))
     expect(screen.getByText('Правила игры')).toBeInTheDocument()
   })
 
   it('shows a wrong-result screen and continues to the next scene', async () => {
     const user = userEvent.setup()
-    renderPath('/scene/1')
+    await openScene1(user)
     await user.click(screen.getAllByRole('radio')[2])
     await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
     expect(screen.getByText('НЕВЕРНОЕ РЕШЕНИЕ')).toBeInTheDocument()
@@ -109,7 +117,7 @@ describe('Scene steps', () => {
 
   it('does not save if confirm is pressed with no choice', async () => {
     const user = userEvent.setup()
-    renderPath('/scene/1')
+    await openScene1(user)
     await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
     expect(loadAnswers()).toEqual({})
   })

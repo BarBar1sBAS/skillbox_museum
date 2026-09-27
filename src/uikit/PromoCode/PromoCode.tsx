@@ -1,4 +1,3 @@
-import copy from '../icons/copy.svg'
 import { Text } from '../Text/Text.tsx'
 import styles from './PromoCode.module.scss'
 
@@ -24,14 +23,34 @@ export function PromoCode({ percent, code }: PromoCodeProps) {
         aria-label={`Скопировать ${code}`}
         onClick={() => void navigator.clipboard.writeText(code)}
       >
-        <img
+        {/* заливка иконки повторяет фон плашки, поэтому цвет берётся переменной */}
+        <svg
           className={styles.icon}
-          src={copy}
-          alt=""
-          width={19}
-          height={19}
+          width="19"
+          height="19"
+          viewBox="0 0 19 19"
+          fill="none"
           aria-hidden
-        />
+        >
+          <rect
+            x="0.5"
+            y="4.5"
+            width="14"
+            height="14"
+            rx="2.5"
+            fill="var(--promo-bg)"
+            stroke="black"
+          />
+          <rect
+            x="4.5"
+            y="0.5"
+            width="14"
+            height="14"
+            rx="2.5"
+            fill="var(--promo-bg)"
+            stroke="black"
+          />
+        </svg>
         {code}
       </button>
     </div>

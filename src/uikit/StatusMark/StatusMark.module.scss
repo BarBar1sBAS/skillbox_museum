@@ -3,10 +3,10 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: 6.9375rem;
-  height: 6.9375rem;
+  width: 8.9375rem;
+  height: 8.9375rem;
   overflow: visible;
-  border: calc(var(--border-width) * 1px) solid var(--tone);
+  border: 2px solid var(--tone);
   border-radius: 50%;
   background: color-mix(in srgb, var(--tone) 30%, transparent);
   box-shadow:
@@ -38,7 +38,7 @@
 }
 
 .bang {
-  font-family: var(--font-unbounded);
+  font-family: var(--font-display);
   font-size: 3.375rem;
   font-weight: 400;
   line-height: 1;
@@ -63,4 +63,25 @@
 [data-theme='light'] .red {
   --tone: #ff5c57;
   --tone-bg: rgb(255 92 87 / 0.3);
+}
+
+@media (min-width: 600px) {
+  .mark {
+    width: 10.5rem;
+    height: 10.5rem;
+  }
+
+  .check {
+    width: 2.375rem;
+    height: 2.90625rem;
+  }
+
+  .cross {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .bang {
+    font-size: 4rem;
+  }
 }

@@ -7,6 +7,8 @@
 
 .svg {
   display: block;
+  width: 100%;
+  height: 100%;
   transform: rotate(-90deg);
 }
 
@@ -19,7 +21,7 @@
 }
 
 .fill {
-  stroke: var(--color-cyan);
+  stroke: var(--color-button);
   stroke-linecap: round;
 }
 
@@ -36,4 +38,15 @@
 
 .score {
   line-height: 1;
+}
+
+@media (min-width: 600px) {
+  .ring {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .value {
+    --font-h1-size: 3rem;
+  }
 }

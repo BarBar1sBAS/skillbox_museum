@@ -10,7 +10,8 @@ describe('scenes', () => {
     for (const n of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const) {
       expect(scenes[n].n).toBe(n)
       expect(scenes[n].choices).toHaveLength(3)
-      expect(scenes[n].situation.length).toBeGreaterThan(0)
+      // у сцены 10 карточки с ситуацией нет, всё видно на картинке
+      if (n !== 10) expect(scenes[n].situation.length).toBeGreaterThan(0)
       expect(scenes[n].remember.length).toBeGreaterThan(0)
       for (const choice of scenes[n].choices) {
         expect(choice.text.length).toBeGreaterThan(0)
@@ -37,18 +38,10 @@ describe('scenes', () => {
   })
 
   it('gives a key fragment only for a correct answer', () => {
-    expect(resultCopy(scenes[1], 'correct').keyLine).toBe(
-      'Фрагмент ключа “Доверие” получен',
-    )
-    expect(resultCopy(scenes[1], 'partial').keyLine).toBe(
-      'Фрагмент ключа “Доверие” не получен',
-    )
-    expect(resultCopy(scenes[5], 'partial').keyLine).toBe(
-      'Фрагмент ключа “Данные” не получен',
-    )
-    expect(resultCopy(scenes[7], 'correct').keyLine).toBe(
-      'Фрагмент ключа “Доступ” получен',
-    )
+    expect(resultCopy(scenes[1], 'correct').keyLine).toBe('Фрагмент ключа получен')
+    expect(resultCopy(scenes[1], 'partial').keyLine).toBe('Фрагмент ключа не получен')
+    expect(resultCopy(scenes[5], 'wrong').keyLine).toBe('Фрагмент ключа не получен')
+    expect(resultCopy(scenes[7], 'correct').keyLine).toBe('Фрагмент ключа получен')
     expect(
       resultCopy(
         {

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router";
 import { useTheme } from "@/app/theme.ts";
 import {
 	Button,
+	Decor,
 	Logo,
 	Page,
 	ScenePill,
@@ -32,7 +33,7 @@ const STEPS = [
 const KEY_RULES = [
 	"За каждую пройденную ситуацию ты получаешь фрагмент ключа из ее категории.",
 	"Пройдешь все ситуации категории — соберешь целый ключ.",
-	"Фрагмент ключа дается за правильный ответ и за частично правильный.",
+	"Фрагмент ключа дается только за верный ответ.",
 ];
 
 export function Rules() {
@@ -40,7 +41,8 @@ export function Rules() {
 	const [theme, setTheme] = useTheme();
 
 	return (
-		<Page>
+		<Page className={styles.page}>
+			<Decor />
 			<header className={styles.header}>
 				<Logo />
 				<ThemeToggle theme={theme} onChange={setTheme} />

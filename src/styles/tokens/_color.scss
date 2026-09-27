@@ -15,6 +15,9 @@
   --color-black: #000000;
   --color-violet: #626ffa;
 
+  --color-accent: var(--color-cyan);
+  --color-button: #00cefb;
+
   --background-default: var(--color-navy-deep);
   --background-scene: rgb(70 71 110 / 0.5);
   --background-banner: #00177c;
@@ -39,7 +42,10 @@
 }
 
 [data-theme='light'] {
-  --background-default: #f5f7ff;
+  --color-accent: #144ef9;
+  --color-button: #0c4af9;
+
+  --background-default: #dfe3ea;
   --background-scene: rgb(255 255 255 / 0.5);
   --background-glass: rgb(255 255 255 / 0.7);
   --background-glass-mid: rgb(255 255 255 / 0.7);
@@ -49,13 +55,13 @@
   --text-primary: #070a2b;
   --text-muted: rgb(0 0 0 / 0.75);
   --text-on-accent: #070a2b;
-  --text-accent: #008da0;
+  --text-accent: var(--color-accent);
   --border-card: rgb(0 0 0 / 0.1);
-  --color-navy-screen: #f5f7ff;
+  --color-navy-screen: #dfe3ea;
   --color-navy-bar: #dde6ff;
-  --gradient-page: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
-  --gradient-landing: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
-  --gradient-result: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
+  --gradient-page: #dfe3ea;
+  --gradient-landing: #dfe3ea;
+  --gradient-result: #dfe3ea;
   --gradient-chat: linear-gradient(-54.36deg, #ffffff, #f5f7ff);
   --gradient-note: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
   --gradient-choice: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);

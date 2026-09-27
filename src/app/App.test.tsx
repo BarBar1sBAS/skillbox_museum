@@ -7,8 +7,8 @@ describe('App', () => {
     cleanup()
   })
 
-  it('renders the landing route', () => {
+  it('opens the start screen on the root route', () => {
     render(<App />)
-    expect(screen.getByText('Начать игру')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'КАК ИГРАТЬ' })).toBeInTheDocument()
   })
 })

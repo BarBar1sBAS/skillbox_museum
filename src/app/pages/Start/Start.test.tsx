@@ -14,10 +14,10 @@ describe('Start', () => {
     cleanup()
   })
 
-  it('goes to the rules from НАЧАТЬ ДЕНЬ', async () => {
+  it('goes to the rules from КАК ИГРАТЬ', async () => {
     const user = userEvent.setup()
     renderPath('/start')
-    await user.click(screen.getByRole('button', { name: 'НАЧАТЬ ДЕНЬ' }))
+    await user.click(screen.getByRole('button', { name: 'КАК ИГРАТЬ' }))
     expect(screen.getByText('Правила игры')).toBeInTheDocument()
   })
 })
