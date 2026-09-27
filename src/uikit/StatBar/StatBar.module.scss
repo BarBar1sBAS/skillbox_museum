@@ -15,11 +15,11 @@
   overflow: hidden;
   height: 0.5rem;
   border-radius: calc(var(--radius-full) * 1px);
-  background: color-mix(in srgb, var(--color-cyan) 25%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 25%, transparent);
 }
 
 .fill {
   height: 100%;
   border-radius: inherit;
-  background: var(--color-cyan);
+  background: var(--color-accent);
 }

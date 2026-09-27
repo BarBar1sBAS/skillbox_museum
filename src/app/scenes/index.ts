@@ -8,6 +8,7 @@ import { scene as scene06 } from './06/scene.ts'
 import { scene as scene07 } from './07/scene.ts'
 import { scene as scene08 } from './08/scene.ts'
 import { scene as scene09 } from './09/scene.ts'
+import { scene as scene10 } from './10/scene.ts'
 import type { SceneContent } from './types.ts'
 
 export type {
@@ -45,7 +46,7 @@ export const scenes: Record<SceneNumber, SceneContent> = {
   7: scene07,
   8: scene08,
   9: scene09,
-  10: { ...scene09, n: 10 },
+  10: scene10,
 }
 
 export function parseSceneNumber(raw: string | undefined): SceneNumber | undefined {

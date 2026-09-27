@@ -40,6 +40,7 @@ export type SceneChoice = {
 }
 
 export type SceneIntro = {
+  kicker?: string
   title: string
   cta: string
   image: string
@@ -76,7 +77,7 @@ export function resultCopy(scene: SceneContent, outcome: SceneOutcome) {
     remember: scene.remember,
     keyLine:
       scene.results[outcome].keyLine ??
-      `Фрагмент ключа “${KEY_LABEL[keyOf(scene.n)].line}” ${got ? 'получен' : 'не получен'}`,
+      `Фрагмент ключа ${got ? 'получен' : 'не получен'}`,
   }
 }
 

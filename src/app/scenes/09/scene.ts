@@ -4,8 +4,8 @@ export const scene: SceneContent = {
   n: 9,
   quiz: 'photo',
   intro: {
-    title: 'ДОМА ВКЛЮЧАЕШЬ СВЕТ ГОЛОСОМ И ВИДИШЬ УВЕДОМЛЕНИЕ ОТ УМНОЙ КОЛОНКИ',
-    cta: 'ПРОЧИТАТЬ УВЕДОМЛЕНИЕ',
+    title: 'ЗАХОДИШЬ ДОМОЙ\nИ СЛЫШИШЬ\nУВЕДОМЛЕНИЕ ОТ\nУМНОЙ КОЛОНКИ',
+    cta: 'ПОПРОСИТЬ ПОВТОРИТЬ',
     image: '/images/scenes/09-intro.png',
   },
   photo: '/images/scenes/09-quiz.png',

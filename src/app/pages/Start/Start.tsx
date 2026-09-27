@@ -4,6 +4,7 @@ import { useTheme } from '@/app/theme.ts'
 import {
   Button,
   ChatCard,
+  Decor,
   Logo,
   Page,
   ScenePill,
@@ -12,7 +13,6 @@ import {
   ThemeToggle,
   TrustChip,
 } from '@/uikit/index.ts'
-import arrowRightWhite from '@/uikit/icons/arrow-right-white.svg'
 import styles from './Start.module.scss'
 
 const STEPS = [
@@ -25,7 +25,8 @@ export function Start() {
   const [theme, setTheme] = useTheme()
 
   return (
-    <Page>
+    <Page className={styles.page}>
+      <Decor />
       <Stack gap={25}>
         <header className={styles.header}>
           <Logo />
@@ -60,28 +61,16 @@ export function Start() {
 
         <Text variant="bodyM" color="muted" className={styles.discount}>
           Каждый ключ увеличивает скидку на выставку: 5%
-          <img
-            className={styles.inlineArrow}
-            src={arrowRightWhite}
-            alt=""
-            width={15}
-            height={8}
-          />
+          <span className={styles.inlineArrow} aria-hidden />
           7%
-          <img
-            className={styles.inlineArrow}
-            src={arrowRightWhite}
-            alt=""
-            width={15}
-            height={8}
-          />
+          <span className={styles.inlineArrow} aria-hidden />
           10%.
         </Text>
       </Stack>
 
       <div className={styles.cta}>
         <Button arrow onClick={() => navigate('/rules')}>
-          НАЧАТЬ ДЕНЬ
+          КАК ИГРАТЬ
         </Button>
       </div>
     </Page>

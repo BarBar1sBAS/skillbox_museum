@@ -1,5 +1,4 @@
 import radioLight from '../icons/radio-light.svg'
-import radioOn from '../icons/radio-on.svg'
 import radio from '../icons/radio.svg'
 import { Text } from '../Text/Text.tsx'
 import styles from './ChoiceCard.module.scss'
@@ -19,20 +18,26 @@ export function ChoiceCard({ selected = false, children, onClick }: ChoiceCardPr
         checked={selected}
         onChange={() => onClick?.()}
       />
-      <img
-        className={[styles.radio, styles.radioDark].join(' ')}
-        src={selected ? radioOn : radio}
-        alt=""
-        width={23}
-        height={23}
-      />
-      <img
-        className={[styles.radio, styles.radioLight].join(' ')}
-        src={selected ? radioOn : radioLight}
-        alt=""
-        width={23}
-        height={23}
-      />
+      {selected ? (
+        <span className={[styles.radio, styles.radioOn].join(' ')} aria-hidden />
+      ) : (
+        <>
+          <img
+            className={[styles.radio, styles.radioDark].join(' ')}
+            src={radio}
+            alt=""
+            width={23}
+            height={23}
+          />
+          <img
+            className={[styles.radio, styles.radioLight].join(' ')}
+            src={radioLight}
+            alt=""
+            width={23}
+            height={23}
+          />
+        </>
+      )}
       <Text as="span" variant="bodyM" color="primary" className={styles.label}>
         {children}
       </Text>

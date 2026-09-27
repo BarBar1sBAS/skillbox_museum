@@ -1,0 +1,36 @@
+.decor {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+// маска вместо картинки: форма берётся из файла, цвет задаётся здесь.
+// на тёмном фоне дуги с голубым оттенком, на светлом — белые
+.rings {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 38.8125rem;
+  height: 62.875rem;
+  transform: translateX(-50%);
+  background: color-mix(in srgb, #ffffff 55%, var(--color-button));
+  opacity: 0.3;
+  mask: url('../icons/rings.svg') no-repeat center / contain;
+  -webkit-mask: url('../icons/rings.svg') no-repeat center / contain;
+}
+
+[data-theme='light'] .rings {
+  background: #ffffff;
+  opacity: 0.8;
+}
+
+@media (min-width: 600px) {
+  .rings {
+    width: 48.0625rem;
+    height: 77.75rem;
+    mask-image: url('../icons/rings-desktop.svg');
+    -webkit-mask-image: url('../icons/rings-desktop.svg');
+  }
+}

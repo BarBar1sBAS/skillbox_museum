@@ -22,6 +22,7 @@ import {
   Text,
   ThemeToggle,
 } from '@/uikit/index.ts'
+import bastion from '@/uikit/icons/bastion.svg'
 import styles from './Result.module.scss'
 
 const EXHIBITION_URL = '#'
@@ -97,9 +98,13 @@ export function Result() {
         <Text variant="eyebrow" className={styles.partnerLabel}>
           экспертная поддержка<br />проекта
         </Text>
-        <Text as="span" variant="h3Bold" className={styles.bastion}>
-          БАСТИОН
-        </Text>
+        <img
+          className={styles.bastion}
+          src={bastion}
+          alt="Бастион"
+          width={118}
+          height={26}
+        />
       </div>
 
       <div className={styles.cta}>

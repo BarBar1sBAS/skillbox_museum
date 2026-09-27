@@ -72,6 +72,9 @@ function ScenePlay({ n }: { n: SceneNumber }) {
           <ThemeToggle theme={theme} onChange={setTheme} />
           <ScenePill n={n} />
         </header>
+        {scene.intro.kicker ? (
+          <p className={styles.introKicker}>{scene.intro.kicker}</p>
+        ) : null}
         <div className={styles.titleCard}>
           <Text as="h1" variant="h1" className={styles.introTitle}>
             {scene.intro.title}
@@ -222,8 +225,8 @@ function Quiz({
             {PROMPT}
           </Text>
           {choices}
+          {confirm}
         </div>
-        {confirm}
       </Page>
     )
   }
@@ -237,9 +240,11 @@ function Quiz({
       <div className={styles.photoFrame}>
         <SceneImage className={styles.bg} src={scene.photo!} theme={theme} />
       </div>
-      <div className={styles.situationCard}>
-        <Text variant="bodyL">{scene.situation}</Text>
-      </div>
+      {scene.situation ? (
+        <div className={styles.situationCard}>
+          <Text variant="bodyL">{scene.situation}</Text>
+        </div>
+      ) : null}
       <div className={styles.sheet}>
         <Text as="h1" variant="h1">
           {PROMPT}

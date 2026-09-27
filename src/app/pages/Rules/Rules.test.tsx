@@ -18,6 +18,6 @@ describe('Rules', () => {
     const user = userEvent.setup()
     renderPath('/rules')
     await user.click(screen.getByRole('button', { name: 'НАЧАТЬ' }))
-    expect(screen.getByText('Друг')).toBeInTheDocument()
+    expect(screen.getByText('начало цифрового дня')).toBeInTheDocument()
   })
 })

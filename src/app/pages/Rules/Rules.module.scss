@@ -1,3 +1,9 @@
+.page {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
 .header {
   display: flex;
   align-items: flex-start;
@@ -35,9 +41,14 @@
   box-sizing: border-box;
   padding: 1.125rem 1.125rem 1.375rem;
   border: calc(var(--border-width) * 1px) solid var(--border-card);
-  border-radius: calc(var(--radius-l) * 1px);
+  border-radius: 1px;
   background: var(--gradient-note);
   box-shadow: var(--shadow-card);
+}
+
+[data-theme='light'] .keysCard {
+  border: 0.5px solid #0c4af9;
+  background: #dfe3ea;
 }
 
 .cta {

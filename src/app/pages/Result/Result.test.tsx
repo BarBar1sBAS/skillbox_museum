@@ -27,7 +27,7 @@ describe('Result', () => {
     expect(screen.getByText(/7 из 10/)).toBeInTheDocument()
     expect(screen.getByText('безопасных решений')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'УЗНАТЬ О ВЫСТАВКЕ' })).toBeInTheDocument()
-    expect(screen.getByText('БАСТИОН')).toBeInTheDocument()
+    expect(screen.getByAltText('Бастион')).toBeInTheDocument()
   })
 
   it('opens details with key bars and insight, then closes', async () => {

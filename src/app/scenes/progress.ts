@@ -53,21 +53,29 @@ export function safeDecisions(answers: SceneAnswers = loadAnswers()) {
   return Object.values(answers).filter((outcome) => outcome === 'correct').length
 }
 
-export function hasKey(key: SceneKey, answers: SceneAnswers = loadAnswers()) {
-  return KEY_BLOCKS[key].every((n) => answers[n] === 'correct')
+// ключ даётся за каждые три верных ответа, в каком месте игры — неважно
+export const ANSWERS_PER_KEY = 3
+
+function correctUpTo(answers: SceneAnswers, n: SceneNumber = 10) {
+  return Object.entries(answers).filter(
+    ([scene, outcome]) => Number(scene) <= n && outcome === 'correct',
+  ).length
 }
 
 export function collectedKeys(answers: SceneAnswers = loadAnswers()) {
-  return KEYS.filter((key) => hasKey(key, answers))
+  return KEYS.slice(0, Math.floor(correctUpTo(answers) / ANSWERS_PER_KEY))
+}
+
+export function hasKey(key: SceneKey, answers: SceneAnswers = loadAnswers()) {
+  return collectedKeys(answers).includes(key)
 }
 
 export function keyEarnedAt(
   n: SceneNumber,
   answers: SceneAnswers = loadAnswers(),
 ): SceneKey | undefined {
-  const key = KEYS.find((k) => {
-    const block = KEY_BLOCKS[k]
-    return block[block.length - 1] === n
-  })
-  return key && hasKey(key, answers) ? key : undefined
+  if (answers[n] !== 'correct') return undefined
+  const correct = correctUpTo(answers, n)
+  if (correct % ANSWERS_PER_KEY) return undefined
+  return KEYS[correct / ANSWERS_PER_KEY - 1]
 }
