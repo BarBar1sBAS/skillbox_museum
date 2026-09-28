@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { routes } from '@/app/routes.tsx'
-import { loadAnswers, resetProgress, saveAnswer, totalScore } from '@/app/scenes/index.ts'
+import { loadAnswers, resetProgress, saveAnswer, scenes, totalScore } from '@/app/scenes/index.ts'
 
 function renderPath(path: string) {
   const router = createMemoryRouter(routes, { initialEntries: [path] })
@@ -113,6 +113,18 @@ describe('Scene steps', () => {
     expect(screen.getByText('НЕВЕРНОЕ РЕШЕНИЕ')).toBeInTheDocument()
     await user.click(screen.getByRole('button', { name: 'ПРОДОЛЖИТЬ' }))
     expect(screen.getByRole('button', { name: 'ЗАЙТИ В ВАГОН' })).toBeInTheDocument()
+  })
+
+  it('starts on the quiz when the scene has no intro', () => {
+    const intro = scenes[10].intro
+    scenes[10].intro = undefined
+    try {
+      renderPath('/scene/10')
+      expect(screen.getByText('Как ты поступишь?')).toBeInTheDocument()
+      expect(screen.queryByRole('button', { name: 'ОТКРЫТЬ ОПОВЕЩЕНИЕ' })).not.toBeInTheDocument()
+    } finally {
+      scenes[10].intro = intro
+    }
   })
 
   it('does not save if confirm is pressed with no choice', async () => {

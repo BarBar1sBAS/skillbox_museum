@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router'
+import { startRun } from '@/app/stats/track.ts'
 import {
   collectedKeys,
   KEY_LABEL,
@@ -58,6 +59,11 @@ function ScenePlay({ n }: { n: SceneNumber }) {
   const [picked, setPicked] = useState<0 | 1 | 2 | null>(null)
   const [earned, setEarned] = useState<EarnedKey | null>(null)
   const outcome = picked != null ? scene.choices[picked].outcome : null
+
+  useEffect(() => {
+    if (n === 1) void startRun()
+  }, [n])
+
   const result = step === 'result' && outcome ? resultCopy(scene, outcome) : null
 
   if (step === 'intro' && scene.intro) {

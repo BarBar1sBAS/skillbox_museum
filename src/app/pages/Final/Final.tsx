@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import { collectedKeys, KEY_LABEL, resetProgress } from '@/app/scenes/index.ts'
+import { collectedKeys, KEY_LABEL, MAX_SCORE, resetProgress, totalScore } from '@/app/scenes/index.ts'
+import { completeRun } from '@/app/stats/track.ts'
 import { useTheme } from '@/app/theme.ts'
 import {
   Button,
@@ -59,6 +61,10 @@ export function Final() {
   const keys = collectedKeys()
   const count = keys.length as KeyCount
   const final = FINAL[count]
+
+  useEffect(() => {
+    void completeRun(Math.round((totalScore() / MAX_SCORE) * 100))
+  }, [])
 
   return (
     <Page className={styles.page}>

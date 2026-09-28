@@ -1,3 +1,4 @@
+import { clearRunId, reportAnswer } from '@/app/stats/track.ts'
 import type { SceneNumber } from '@/uikit/index.ts'
 import { KEY_BLOCKS, type SceneKey, type SceneOutcome } from './types.ts'
 
@@ -31,10 +32,12 @@ export function saveAnswer(n: SceneNumber, outcome: SceneOutcome): SceneAnswers 
   } catch {
     return answers
   }
+  reportAnswer(n, outcome)
   return answers
 }
 
 export function resetProgress() {
+  clearRunId()
   try {
     sessionStorage.removeItem(STORAGE_KEY)
   } catch {

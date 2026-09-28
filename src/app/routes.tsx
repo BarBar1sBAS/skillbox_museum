@@ -1,3 +1,4 @@
+import { Admin } from "./pages/Admin/Admin.tsx";
 import { Final } from "./pages/Final/Final.tsx";
 import { Result } from "./pages/Result/Result.tsx";
 import { Rules } from "./pages/Rules/Rules.tsx";
@@ -11,4 +12,5 @@ export const routes = [
 	{ path: "/scene/:n", Component: Scene },
 	{ path: "/result", Component: Result },
 	{ path: "/final", Component: Final },
+	{ path: "/:key", Component: Admin },
 ];
