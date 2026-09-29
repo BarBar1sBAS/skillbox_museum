@@ -1,4 +1,5 @@
 import { Text } from '../Text/Text.tsx'
+import { decodeFrame, runBits, runShapes, useDecoded, useTick } from './cipherMotion.ts'
 import styles from './ChatCard.module.scss'
 
 export type ChatReveal = 0 | 1 | 2 | 3
@@ -48,26 +49,39 @@ export function ChatCard({ reveal = 0 }: ChatCardProps) {
       <div className={styles.body}>
         {LINES.map((line) =>
           line.step <= reveal ? (
-            <p key={line.plain} className={styles.plain}>
-              {line.plain}
-            </p>
+            <PlainLine key={line.plain} text={line.plain} />
           ) : (
-            <Text
-              key={line.plain}
-              className={[
-                styles.cipher,
-                line.cipher === CIPHER_SHAPES && styles.shapes,
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              variant="cipher"
-              color="primary"
-            >
-              {line.cipher}
-            </Text>
+            <CipherLine key={line.plain} cipher={line.cipher} />
           ),
         )}
       </div>
     </div>
+  )
+}
+
+function CipherLine({ cipher }: { cipher: string }) {
+  const shapes = cipher === CIPHER_SHAPES
+  const tick = useTick(shapes ? 450 : 140)
+
+  return (
+    <Text
+      className={[styles.cipher, shapes && styles.shapes].filter(Boolean).join(' ')}
+      variant="cipher"
+      color="primary"
+      aria-hidden
+    >
+      {shapes ? runShapes(cipher, tick) : runBits(cipher, tick)}
+    </Text>
+  )
+}
+
+function PlainLine({ text }: { text: string }) {
+  const shown = useDecoded(text.length)
+
+  return (
+    <p className={styles.plain}>
+      <span className={styles.srOnly}>{text}</span>
+      <span aria-hidden>{decodeFrame(text, shown)}</span>
+    </p>
   )
 }

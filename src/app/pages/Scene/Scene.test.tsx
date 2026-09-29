@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
@@ -58,7 +58,7 @@ describe('Шаги сцены', () => {
     expect(screen.getByText(/КЛЮЧ “ДОВЕРИЕ”/)).toBeInTheDocument()
     expect(screen.getByText('ПОЛУЧЕН')).toBeInTheDocument()
     expect(screen.getByText('1/3')).toBeInTheDocument()
-    await user.click(screen.getByRole('button', { name: 'Закрыть' }))
+    await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Закрыть' }))
     expect(screen.queryByText('1/3')).not.toBeInTheDocument()
   })
 
@@ -152,6 +152,6 @@ describe('Шаги сцены', () => {
     await user.click(screen.getByRole('switch', { name: 'Светлая тема' }))
     media.matches = false
     listeners.forEach((fn) => fn())
-    expect(document.documentElement.dataset.theme).toBe('light')
+    expect(document.documentElement.dataset.theme).toBe('dark')
   })
 })

@@ -21,14 +21,14 @@ describe('theme', () => {
     cleanup()
   })
 
-  it('начинает с тёмной и запоминает выбранную тему', () => {
-    expect(loadTheme()).toBe('dark')
-
-    saveTheme('light')
+  it('начинает со светлой и запоминает выбранную тему', () => {
     expect(loadTheme()).toBe('light')
 
     saveTheme('dark')
     expect(loadTheme()).toBe('dark')
+
+    saveTheme('light')
+    expect(loadTheme()).toBe('light')
   })
 
   it('помечает страницу текущей темой', () => {
@@ -43,19 +43,19 @@ describe('theme', () => {
     const getItem = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
       throw new Error('blocked')
     })
-    expect(loadTheme()).toBe('dark')
+    expect(loadTheme()).toBe('light')
     getItem.mockRestore()
 
     const setItem = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
       throw new Error('blocked')
     })
-    saveTheme('light')
+    saveTheme('dark')
     setItem.mockRestore()
 
     const user = userEvent.setup()
     render(<Probe />)
-    expect(screen.getByText('dark')).toBeInTheDocument()
-    await user.click(screen.getByRole('button'))
     expect(screen.getByText('light')).toBeInTheDocument()
+    await user.click(screen.getByRole('button'))
+    expect(screen.getByText('dark')).toBeInTheDocument()
   })
 })

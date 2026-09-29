@@ -38,7 +38,7 @@ describe('Admin', () => {
   afterEach(() => {
     cleanup()
     vi.unstubAllGlobals()
-    document.documentElement.dataset.theme = 'dark'
+    document.documentElement.dataset.theme = 'light'
   })
 
   it('показывает панель при верном ключе', async () => {
@@ -60,7 +60,7 @@ describe('Admin', () => {
     expect(screen.getByText('58%')).toBeInTheDocument()
 
     await user.click(screen.getByRole('switch', { name: 'Светлая тема' }))
-    expect(document.documentElement.dataset.theme).toBe('light')
+    expect(document.documentElement.dataset.theme).toBe('dark')
   })
 
   it('согласует причастие с 1 и 11', async () => {

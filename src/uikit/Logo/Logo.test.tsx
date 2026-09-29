@@ -3,10 +3,10 @@ import { describe, expect, it } from 'vitest'
 import { Logo } from './Logo.tsx'
 
 describe('Logo', () => {
-  it('показывает все три строки названия музея', () => {
+  it('ведёт на сайт музея в новой вкладке', () => {
     render(<Logo />)
-    expect(screen.getByText('МУЗЕЙ')).toBeInTheDocument()
-    expect(screen.getByText('КРИПТО')).toBeInTheDocument()
-    expect(screen.getByText('ГРАФИИ')).toBeInTheDocument()
+    const link = screen.getByRole('link', { name: 'Музей криптографии' })
+    expect(link).toHaveAttribute('href', 'https://cryptography-museum.ru/')
+    expect(link).toHaveAttribute('target', '_blank')
   })
 })

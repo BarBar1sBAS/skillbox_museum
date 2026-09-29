@@ -1,13 +1,11 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import {
-  GROWTH,
-  INSIGHT,
   keyScore,
   keyScores,
+  LEVELS,
+  levelOf,
   resetProgress,
   saveAnswer,
-  strongestKey,
-  weakestKey,
 } from './index.ts'
 
 describe('stats', () => {
@@ -51,25 +49,15 @@ describe('stats', () => {
     ])
   })
 
-  it('выбирает сильнейший и слабейший ключи, при равенстве — по порядку KEY_LABEL', () => {
-    expect(strongestKey()).toBe('trust')
-    expect(weakestKey()).toBe('trust')
-
-    saveAnswer(1, 'correct')
-    saveAnswer(2, 'correct')
-    saveAnswer(3, 'correct')
-    saveAnswer(7, 'correct')
-    saveAnswer(8, 'correct')
-    saveAnswer(9, 'partial')
-    saveAnswer(10, 'wrong')
-    expect(strongestKey()).toBe('trust')
-    expect(weakestKey()).toBe('data')
-  })
-
-  it('имеет тексты вывода и зоны роста для каждого ключа', () => {
-    expect(INSIGHT.trust.title).toBe('Ты умеешь распознавать обман')
-    expect(GROWTH.access).toBe('публичный Wi-Fi и разрешения приложений')
-    expect(Object.keys(INSIGHT)).toEqual(['trust', 'data', 'access'])
-    expect(Object.keys(GROWTH)).toEqual(['trust', 'data', 'access'])
+  it('выбирает уровень по общему счёту на границах диапазонов', () => {
+    expect(LEVELS).toHaveLength(4)
+    expect(levelOf(0).title).toBe('Осваиваюсь в цифровом мире')
+    expect(levelOf(29).title).toBe('Осваиваюсь в цифровом мире')
+    expect(levelOf(30).title).toBe('Замечаю тревожные сигналы')
+    expect(levelOf(59).title).toBe('Замечаю тревожные сигналы')
+    expect(levelOf(60).title).toBe('Проверяю, прежде чем доверять')
+    expect(levelOf(79).title).toBe('Проверяю, прежде чем доверять')
+    expect(levelOf(80).title).toBe('Уверенно ориентируюсь')
+    expect(levelOf(100).title).toBe('Уверенно ориентируюсь')
   })
 })

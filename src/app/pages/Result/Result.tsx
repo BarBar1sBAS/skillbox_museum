@@ -1,14 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import {
-  GROWTH,
-  INSIGHT,
   KEY_LABEL,
   keyScores,
+  levelOf,
   safeDecisions,
-  strongestKey,
   totalScore,
-  weakestKey,
 } from '@/app/scenes/index.ts'
 import { useTheme } from '@/app/theme.ts'
 import {
@@ -26,6 +23,8 @@ import bastion from '@/uikit/icons/bastion.svg'
 import styles from './Result.module.scss'
 
 const EXHIBITION_URL = '#'
+const CHECKLIST_URL = `${import.meta.env.BASE_URL}files/chek-list_vystavka.pdf`
+const CHECKLIST_NAME = 'Чек-лист посещения выставки.pdf'
 
 export function Result() {
   const navigate = useNavigate()
@@ -34,8 +33,7 @@ export function Result() {
   const index = totalScore()
   const safe = safeDecisions()
   const scores = keyScores()
-  const strong = strongestKey()
-  const weak = weakestKey()
+  const level = levelOf(index)
 
   return (
     <Page className={styles.page}>
@@ -107,6 +105,13 @@ export function Result() {
         />
       </div>
 
+      <a className={styles.checklist} href={CHECKLIST_URL} download={CHECKLIST_NAME}>
+        <Text as="span" variant="eyebrow" className={styles.partnerLabel}>
+          скачать чек-лист<br />посещения выставки
+        </Text>
+        <span className={styles.downloadIcon} aria-hidden />
+      </a>
+
       <div className={styles.cta}>
         <Button onClick={() => navigate('/final')}>ПЕРЕЙТИ К ШИФРУ</Button>
       </div>
@@ -118,20 +123,18 @@ export function Result() {
               {scores.map(({ key, score }) => (
                 <StatBar key={key} label={KEY_LABEL[key].line} value={score} />
               ))}
-              {index > 0 ? (
-                <div className={styles.insight}>
-                  <Text variant="eyebrow" color="muted" className={styles.insightLead}>
-                    <span className={styles.dot} />
-                    Твоя сильная сторона
-                  </Text>
-                  <Text as="h3" variant="h3Bold">
-                    {INSIGHT[strong].title}
-                  </Text>
-                  <Text variant="bodyM" className={styles.insightBody}>
-                    {INSIGHT[strong].body} Зона роста - {GROWTH[weak]}.
-                  </Text>
-                </div>
-              ) : null}
+              <div className={styles.insight}>
+                <Text variant="eyebrow" color="muted" className={styles.insightLead}>
+                  <span className={styles.dot} />
+                  Твой уровень
+                </Text>
+                <Text as="h3" variant="h3Bold">
+                  {level.title}
+                </Text>
+                <Text variant="bodyM" className={styles.insightBody}>
+                  {level.body}
+                </Text>
+              </div>
             </Stack>
           </div>
         </Modal>

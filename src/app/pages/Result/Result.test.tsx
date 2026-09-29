@@ -28,6 +28,9 @@ describe('Result', () => {
     expect(screen.getByText('безопасных решений')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'УЗНАТЬ О ВЫСТАВКЕ' })).toBeInTheDocument()
     expect(screen.getByAltText('Бастион')).toBeInTheDocument()
+    const checklist = screen.getByRole('link', { name: /скачать чек-лист/ })
+    expect(checklist).toHaveAttribute('href', '/files/chek-list_vystavka.pdf')
+    expect(checklist).toHaveAttribute('download')
   })
 
   it('открывает подробности со шкалами ключей и выводом, затем закрывает', async () => {
@@ -39,19 +42,20 @@ describe('Result', () => {
     await user.click(screen.getByRole('button', { name: 'ПОДРОБНЕЕ О РЕЗУЛЬТАТЕ' }))
     expect(screen.getByText('Доверие')).toBeInTheDocument()
     expect(screen.getByText('100/100')).toBeInTheDocument()
-    expect(screen.getByText('Ты умеешь распознавать обман')).toBeInTheDocument()
+    expect(screen.getByText('Твой уровень')).toBeInTheDocument()
+    expect(screen.getByText('Уверенно ориентируюсь')).toBeInTheDocument()
 
     await user.click(screen.getAllByRole('button', { name: 'Закрыть' })[1])
     expect(screen.queryByText('Доверие')).not.toBeInTheDocument()
   })
 
-  it('прячет карточку вывода, если прогресса нет', async () => {
+  it('показывает первый уровень, если прогресса нет', async () => {
     const user = userEvent.setup()
     renderResult()
     expect(screen.getByText('0')).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: 'ПОДРОБНЕЕ О РЕЗУЛЬТАТЕ' }))
-    expect(screen.queryByText('Твоя сильная сторона')).not.toBeInTheDocument()
+    expect(screen.getByText('Осваиваюсь в цифровом мире')).toBeInTheDocument()
   })
 
   it('переходит на экран шифра', async () => {
