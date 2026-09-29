@@ -20,11 +20,10 @@ export type {
   SceneOutcome,
   SceneResult,
 } from './types.ts'
-export { KEY_BLOCKS, KEY_LABEL, keyOf, resultCopy } from './types.ts'
+export { KEY_BLOCKS, KEY_LABEL, resultCopy } from './types.ts'
 export type { SceneAnswers } from './progress.ts'
 export {
   collectedKeys,
-  hasKey,
   keyEarnedAt,
   loadAnswers,
   MAX_SCORE,

@@ -21,7 +21,7 @@ describe('theme', () => {
     cleanup()
   })
 
-  it('starts dark and remembers the chosen theme', () => {
+  it('начинает с тёмной и запоминает выбранную тему', () => {
     expect(loadTheme()).toBe('dark')
 
     saveTheme('light')
@@ -31,7 +31,7 @@ describe('theme', () => {
     expect(loadTheme()).toBe('dark')
   })
 
-  it('marks the page with the current theme', () => {
+  it('помечает страницу текущей темой', () => {
     applyTheme('light')
     expect(document.documentElement.dataset.theme).toBe('light')
 
@@ -39,7 +39,7 @@ describe('theme', () => {
     expect(document.documentElement.dataset.theme).toBe('dark')
   })
 
-  it('survives broken localStorage and toggles through the hook', async () => {
+  it('переживает сломанный localStorage и переключает тему через хук', async () => {
     const getItem = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
       throw new Error('blocked')
     })

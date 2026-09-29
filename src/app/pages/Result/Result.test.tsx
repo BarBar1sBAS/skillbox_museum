@@ -19,7 +19,7 @@ describe('Result', () => {
     cleanup()
   })
 
-  it('shows 82 and 7 of 10 after mixed answers', () => {
+  it('показывает 82 и 7 из 10 после смешанных ответов', () => {
     for (const n of [1, 2, 3, 4, 5, 7, 8] as const) saveAnswer(n, 'correct')
     for (const n of [6, 9, 10] as const) saveAnswer(n, 'partial')
     renderResult()
@@ -30,7 +30,7 @@ describe('Result', () => {
     expect(screen.getByAltText('Бастион')).toBeInTheDocument()
   })
 
-  it('opens details with key bars and insight, then closes', async () => {
+  it('открывает подробности со шкалами ключей и выводом, затем закрывает', async () => {
     for (const n of [1, 2, 3, 4, 5, 7, 8] as const) saveAnswer(n, 'correct')
     for (const n of [6, 9, 10] as const) saveAnswer(n, 'partial')
     const user = userEvent.setup()
@@ -45,7 +45,7 @@ describe('Result', () => {
     expect(screen.queryByText('Доверие')).not.toBeInTheDocument()
   })
 
-  it('hides the insight card when there is no progress', async () => {
+  it('прячет карточку вывода, если прогресса нет', async () => {
     const user = userEvent.setup()
     renderResult()
     expect(screen.getByText('0')).toBeInTheDocument()
@@ -54,7 +54,7 @@ describe('Result', () => {
     expect(screen.queryByText('Твоя сильная сторона')).not.toBeInTheDocument()
   })
 
-  it('goes to the cipher screen', async () => {
+  it('переходит на экран шифра', async () => {
     const user = userEvent.setup()
     renderResult()
     await user.click(screen.getByRole('button', { name: 'ПЕРЕЙТИ К ШИФРУ' }))

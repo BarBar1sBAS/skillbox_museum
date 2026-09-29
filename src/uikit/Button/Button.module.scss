@@ -36,7 +36,6 @@
   background: transparent;
 }
 
-// на синей кнопке светлой темы надпись и стрелка белые
 [data-theme='light'] .button:not(.outline) {
   --text-on-accent: #ffffff;
 }

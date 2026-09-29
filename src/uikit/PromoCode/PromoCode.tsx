@@ -23,7 +23,6 @@ export function PromoCode({ percent, code }: PromoCodeProps) {
         aria-label={`Скопировать ${code}`}
         onClick={() => void navigator.clipboard.writeText(code)}
       >
-        {/* заливка иконки повторяет фон плашки, поэтому цвет берётся переменной */}
         <svg
           className={styles.icon}
           width="19"

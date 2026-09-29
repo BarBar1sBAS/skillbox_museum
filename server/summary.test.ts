@@ -8,7 +8,7 @@ function atNoon(year: number, month: number, day: number) {
 describe('summarize', () => {
   const now = atNoon(2026, 9, 7)
 
-  it('returns zeros and the first four scenes when nobody played', () => {
+  it('возвращает нули и первые четыре сцены, если никто не играл', () => {
     const summary = summarize([], now)
     expect(summary).toMatchObject({
       started: 0,
@@ -35,7 +35,7 @@ describe('summarize', () => {
     ])
   })
 
-  it('counts only finals, averages them, and ranks wrong answers', () => {
+  it('считает только финалы, усредняет их и ранжирует неверные ответы', () => {
     const started = atNoon(2026, 9, 6)
     const runs: Run[] = [
       {
@@ -83,7 +83,7 @@ describe('summarize', () => {
 })
 
 describe('sameHost', () => {
-  it('accepts the page origin or referer and rejects the rest', () => {
+  it('принимает origin или referer страницы и отклоняет остальное', () => {
     expect(sameHost('http://museum.test', null, 'museum.test')).toBe(true)
     expect(sameHost(null, 'http://museum.test/scene/1', 'museum.test')).toBe(true)
     expect(sameHost('http://evil.test', null, 'museum.test')).toBe(false)
@@ -94,7 +94,7 @@ describe('sameHost', () => {
 })
 
 describe('limited', () => {
-  it('allows ten posts an hour and drops old ones', () => {
+  it('разрешает десять запросов в час и забывает старые', () => {
     const hits = new Map<string, number[]>()
     const now = 10 * 60 * 60 * 1000
     for (let i = 0; i < 10; i += 1) expect(limited(hits, '1.1.1.1', now + i)).toBe(false)

@@ -23,13 +23,13 @@ describe('Final', () => {
     cleanup()
   })
 
-  it('shows no promo code when no key is collected', () => {
+  it('не показывает промокод, если ключ не собран', () => {
     renderFinal()
     expect(screen.getByText('КЛЮЧИ НЕ СОБРАНЫ')).toBeInTheDocument()
     expect(screen.queryByText(/ОТКРЫТА СКИДКА/)).not.toBeInTheDocument()
   })
 
-  it('gives 5% for one key and 10% for all three', () => {
+  it('даёт 5% за один ключ и 10% за все три', () => {
     answerBlock([1, 2, 3], 'correct')
     renderFinal()
     expect(screen.getByText('ПОЛУЧЕН НОВЫЙ КЛЮЧ')).toBeInTheDocument()
@@ -48,7 +48,7 @@ describe('Final', () => {
     expect(screen.getByText('ОТКРЫТА СКИДКА 10%')).toBeInTheDocument()
   })
 
-  it('clears the progress on ПОВТОРИТЬ', async () => {
+  it('сбрасывает прогресс по ПОВТОРИТЬ', async () => {
     answerBlock([1, 2, 3], 'correct')
     const user = userEvent.setup()
     renderFinal()

@@ -14,7 +14,7 @@ describe('Start', () => {
     cleanup()
   })
 
-  it('goes to the rules from КАК ИГРАТЬ', async () => {
+  it('переходит к правилам с КАК ИГРАТЬ', async () => {
     const user = userEvent.setup()
     renderPath('/start')
     await user.click(screen.getByRole('button', { name: 'КАК ИГРАТЬ' }))

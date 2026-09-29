@@ -3,12 +3,12 @@ import { describe, expect, it } from 'vitest'
 import { Text } from './Text.tsx'
 
 describe('Text', () => {
-  it('renders children', () => {
+  it('рендерит детей', () => {
     render(<Text>Музей</Text>)
     expect(screen.getByText('Музей')).toBeInTheDocument()
   })
 
-  it('applies color and variant token vars', () => {
+  it('применяет переменные цвета и варианта', () => {
     render(
       <Text color="accent" variant="h1">
         Заголовок
@@ -23,7 +23,7 @@ describe('Text', () => {
     })
   })
 
-  it('dims cipher and fineprint and keeps a custom style', () => {
+  it('приглушает cipher и fineprint и сохраняет свой стиль', () => {
     const { rerender } = render(
       <Text as="span" variant="cipher" className="extra" style={{ letterSpacing: '1px' }}>
         шифр

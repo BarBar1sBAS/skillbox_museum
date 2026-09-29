@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { ScoreRing } from './ScoreRing.tsx'
 
 describe('ScoreRing', () => {
-  it('shows the score out of 100 and clamps the value', () => {
+  it('показывает счёт из 100 и ограничивает значение', () => {
     const { rerender } = render(<ScoreRing value={82} />)
     const ring = screen.getByRole('progressbar', { name: 'Индекс безопасности' })
     expect(screen.getByText('82')).toBeInTheDocument()

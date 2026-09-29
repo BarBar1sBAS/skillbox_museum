@@ -25,7 +25,6 @@ export function Modal({ children, onClose, closeButton = false, className }: Mod
         aria-label="Закрыть"
         onClick={onClose}
       />
-      {/* ponytail: no focus trap / no body-scroll lock; upgrade with a dialog primitive if needed */}
       <div role="dialog" aria-modal="true" className={styles.dialog}>
         {closeButton ? (
           <button type="button" className={styles.close} aria-label="Закрыть" onClick={onClose}>

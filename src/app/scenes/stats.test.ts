@@ -15,7 +15,7 @@ describe('stats', () => {
     resetProgress()
   })
 
-  it('scores an empty block as 0 and a full correct block as 100', () => {
+  it('оценивает пустой блок как 0, а полностью верный как 100', () => {
     expect(keyScore('trust')).toBe(0)
     expect(keyScore('data')).toBe(0)
     expect(keyScore('access')).toBe(0)
@@ -26,7 +26,7 @@ describe('stats', () => {
     expect(keyScore('trust')).toBe(100)
   })
 
-  it('rounds partial points in a 3-scene block and a 4-scene block', () => {
+  it('округляет частичные очки в блоке из 3 и из 4 сцен', () => {
     saveAnswer(1, 'partial')
     saveAnswer(2, 'partial')
     saveAnswer(3, 'partial')
@@ -39,7 +39,7 @@ describe('stats', () => {
     expect(keyScore('access')).toBe(60)
   })
 
-  it('lists key scores in KEY_LABEL order', () => {
+  it('перечисляет очки ключей в порядке KEY_LABEL', () => {
     saveAnswer(1, 'correct')
     saveAnswer(2, 'correct')
     saveAnswer(3, 'correct')
@@ -51,7 +51,7 @@ describe('stats', () => {
     ])
   })
 
-  it('picks strongest and weakest keys, breaking ties by KEY_LABEL order', () => {
+  it('выбирает сильнейший и слабейший ключи, при равенстве — по порядку KEY_LABEL', () => {
     expect(strongestKey()).toBe('trust')
     expect(weakestKey()).toBe('trust')
 
@@ -66,7 +66,7 @@ describe('stats', () => {
     expect(weakestKey()).toBe('data')
   })
 
-  it('has insight and growth copy for every key', () => {
+  it('имеет тексты вывода и зоны роста для каждого ключа', () => {
     expect(INSIGHT.trust.title).toBe('Ты умеешь распознавать обман')
     expect(GROWTH.access).toBe('публичный Wi-Fi и разрешения приложений')
     expect(Object.keys(INSIGHT)).toEqual(['trust', 'data', 'access'])

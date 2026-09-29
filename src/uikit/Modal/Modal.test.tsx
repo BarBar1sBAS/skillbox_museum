@@ -8,7 +8,7 @@ describe('Modal', () => {
     cleanup()
   })
 
-  it('closes on backdrop click and on Escape', async () => {
+  it('закрывается по клику на фон и по Escape', async () => {
     const onClose = vi.fn()
     const user = userEvent.setup()
     render(
@@ -31,7 +31,7 @@ describe('Modal', () => {
     expect(onClose).toHaveBeenCalledTimes(2)
   })
 
-  it('renders a close button that also calls onClose', async () => {
+  it('показывает кнопку закрытия, которая тоже вызывает onClose', async () => {
     const onClose = vi.fn()
     const user = userEvent.setup()
     render(

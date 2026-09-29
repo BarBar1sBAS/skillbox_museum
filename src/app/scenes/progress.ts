@@ -56,8 +56,7 @@ export function safeDecisions(answers: SceneAnswers = loadAnswers()) {
   return Object.values(answers).filter((outcome) => outcome === 'correct').length
 }
 
-// ключ даётся за каждые три верных ответа, в каком месте игры — неважно
-export const ANSWERS_PER_KEY = 3
+const ANSWERS_PER_KEY = 3
 
 function correctUpTo(answers: SceneAnswers, n: SceneNumber = 10) {
   return Object.entries(answers).filter(
@@ -67,10 +66,6 @@ function correctUpTo(answers: SceneAnswers, n: SceneNumber = 10) {
 
 export function collectedKeys(answers: SceneAnswers = loadAnswers()) {
   return KEYS.slice(0, Math.floor(correctUpTo(answers) / ANSWERS_PER_KEY))
-}
-
-export function hasKey(key: SceneKey, answers: SceneAnswers = loadAnswers()) {
-  return collectedKeys(answers).includes(key)
 }
 
 export function keyEarnedAt(

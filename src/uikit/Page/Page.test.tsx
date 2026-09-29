@@ -3,12 +3,12 @@ import { describe, expect, it } from 'vitest'
 import { Page } from './Page.tsx'
 
 describe('Page', () => {
-  it('renders children in a main landmark', () => {
+  it('рендерит детей в ориентире main', () => {
     render(<Page>экран</Page>)
     expect(screen.getByRole('main')).toHaveTextContent('экран')
   })
 
-  it('applies tone, className and data-scene', () => {
+  it('применяет тон, className и data-scene', () => {
     const { rerender } = render(
       <Page tone="result" className="extra" data-scene={4}>
         результат

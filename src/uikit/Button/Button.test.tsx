@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { Button } from './Button.tsx'
 
 describe('Button', () => {
-  it('calls onClick when pressed', async () => {
+  it('вызывает onClick при нажатии', async () => {
     const onClick = vi.fn()
     render(<Button onClick={onClick}>НАЧАТЬ ДЕНЬ</Button>)
 
@@ -13,7 +13,7 @@ describe('Button', () => {
     expect(onClick).toHaveBeenCalledTimes(1)
   })
 
-  it('renders the outline variant and still calls onClick', async () => {
+  it('показывает контурный вариант и всё равно вызывает onClick', async () => {
     const onClick = vi.fn()
     render(
       <Button variant="outline" onClick={onClick}>
@@ -27,7 +27,7 @@ describe('Button', () => {
     expect(onClick).toHaveBeenCalledTimes(1)
   })
 
-  it('renders a large arrow button', () => {
+  it('показывает большую кнопку со стрелкой', () => {
     render(
       <Button size="l" arrow>
         Начать игру
@@ -36,7 +36,7 @@ describe('Button', () => {
     expect(screen.getByRole('button', { name: 'Начать игру' }).className).toMatch(/large/)
   })
 
-  it('renders the small size and still calls onClick', async () => {
+  it('показывает малый размер и всё равно вызывает onClick', async () => {
     const onClick = vi.fn()
     render(
       <Button size="s" variant="outline" onClick={onClick}>
