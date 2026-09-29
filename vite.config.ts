@@ -32,6 +32,7 @@ function statsApi() {
 }
 
 export default defineConfig({
+  base: process.env.VITE_GITHUB_PAGES === 'true' ? '/skillbox_museum/' : '/',
   plugins: [react(), statsApi()],
   resolve: {
     alias: {

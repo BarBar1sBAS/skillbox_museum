@@ -159,3 +159,14 @@ export function Scene() {
 | `bun run build` | `tsc -b` и production-сборка Vite |
 | `bun run preview` | превью production-сборки |
 | `bun run build-storybook` | статическая сборка Storybook |
+
+## GitHub Pages
+
+Сайт: https://barbar1sbas.github.io/skillbox_museum/
+
+Workflow `.github/workflows/pages.yml` собирает и публикует `dist` при push в `main`.
+В Settings → Pages источником должен быть GitHub Actions.
+Для проверки такой сборки локально: `VITE_GITHUB_PAGES=true bun run build`, затем `VITE_GITHUB_PAGES=true bun run preview`.
+Эта сборка использует базовый путь `/skillbox_museum/` и hash-маршруты для обновления внутренних страниц без 404.
+Обычная локальная и серверная сборка сохраняет прежние URL.
+GitHub Pages размещает только фронтенд: API статистики и серверная админка требуют отдельного сервера.

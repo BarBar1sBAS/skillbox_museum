@@ -308,7 +308,7 @@ function SceneImage({
     <img
       key={`${theme}-${desktop}`}
       className={className}
-      src={sources[Math.min(step, sources.length - 1)]}
+      src={`${import.meta.env.BASE_URL}${sources[Math.min(step, sources.length - 1)].replace(/^\//, '')}`}
       alt=""
       onError={() => setStep((current) => current + 1)}
     />
