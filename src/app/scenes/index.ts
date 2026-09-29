@@ -34,7 +34,7 @@ export {
   saveAnswer,
   totalScore,
 } from './progress.ts'
-export { GROWTH, INSIGHT, keyScore, keyScores, strongestKey, weakestKey } from './stats.ts'
+export { keyScore, keyScores, LEVELS, levelOf } from './stats.ts'
 
 export const scenes: Record<SceneNumber, SceneContent> = {
   1: scene01,

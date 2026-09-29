@@ -1,5 +1,20 @@
 .logo {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+// svg нарисован белым; через маску он красится цветом текста темы
+.mark {
+  width: 3.375rem;
+  height: 2.1875rem;
+  background: var(--text-primary);
+  mask: url('../icons/museum-logo.svg') no-repeat center / contain;
+  -webkit-mask: url('../icons/museum-logo.svg') no-repeat center / contain;
+}
+
+@media (min-width: 600px) {
+  .mark {
+    width: 4.05rem;
+    height: 2.625rem;
+  }
 }

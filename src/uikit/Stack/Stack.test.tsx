@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { Stack } from './Stack.tsx'
 
 describe('Stack', () => {
-  it('renders children with gap token', () => {
+  it('рендерит детей с токеном промежутка', () => {
     const { container } = render(
       <Stack gap={25}>
         <span>а</span>
@@ -17,7 +17,7 @@ describe('Stack', () => {
     })
   })
 
-  it('defaults the gap to 20', () => {
+  it('по умолчанию ставит промежуток 20', () => {
     const { container } = render(
       <Stack>
         <span>а</span>

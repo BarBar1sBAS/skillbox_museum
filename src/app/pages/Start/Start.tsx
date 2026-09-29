@@ -60,7 +60,7 @@ export function Start() {
         </div>
 
         <Text variant="bodyM" color="muted" className={styles.discount}>
-          Каждый ключ увеличивает скидку на выставку: 5%
+          Каждый ключ увеличивает скидку на выставку “Ключ к доверию”: 5%
           <span className={styles.inlineArrow} aria-hidden />
           7%
           <span className={styles.inlineArrow} aria-hidden />

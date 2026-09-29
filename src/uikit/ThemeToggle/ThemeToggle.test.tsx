@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { ThemeToggle } from './ThemeToggle.tsx'
 
 describe('ThemeToggle', () => {
-  it('reports the opposite theme on click', async () => {
+  it('по клику сообщает противоположную тему', async () => {
     const onChange = vi.fn()
     const user = userEvent.setup()
     render(<ThemeToggle theme="dark" onChange={onChange} />)
@@ -16,7 +16,7 @@ describe('ThemeToggle', () => {
     expect(onChange).toHaveBeenCalledWith('light')
   })
 
-  it('toggles light back to dark and ignores a missing onChange', async () => {
+  it('переключает светлую обратно в тёмную и игнорирует отсутствие onChange', async () => {
     const onChange = vi.fn()
     const user = userEvent.setup()
     const { rerender } = render(<ThemeToggle theme="light" onChange={onChange} />)

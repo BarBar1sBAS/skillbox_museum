@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
@@ -24,7 +24,7 @@ describe('Scene steps', () => {
     cleanup()
   })
 
-  it('opens scene 1 on the intro and goes to the chat quiz', async () => {
+  it('открывает сцену 1 на вступлении и переходит к чат-викторине', async () => {
     const user = userEvent.setup()
     renderPath('/scene/1')
     expect(screen.getByText('начало цифрового дня')).toBeInTheDocument()
@@ -33,12 +33,12 @@ describe('Scene steps', () => {
     expect(screen.getAllByRole('radio')).toHaveLength(3)
   })
 
-  it('opens scene 2 on the photo intro CTA', () => {
+  it('открывает сцену 2 на кнопке фото-вступления', () => {
     renderPath('/scene/2')
     expect(screen.getByRole('button', { name: 'ЗАЙТИ В ВАГОН' })).toBeInTheDocument()
   })
 
-  it('does not show the key modal before the block is finished', async () => {
+  it('не показывает модалку ключа, пока блок не закончен', async () => {
     const user = userEvent.setup()
     await openScene1(user)
     await user.click(screen.getAllByRole('radio')[1])
@@ -47,7 +47,7 @@ describe('Scene steps', () => {
     expect(screen.queryByText('ПОЛУЧЕН')).not.toBeInTheDocument()
   })
 
-  it('shows the trust key after scene 3 when scenes 1–3 are correct', async () => {
+  it('показывает ключ доверия после сцены 3, если сцены 1–3 верные', async () => {
     saveAnswer(1, 'correct')
     saveAnswer(2, 'correct')
     const user = userEvent.setup()
@@ -58,11 +58,12 @@ describe('Scene steps', () => {
     expect(screen.getByText(/КЛЮЧ “ДОВЕРИЕ”/)).toBeInTheDocument()
     expect(screen.getByText('ПОЛУЧЕН')).toBeInTheDocument()
     expect(screen.getByText('1/3')).toBeInTheDocument()
-    await user.click(screen.getByRole('button', { name: 'Закрыть' }))
+    // крестик внутри окна; вторая кнопка «Закрыть» — затемнённый фон вокруг
+    await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Закрыть' }))
     expect(screen.queryByText('1/3')).not.toBeInTheDocument()
   })
 
-  it('does not show the key when one scene of the block is not correct', async () => {
+  it('не показывает ключ, если одна сцена блока неверная', async () => {
     saveAnswer(1, 'correct')
     saveAnswer(2, 'partial')
     const user = userEvent.setup()
@@ -74,7 +75,7 @@ describe('Scene steps', () => {
     expect(screen.queryByText('ПОЛУЧЕН')).not.toBeInTheDocument()
   })
 
-  it('saves points for the confirmed answer', async () => {
+  it('сохраняет очки за подтверждённый ответ', async () => {
     const user = userEvent.setup()
     await openScene1(user)
     await user.click(screen.getAllByRole('radio')[0])
@@ -83,7 +84,7 @@ describe('Scene steps', () => {
     expect(totalScore()).toBe(4)
   })
 
-  it('goes to /result after the last scene', async () => {
+  it('после последней сцены переходит на /result', async () => {
     const user = userEvent.setup()
     renderPath('/scene/10')
     await user.click(screen.getByRole('button', { name: 'ОТКРЫТЬ ОПОВЕЩЕНИЕ' }))
@@ -93,19 +94,19 @@ describe('Scene steps', () => {
     expect(screen.getByText('Твой результат')).toBeInTheDocument()
   })
 
-  it('sends an unknown scene to the rules', () => {
+  it('неизвестную сцену отправляет на правила', () => {
     renderPath('/scene/99')
     expect(screen.getByText('Правила игры')).toBeInTheDocument()
   })
 
-  it('goes back to rules from the chat header', async () => {
+  it('возвращается к правилам из шапки чата', async () => {
     const user = userEvent.setup()
     await openScene1(user)
     await user.click(screen.getByRole('button', { name: 'Назад' }))
     expect(screen.getByText('Правила игры')).toBeInTheDocument()
   })
 
-  it('shows a wrong-result screen and continues to the next scene', async () => {
+  it('показывает экран неверного ответа и переходит к следующей сцене', async () => {
     const user = userEvent.setup()
     await openScene1(user)
     await user.click(screen.getAllByRole('radio')[2])
@@ -115,7 +116,7 @@ describe('Scene steps', () => {
     expect(screen.getByRole('button', { name: 'ЗАЙТИ В ВАГОН' })).toBeInTheDocument()
   })
 
-  it('starts on the quiz when the scene has no intro', () => {
+  it('начинает с викторины, если у сцены нет вступления', () => {
     const intro = scenes[10].intro
     scenes[10].intro = undefined
     try {
@@ -127,14 +128,14 @@ describe('Scene steps', () => {
     }
   })
 
-  it('does not save if confirm is pressed with no choice', async () => {
+  it('не сохраняет, если подтвердить без выбора', async () => {
     const user = userEvent.setup()
     await openScene1(user)
     await user.click(screen.getAllByRole('button', { name: 'ПОДТВЕРДИТЬ ВЫБОР' })[0])
     expect(loadAnswers()).toEqual({})
   })
 
-  it('retries a missing scene image and follows the desktop query', async () => {
+  it('перебирает отсутствующую картинку сцены и следит за десктопным запросом', async () => {
     const listeners = new Set<() => void>()
     const media = {
       matches: true,
@@ -152,6 +153,6 @@ describe('Scene steps', () => {
     await user.click(screen.getByRole('switch', { name: 'Светлая тема' }))
     media.matches = false
     listeners.forEach((fn) => fn())
-    expect(document.documentElement.dataset.theme).toBe('light')
+    expect(document.documentElement.dataset.theme).toBe('dark')
   })
 })

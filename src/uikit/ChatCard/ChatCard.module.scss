@@ -6,7 +6,7 @@
   min-height: 10.5625rem;
   padding: 0.6875rem 0.875rem;
   border: calc(var(--border-width) * 1px) solid var(--border-card);
-  border-radius: calc(var(--radius-l) * 1px);
+  border-radius: calc(var(--radius-xs) * 1px);
   background: var(--gradient-chat);
   box-shadow: var(--shadow-card);
 }
@@ -68,6 +68,17 @@
 
 .cipher {
   white-space: pre-wrap;
+  // цифры одной ширины, чтобы строка не дёргалась, когда 0 меняется на 1
+  font-variant-numeric: tabular-nums;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 // строка символов должна стоять одной строкой: на финальном экране
@@ -87,7 +98,6 @@
 
 [data-theme='light'] .card {
   border: 1px solid #265df7;
-  border-radius: 5px;
   background: #dfe3ea;
   box-shadow: 0 1px 1px rgb(0 0 0 / 0.25);
 }

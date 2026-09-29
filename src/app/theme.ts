@@ -3,11 +3,12 @@ import type { Theme } from '@/uikit/index.ts'
 
 const STORAGE_KEY = 'theme'
 
+// по умолчанию тема светлая, тёмная — только если её выбрали переключателем
 export function loadTheme(): Theme {
   try {
-    return localStorage.getItem(STORAGE_KEY) === 'light' ? 'light' : 'dark'
+    return localStorage.getItem(STORAGE_KEY) === 'dark' ? 'dark' : 'light'
   } catch {
-    return 'dark'
+    return 'light'
   }
 }
 

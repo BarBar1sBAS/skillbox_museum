@@ -9,12 +9,12 @@ describe('ScenePill', () => {
     expect(screen.getByRole('button', { name: 'сцена 10' })).toBeInTheDocument()
   })
 
-  it('renders a custom label', () => {
+  it('показывает свою подпись', () => {
     render(<ScenePill label="10 сцен" />)
     expect(screen.getByRole('button', { name: '10 сцен' })).toBeInTheDocument()
   })
 
-  it('calls onClick', async () => {
+  it('вызывает onClick', async () => {
     const onClick = vi.fn()
     render(<ScenePill n={1} onClick={onClick} />)
     await userEvent.click(screen.getByRole('button', { name: 'сцена 1' }))

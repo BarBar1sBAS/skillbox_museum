@@ -4,12 +4,12 @@ import { describe, expect, it, vi } from 'vitest'
 import { ChatHeader } from './ChatHeader.tsx'
 
 describe('ChatHeader', () => {
-  it('renders peer name', () => {
+  it('показывает имя собеседника', () => {
     render(<ChatHeader name="Друг" status="в сети" />)
     expect(screen.getByText('Друг')).toBeInTheDocument()
   })
 
-  it('calls onBack', async () => {
+  it('вызывает onBack', async () => {
     const onBack = vi.fn()
     render(<ChatHeader name="Друг" status="в сети" onBack={onBack} />)
     await userEvent.click(screen.getByRole('button', { name: 'Назад' }))

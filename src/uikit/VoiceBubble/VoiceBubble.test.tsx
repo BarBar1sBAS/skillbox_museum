@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { VoiceBubble } from './VoiceBubble.tsx'
 
 describe('VoiceBubble', () => {
-  it('renders duration', () => {
+  it('показывает длительность', () => {
     render(
       <VoiceBubble duration="00:05" time="08:00">
         Бро, привет

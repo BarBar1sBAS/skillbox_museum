@@ -4,7 +4,7 @@ import { sceneImageSources, splitLead } from './Scene.tsx'
 const src = '/images/scenes/06-intro.png'
 
 describe('sceneImageSources', () => {
-  it('tries desktop and light variants before the plain image', () => {
+  it('сначала пробует десктопный и светлый варианты, потом обычную картинку', () => {
     expect(sceneImageSources(src, 'light', true)).toEqual([
       '/images/scenes/06-intro-desktop-light.png',
       '/images/scenes/06-intro-desktop.png',
@@ -13,7 +13,7 @@ describe('sceneImageSources', () => {
     ])
   })
 
-  it('asks only for what the current screen needs', () => {
+  it('запрашивает только то, что нужно текущему экрану', () => {
     expect(sceneImageSources(src, 'dark', true)).toEqual([
       '/images/scenes/06-intro-desktop.png',
       src,
@@ -27,7 +27,7 @@ describe('sceneImageSources', () => {
 })
 
 describe('splitLead', () => {
-  it('splits on the first colon and keeps the whole string without one', () => {
+  it('делит по первому двоеточию и оставляет строку целиком, если его нет', () => {
     expect(splitLead('Важно: не делись')).toEqual({
       lead: 'Важно:',
       rest: ' не делись',

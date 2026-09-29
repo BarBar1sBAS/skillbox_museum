@@ -280,16 +280,31 @@
   min-height: 0;
 }
 
+// небольшая карточка слева под «пузырём» колонки, который нарисован на картинке.
+// размер шрифта задан переменной: Text ставит его инлайном через var(--font-bodyL-size)
 .photoQuizPage[data-scene="9"] .situationCard {
-  top: 1.5rem;
-  left: 0.8125rem;
-  width: 22.3125rem;
+  --font-bodyL-size: var(--font-bodyMBold-size);
+
+  top: 17.75rem;
+  left: 1.6875rem;
+  width: 11.25rem;
+  min-height: 0;
   margin: 0;
+  padding: 0.625rem;
 }
 
 .photoQuizPage[data-scene="9"] .situationCard p {
-  white-space: pre-line;
   line-height: normal;
+}
+
+// на десктопной картинке «пузырь» крупнее и ниже
+@media (min-width: 600px) {
+  .photoQuizPage[data-scene="9"] .situationCard {
+    top: 14rem;
+    left: 2rem;
+    width: 17.5rem;
+    padding: 0.875rem;
+  }
 }
 
 .introPage[data-scene="10"] .titleCard {

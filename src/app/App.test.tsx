@@ -7,7 +7,7 @@ describe('App', () => {
     cleanup()
   })
 
-  it('opens the start screen on the root route', () => {
+  it('открывает стартовый экран на корневом маршруте', () => {
     render(<App />)
     expect(screen.getByRole('button', { name: 'КАК ИГРАТЬ' })).toBeInTheDocument()
   })

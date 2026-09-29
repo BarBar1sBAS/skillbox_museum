@@ -139,7 +139,11 @@ function ScenePlay({ n }: { n: SceneNumber }) {
         </div>
         {earned ? (
           <Modal onClose={() => setEarned(null)}>
-            <KeyModal keyName={KEY_LABEL[earned.key].chip} step={earned.step} />
+            <KeyModal
+              keyName={KEY_LABEL[earned.key].chip}
+              step={earned.step}
+              onClose={() => setEarned(null)}
+            />
           </Modal>
         ) : null}
       </Page>

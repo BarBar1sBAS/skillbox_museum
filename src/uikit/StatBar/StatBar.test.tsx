@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { StatBar } from './StatBar.tsx'
 
 describe('StatBar', () => {
-  it('shows label, score and clamped progress', () => {
+  it('показывает подпись, счёт и ограниченный прогресс', () => {
     const { rerender } = render(<StatBar label="Доверие" value={100} />)
     const bar = screen.getByRole('progressbar', { name: 'Доверие' })
     expect(screen.getByText('Доверие')).toBeInTheDocument()

@@ -11,7 +11,7 @@ describe('track', () => {
     sessionStorage.clear()
   })
 
-  it('stores a new run id and ignores a second start', async () => {
+  it('сохраняет новый id забега и игнорирует повторный старт', async () => {
     let release!: (value: Response) => void
     const fetchMock = vi.fn(
       () =>
@@ -32,7 +32,7 @@ describe('track', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1)
   })
 
-  it('does not store an id when the post fails or the body has none', async () => {
+  it('не сохраняет id, если запрос упал или в теле его нет', async () => {
     vi.stubGlobal('fetch', vi.fn(() => json({}, 500)))
     await startRun()
     expect(loadRunId()).toBeNull()
@@ -46,7 +46,7 @@ describe('track', () => {
     expect(loadRunId()).toBeNull()
   })
 
-  it('survives blocked storage', async () => {
+  it('переживает заблокированное хранилище', async () => {
     const getItem = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
       throw new Error('blocked')
     })
@@ -68,7 +68,7 @@ describe('track', () => {
     removeItem.mockRestore()
   })
 
-  it('patches the answer and the final score for the current run', async () => {
+  it('отправляет ответ и итоговый счёт текущего забега', async () => {
     const fetchMock = vi.fn((url: string) => json({ ok: true, url }))
     vi.stubGlobal('fetch', fetchMock)
     reportAnswer(1, 'wrong')

@@ -8,7 +8,7 @@ describe('StatusMark', () => {
     expect(screen.getByRole('img', { name: 'внимание' })).toBeInTheDocument()
   })
 
-  it('renders lime and red tones', () => {
+  it('показывает лаймовый и красный тона', () => {
     const { rerender } = render(<StatusMark tone="lime" />)
     expect(screen.getByRole('img', { name: 'успех' })).toBeInTheDocument()
     rerender(<StatusMark tone="red" />)

@@ -19,7 +19,7 @@ describe('Result', () => {
     cleanup()
   })
 
-  it('shows 82 and 7 of 10 after mixed answers', () => {
+  it('показывает 82 и 7 из 10 после смешанных ответов', () => {
     for (const n of [1, 2, 3, 4, 5, 7, 8] as const) saveAnswer(n, 'correct')
     for (const n of [6, 9, 10] as const) saveAnswer(n, 'partial')
     renderResult()
@@ -28,9 +28,12 @@ describe('Result', () => {
     expect(screen.getByText('безопасных решений')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'УЗНАТЬ О ВЫСТАВКЕ' })).toBeInTheDocument()
     expect(screen.getByAltText('Бастион')).toBeInTheDocument()
+    const checklist = screen.getByRole('link', { name: /скачать чек-лист/ })
+    expect(checklist).toHaveAttribute('href', '/files/chek-list_vystavka.pdf')
+    expect(checklist).toHaveAttribute('download')
   })
 
-  it('opens details with key bars and insight, then closes', async () => {
+  it('открывает подробности со шкалами ключей и выводом, затем закрывает', async () => {
     for (const n of [1, 2, 3, 4, 5, 7, 8] as const) saveAnswer(n, 'correct')
     for (const n of [6, 9, 10] as const) saveAnswer(n, 'partial')
     const user = userEvent.setup()
@@ -39,22 +42,23 @@ describe('Result', () => {
     await user.click(screen.getByRole('button', { name: 'ПОДРОБНЕЕ О РЕЗУЛЬТАТЕ' }))
     expect(screen.getByText('Доверие')).toBeInTheDocument()
     expect(screen.getByText('100/100')).toBeInTheDocument()
-    expect(screen.getByText('Ты умеешь распознавать обман')).toBeInTheDocument()
+    expect(screen.getByText('Твой уровень')).toBeInTheDocument()
+    expect(screen.getByText('Уверенно ориентируюсь')).toBeInTheDocument()
 
     await user.click(screen.getAllByRole('button', { name: 'Закрыть' })[1])
     expect(screen.queryByText('Доверие')).not.toBeInTheDocument()
   })
 
-  it('hides the insight card when there is no progress', async () => {
+  it('показывает первый уровень, если прогресса нет', async () => {
     const user = userEvent.setup()
     renderResult()
     expect(screen.getByText('0')).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: 'ПОДРОБНЕЕ О РЕЗУЛЬТАТЕ' }))
-    expect(screen.queryByText('Твоя сильная сторона')).not.toBeInTheDocument()
+    expect(screen.getByText('Осваиваюсь в цифровом мире')).toBeInTheDocument()
   })
 
-  it('goes to the cipher screen', async () => {
+  it('переходит на экран шифра', async () => {
     const user = userEvent.setup()
     renderResult()
     await user.click(screen.getByRole('button', { name: 'ПЕРЕЙТИ К ШИФРУ' }))

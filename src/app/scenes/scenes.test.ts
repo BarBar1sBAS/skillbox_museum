@@ -4,7 +4,7 @@ import { KEY_BLOCKS, keyOf, parseSceneNumber, resultCopy, scenes } from './index
 const OUTCOMES = ['correct', 'partial', 'wrong'] as const
 
 describe('scenes', () => {
-  it('has 10 scenes with 3 choices, situation and outcomes', () => {
+  it('содержит 10 сцен с 3 вариантами, ситуацией и исходами', () => {
     expect(Object.keys(scenes)).toHaveLength(10)
 
     for (const n of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const) {
@@ -26,7 +26,7 @@ describe('scenes', () => {
     expect(parseSceneNumber(undefined)).toBeUndefined()
   })
 
-  it('splits scenes into key blocks 1–3, 4–6, 7–10', () => {
+  it('делит сцены на блоки ключей 1–3, 4–6, 7–10', () => {
     expect(KEY_BLOCKS).toEqual({
       trust: [1, 2, 3],
       data: [4, 5, 6],
@@ -37,7 +37,7 @@ describe('scenes', () => {
     expect(keyOf(10)).toBe('access')
   })
 
-  it('gives a key fragment only for a correct answer', () => {
+  it('даёт фрагмент ключа только за верный ответ', () => {
     expect(resultCopy(scenes[1], 'correct').keyLine).toBe('Фрагмент ключа получен')
     expect(resultCopy(scenes[1], 'partial').keyLine).toBe('Фрагмент ключа не получен')
     expect(resultCopy(scenes[5], 'wrong').keyLine).toBe('Фрагмент ключа не получен')

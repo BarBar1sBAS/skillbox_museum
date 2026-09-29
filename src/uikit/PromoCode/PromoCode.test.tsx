@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { PromoCode } from './PromoCode.tsx'
 
 describe('PromoCode', () => {
-  it('renders discount and copies code on click', async () => {
+  it('показывает скидку и копирует код по клику', async () => {
     const writeText = vi.fn().mockResolvedValue(undefined)
     Object.defineProperty(navigator, 'clipboard', {
       configurable: true,

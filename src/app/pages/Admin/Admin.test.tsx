@@ -38,10 +38,10 @@ describe('Admin', () => {
   afterEach(() => {
     cleanup()
     vi.unstubAllGlobals()
-    document.documentElement.dataset.theme = 'dark'
+    document.documentElement.dataset.theme = 'light'
   })
 
-  it('shows the dashboard for a valid key', async () => {
+  it('показывает панель при верном ключе', async () => {
     vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(Response.json(summary))))
     const user = userEvent.setup()
     renderAt('/secret')
@@ -59,11 +59,12 @@ describe('Admin', () => {
     expect(screen.getByText('81%')).toBeInTheDocument()
     expect(screen.getByText('58%')).toBeInTheDocument()
 
+    // тема по умолчанию светлая, переключатель включает тёмную
     await user.click(screen.getByRole('switch', { name: 'Светлая тема' }))
-    expect(document.documentElement.dataset.theme).toBe('light')
+    expect(document.documentElement.dataset.theme).toBe('dark')
   })
 
-  it('agrees the participle with 1 and 11', async () => {
+  it('согласует причастие с 1 и 11', async () => {
     vi.stubGlobal(
       'fetch',
       vi.fn(() => Promise.resolve(Response.json({ ...summary, started: 1, completed: 1 }))),
@@ -79,13 +80,13 @@ describe('Admin', () => {
     expect(await screen.findByText('11 завершивших')).toBeInTheDocument()
   })
 
-  it('sends a wrong key home', async () => {
+  it('при неверном ключе отправляет на главную', async () => {
     vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response(null, { status: 404 }))))
     renderAt('/nope')
     expect(await screen.findByRole('button', { name: 'КАК ИГРАТЬ' })).toBeInTheDocument()
   })
 
-  it('ignores a late response after leaving the page', async () => {
+  it('игнорирует поздний ответ после ухода со страницы', async () => {
     let resolve!: (value: Response) => void
     vi.stubGlobal(
       'fetch',
@@ -106,7 +107,7 @@ describe('Admin', () => {
     expect(screen.queryByRole('heading', { name: 'Статистика прохождений' })).not.toBeInTheDocument()
   })
 
-  it('ignores a late denial after leaving the page', async () => {
+  it('игнорирует поздний отказ после ухода со страницы', async () => {
     let reject!: (reason: Error) => void
     vi.stubGlobal(
       'fetch',
@@ -126,7 +127,7 @@ describe('Admin', () => {
     expect(screen.queryByRole('button', { name: 'КАК ИГРАТЬ' })).not.toBeInTheDocument()
   })
 
-  it('redirects when the route has no key', () => {
+  it('перенаправляет, если в маршруте нет ключа', () => {
     const fetchMock = vi.fn()
     vi.stubGlobal('fetch', fetchMock)
     const router = createMemoryRouter(
