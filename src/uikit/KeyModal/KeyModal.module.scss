@@ -34,7 +34,6 @@
   height: 0.9375rem;
 }
 
-// квадрат со скруглёнными углами, ключ и рамка — цвета акцента темы
 .icon {
   display: flex;
   flex-shrink: 0;
@@ -88,7 +87,6 @@
   border-radius: 1px;
 }
 
-// в светлой теме карточка серая, без рамки
 [data-theme='light'] .card {
   border-color: transparent;
   background: var(--background-default);

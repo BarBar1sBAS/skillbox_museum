@@ -15,7 +15,7 @@ async function openScene1(user: ReturnType<typeof userEvent.setup>) {
   await user.click(screen.getByRole('button', { name: 'ВЗЯТЬ ТЕЛЕФОН' }))
 }
 
-describe('Scene steps', () => {
+describe('Шаги сцены', () => {
   beforeEach(() => {
     resetProgress()
   })
@@ -58,7 +58,6 @@ describe('Scene steps', () => {
     expect(screen.getByText(/КЛЮЧ “ДОВЕРИЕ”/)).toBeInTheDocument()
     expect(screen.getByText('ПОЛУЧЕН')).toBeInTheDocument()
     expect(screen.getByText('1/3')).toBeInTheDocument()
-    // крестик внутри окна; вторая кнопка «Закрыть» — затемнённый фон вокруг
     await user.click(within(screen.getByRole('dialog')).getByRole('button', { name: 'Закрыть' }))
     expect(screen.queryByText('1/3')).not.toBeInTheDocument()
   })

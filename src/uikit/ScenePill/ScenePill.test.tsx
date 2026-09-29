@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { ScenePill } from './ScenePill.tsx'
 
 describe('ScenePill', () => {
-  it('renders сцена 10 as a button', () => {
+  it('показывает «сцена 10» кнопкой', () => {
     render(<ScenePill n={10} />)
     expect(screen.getByRole('button', { name: 'сцена 10' })).toBeInTheDocument()
   })

@@ -1,7 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   collectedKeys,
-  hasKey,
   keyEarnedAt,
   loadAnswers,
   MAX_SCORE,
@@ -46,10 +45,10 @@ describe('progress', () => {
     saveAnswer(1, 'correct')
     saveAnswer(2, 'correct')
     saveAnswer(3, 'partial')
-    expect(hasKey('trust')).toBe(false)
+    expect(collectedKeys().includes('trust')).toBe(false)
 
     saveAnswer(4, 'correct')
-    expect(hasKey('trust')).toBe(true)
+    expect(collectedKeys().includes('trust')).toBe(true)
     expect(collectedKeys()).toEqual(['trust'])
   })
 
@@ -61,7 +60,6 @@ describe('progress', () => {
     saveAnswer(3, 'correct')
     expect(keyEarnedAt(3)).toBe('trust')
 
-    // одна ошибка не мешает: ключи идут за 3-й, 6-й и 9-й верный ответ
     saveAnswer(4, 'wrong')
     for (const n of [5, 6, 7] as const) saveAnswer(n, 'correct')
     expect(keyEarnedAt(6)).toBeUndefined()

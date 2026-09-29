@@ -59,7 +59,6 @@ describe('Admin', () => {
     expect(screen.getByText('81%')).toBeInTheDocument()
     expect(screen.getByText('58%')).toBeInTheDocument()
 
-    // тема по умолчанию светлая, переключатель включает тёмную
     await user.click(screen.getByRole('switch', { name: 'Светлая тема' }))
     expect(document.documentElement.dataset.theme).toBe('dark')
   })

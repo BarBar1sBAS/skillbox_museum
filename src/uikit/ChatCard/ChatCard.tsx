@@ -59,7 +59,6 @@ export function ChatCard({ reveal = 0 }: ChatCardProps) {
   )
 }
 
-// фигуры сдвигаются неспешно, двоичный код бежит быстрее
 function CipherLine({ cipher }: { cipher: string }) {
   const shapes = cipher === CIPHER_SHAPES
   const tick = useTick(shapes ? 450 : 140)
@@ -76,8 +75,6 @@ function CipherLine({ cipher }: { cipher: string }) {
   )
 }
 
-// настоящий текст лежит в скрытом span для экранного диктора,
-// а глазами видно, как он проявляется из шума
 function PlainLine({ text }: { text: string }) {
   const shown = useDecoded(text.length)
 

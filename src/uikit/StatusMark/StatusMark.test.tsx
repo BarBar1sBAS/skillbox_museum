@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { StatusMark } from './StatusMark.tsx'
 
 describe('StatusMark', () => {
-  it('renders orange tone as внимание', () => {
+  it('показывает оранжевый тон как внимание', () => {
     render(<StatusMark tone="orange" />)
     expect(screen.getByRole('img', { name: 'внимание' })).toBeInTheDocument()
   })

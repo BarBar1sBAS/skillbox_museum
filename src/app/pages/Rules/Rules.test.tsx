@@ -14,7 +14,7 @@ describe('Rules', () => {
     cleanup()
   })
 
-  it('starts scene 1 from НАЧАТЬ', async () => {
+  it('запускает сцену 1 с НАЧАТЬ', async () => {
     const user = userEvent.setup()
     renderPath('/rules')
     await user.click(screen.getByRole('button', { name: 'НАЧАТЬ' }))

@@ -23,8 +23,6 @@ import bastion from '@/uikit/icons/bastion.svg'
 import styles from './Result.module.scss'
 
 const EXHIBITION_URL = '#'
-// файл лежит в public/files; BASE_URL нужен для GitHub Pages, где сайт живёт в /skillbox_museum/
-// download задаёт имя сохранённого файла
 const CHECKLIST_URL = `${import.meta.env.BASE_URL}files/chek-list_vystavka.pdf`
 const CHECKLIST_NAME = 'Чек-лист посещения выставки.pdf'
 

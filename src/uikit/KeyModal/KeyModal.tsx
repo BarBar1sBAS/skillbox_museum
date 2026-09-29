@@ -20,7 +20,6 @@ export function KeyModal({ step = 1, keyName = 'ДАННЫЕ', onClose }: KeyMod
         </button>
       ) : null}
       <span className={styles.icon} aria-hidden>
-        {/* ключ из icons/key.svg, но встроенный: так он красится цветом акцента темы */}
         <svg viewBox="0 0 30 16" fill="none">
           <path
             d="M15 8C15 11.866 11.866 15 8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8ZM15 8H27.12C29.2954 8 28.9847 10.5455 28.9847 10.5455M23.9091 8.63636V11.8182"

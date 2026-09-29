@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react'
 
-// анимация шифра: строки бегут по кругу, цифры мигают, расшифровка
-// проявляется из шума. Всё считается от номера шага, без Math.random,
-// поэтому рендер остаётся чистым, а тесты — предсказуемыми
-
 const NOISE = '01◈□△◇*@!'
 
 function reducedMotion() {
@@ -13,12 +9,10 @@ function reducedMotion() {
   )
 }
 
-// псевдослучайное число для символа i на шаге tick
 function noise(i: number, tick: number) {
   return (Math.imul(i + 1, 73856093) ^ Math.imul(tick + 1, 19349663)) >>> 0
 }
 
-// счётчик шагов; при «уменьшить движение» в системе стоит на месте
 export function useTick(ms: number) {
   const [tick, setTick] = useState(0)
 
@@ -31,7 +25,6 @@ export function useTick(ms: number) {
   return tick
 }
 
-// фигуры сдвигаются по своим местам, пробелы между группами остаются на месте
 export function runShapes(line: string, tick: number) {
   const chars = [...line]
   const cells = chars.flatMap((c, i) => (c === ' ' ? [] : [i]))
@@ -43,8 +36,6 @@ export function runShapes(line: string, tick: number) {
   return next.join('')
 }
 
-// строка бежит влево по кругу (ширина не меняется — набор символов тот же),
-// часть цифр на каждом шаге меняется 0 ↔ 1
 export function runBits(line: string, tick: number) {
   const chars = [...line]
   const shift = tick % chars.length
@@ -57,7 +48,6 @@ export function runBits(line: string, tick: number) {
     .join('')
 }
 
-// сколько символов текста уже «расшифровано»: растёт до длины текста
 export function useDecoded(length: number) {
   const [shown, setShown] = useState(() => (reducedMotion() ? length : 0))
 
@@ -70,7 +60,6 @@ export function useDecoded(length: number) {
   return shown
 }
 
-// первые shown символов настоящие, остальные — шум; пробелы не трогаем
 export function decodeFrame(text: string, shown: number) {
   return [...text]
     .map((c, i) => {

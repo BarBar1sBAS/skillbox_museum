@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { KEY_BLOCKS, keyOf, parseSceneNumber, resultCopy, scenes } from './index.ts'
+import { KEY_BLOCKS, parseSceneNumber, resultCopy, scenes } from './index.ts'
 
 const OUTCOMES = ['correct', 'partial', 'wrong'] as const
 
@@ -10,7 +10,6 @@ describe('scenes', () => {
     for (const n of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const) {
       expect(scenes[n].n).toBe(n)
       expect(scenes[n].choices).toHaveLength(3)
-      // у сцены 10 карточки с ситуацией нет, всё видно на картинке
       if (n !== 10) expect(scenes[n].situation.length).toBeGreaterThan(0)
       expect(scenes[n].remember.length).toBeGreaterThan(0)
       for (const choice of scenes[n].choices) {
@@ -32,9 +31,6 @@ describe('scenes', () => {
       data: [4, 5, 6],
       access: [7, 8, 9, 10],
     })
-    expect(keyOf(3)).toBe('trust')
-    expect(keyOf(4)).toBe('data')
-    expect(keyOf(10)).toBe('access')
   })
 
   it('даёт фрагмент ключа только за верный ответ', () => {

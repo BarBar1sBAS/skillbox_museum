@@ -9,7 +9,7 @@ describe('KeyModal', () => {
     expect(screen.getByText('3/3')).toBeInTheDocument()
   })
 
-  it('defaults to ДАННЫЕ and 1/3', () => {
+  it('по умолчанию ДАННЫЕ и 1/3', () => {
     render(<KeyModal />)
     expect(screen.getByText(/КЛЮЧ “ДАННЫЕ”/)).toBeInTheDocument()
     expect(screen.getByText('1/3')).toBeInTheDocument()

@@ -16,12 +16,6 @@ export const KEY_BLOCKS: Record<SceneKey, SceneNumber[]> = {
   access: [7, 8, 9, 10],
 }
 
-export function keyOf(n: SceneNumber): SceneKey {
-  if (KEY_BLOCKS.trust.includes(n)) return 'trust'
-  if (KEY_BLOCKS.data.includes(n)) return 'data'
-  return 'access'
-}
-
 const EYEBROW: Record<SceneOutcome, string> = {
   correct: 'ВЕРНОЕ РЕШЕНИЕ',
   partial: 'НЕ СОВСЕМ ПРАВИЛЬНО',

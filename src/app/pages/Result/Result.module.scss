@@ -123,7 +123,6 @@
   object-fit: contain;
 }
 
-// карточка-ссылка на скачивание, раскладка как у карточки партнёра
 .checklist {
   display: flex;
   align-items: center;
@@ -143,7 +142,6 @@
   -webkit-mask: url('../../../uikit/icons/download.svg') no-repeat center / contain;
 }
 
-// логотип нарисован белым контуром, на светлом фоне делаем его тёмным
 [data-theme='light'] .bastion {
   filter: brightness(0);
 }
@@ -185,7 +183,6 @@
 }
 
 
-// светлая тема: карточки того же цвета, что фон, с тонкой серой рамкой
 [data-theme='light'] .scoreCard,
 [data-theme='light'] .exhibit,
 [data-theme='light'] .partner,
@@ -196,7 +193,6 @@
   background: #dfe3ea;
 }
 
-// акцентный квадрат в левом нижнем углу карточки с индексом
 [data-theme='light'] .scoreCard {
   position: relative;
 }
@@ -211,7 +207,6 @@
   background: #0c4af9;
 }
 
-// кнопка-контур: в светлой теме почти чёрная, в тёмной — цвета кнопок
 [data-theme='light'] .scoreAction button {
   --text-accent: #000000;
 

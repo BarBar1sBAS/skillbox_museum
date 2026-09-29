@@ -72,7 +72,6 @@ export async function handleApi(req: Request, ip: string, now = Date.now()) {
   }
 
   if (req.method === 'POST' && url.pathname === '/api/runs') {
-    // ponytail: in-memory limiter, Redis or a SQLite bucket if more than one process
     if (limited(hits, ip, now)) return new Response(null, { status: 429 })
     const id = crypto.randomUUID()
     database().query('INSERT INTO runs (id, started_at, answers) VALUES (?, ?, ?)').run(id, now, '{}')

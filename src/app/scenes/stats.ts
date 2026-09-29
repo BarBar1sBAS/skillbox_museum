@@ -3,7 +3,6 @@ import { loadAnswers, POINTS, type SceneAnswers } from './progress.ts'
 
 const KEYS = Object.keys(KEY_LABEL) as SceneKey[]
 
-// Уровни по общему индексу (0–100). min — нижняя граница уровня, список идёт по возрастанию.
 export const LEVELS = [
   {
     min: 0,

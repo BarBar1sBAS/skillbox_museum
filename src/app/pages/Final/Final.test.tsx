@@ -48,7 +48,7 @@ describe('Final', () => {
     expect(screen.getByText('ОТКРЫТА СКИДКА 10%')).toBeInTheDocument()
   })
 
-  it('clears the progress on ПОВТОРИТЬ', async () => {
+  it('сбрасывает прогресс по ПОВТОРИТЬ', async () => {
     answerBlock([1, 2, 3], 'correct')
     const user = userEvent.setup()
     renderFinal()

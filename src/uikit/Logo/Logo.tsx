@@ -2,7 +2,6 @@ import styles from './Logo.module.scss'
 
 const MUSEUM_URL = 'https://cryptography-museum.ru/'
 
-// в новой вкладке, чтобы не прерывать прохождение квеста
 export function Logo() {
   return (
     <a
