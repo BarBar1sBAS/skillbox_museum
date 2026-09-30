@@ -112,15 +112,14 @@
 }
 
 .partnerLabel {
+  min-width: 0;
   line-height: 1.2;
-  white-space: nowrap;
 }
 
 .bastion {
-  min-width: 0;
-  max-width: 7.375rem;
+  flex-shrink: 0;
+  width: 7.375rem;
   height: auto;
-  object-fit: contain;
 }
 
 .checklist {

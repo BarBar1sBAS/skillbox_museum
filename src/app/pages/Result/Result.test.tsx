@@ -26,7 +26,12 @@ describe('Result', () => {
     expect(screen.getByText('82')).toBeInTheDocument()
     expect(screen.getByText(/7 из 10/)).toBeInTheDocument()
     expect(screen.getByText('безопасных решений')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: 'УЗНАТЬ О ВЫСТАВКЕ' })).toBeInTheDocument()
+    const exhibition = screen.getByRole('link', { name: 'УЗНАТЬ О ВЫСТАВКЕ' })
+    expect(exhibition).toHaveAttribute(
+      'href',
+      'https://cryptography-museum.ru/events/vystavka-kljuch-doverija-bezopasnost-v-epohu-vysokih-tehnologij',
+    )
+    expect(exhibition).toHaveAttribute('target', '_blank')
     expect(screen.getByAltText('Бастион')).toBeInTheDocument()
     const checklist = screen.getByRole('link', { name: /скачать чек-лист/ })
     expect(checklist).toHaveAttribute('href', '/files/chek-list_vystavka.pdf')

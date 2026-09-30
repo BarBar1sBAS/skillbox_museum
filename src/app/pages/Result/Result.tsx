@@ -22,7 +22,8 @@ import {
 import bastion from '@/uikit/icons/bastion.svg'
 import styles from './Result.module.scss'
 
-const EXHIBITION_URL = '#'
+const EXHIBITION_URL =
+  'https://cryptography-museum.ru/events/vystavka-kljuch-doverija-bezopasnost-v-epohu-vysokih-tehnologij'
 const CHECKLIST_URL = `${import.meta.env.BASE_URL}files/chek-list_vystavka.pdf`
 const CHECKLIST_NAME = 'Чек-лист посещения выставки.pdf'
 
@@ -81,9 +82,14 @@ export function Result() {
           </Text>
           <Text variant="bodyM" className={styles.exhibitBody}>
             Проверь свои навыки в интерактивах и узнай, как устроена цифровая
-            безопасность - без сложных терминов.
+            безопасность — без сложных терминов.
           </Text>
-          <a className={styles.exhibitLink} href={EXHIBITION_URL}>
+          <a
+            className={styles.exhibitLink}
+            href={EXHIBITION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Text as="span" variant="eyebrow" color="accent">
               УЗНАТЬ О ВЫСТАВКЕ
             </Text>
