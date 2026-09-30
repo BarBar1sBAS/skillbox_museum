@@ -1,3 +1,4 @@
+import { MUSEUM_URL } from '../museum.ts'
 import { Text } from '../Text/Text.tsx'
 import { decodeFrame, runBits, runShapes, useDecoded, useTick } from './cipherMotion.ts'
 import styles from './ChatCard.module.scss'
@@ -22,6 +23,7 @@ const LINES = [
     step: 3,
     cipher: CIPHER_SHAPES,
     plain: 'Узнай больше на выставке Музея криптографии.',
+    link: 'Музея криптографии',
   },
 ] as const
 
@@ -49,7 +51,11 @@ export function ChatCard({ reveal = 0 }: ChatCardProps) {
       <div className={styles.body}>
         {LINES.map((line) =>
           line.step <= reveal ? (
-            <PlainLine key={line.plain} text={line.plain} />
+            <PlainLine
+              key={line.plain}
+              text={line.plain}
+              link={'link' in line ? line.link : undefined}
+            />
           ) : (
             <CipherLine key={line.plain} cipher={line.cipher} />
           ),
@@ -75,13 +81,37 @@ function CipherLine({ cipher }: { cipher: string }) {
   )
 }
 
-function PlainLine({ text }: { text: string }) {
+function PlainLine({ text, link }: { text: string; link?: string }) {
   const shown = useDecoded(text.length)
+  const frame = decodeFrame(text, shown)
+
+  if (!link) {
+    return (
+      <p className={styles.plain}>
+        <span className={styles.srOnly}>{text}</span>
+        <span aria-hidden>{frame}</span>
+      </p>
+    )
+  }
+
+  // кадр расшифровки режется на те же куски, что и текст,
+  // поэтому ссылка проявляется вместе с остальной строкой
+  const from = text.indexOf(link)
+  const to = from + link.length
+  const part = (start: number, end?: number) => (
+    <>
+      <span className={styles.srOnly}>{text.slice(start, end)}</span>
+      <span aria-hidden>{frame.slice(start, end)}</span>
+    </>
+  )
 
   return (
     <p className={styles.plain}>
-      <span className={styles.srOnly}>{text}</span>
-      <span aria-hidden>{decodeFrame(text, shown)}</span>
+      {part(0, from)}
+      <a className={styles.link} href={MUSEUM_URL} target="_blank" rel="noopener noreferrer">
+        {part(from, to)}
+      </a>
+      {part(to)}
     </p>
   )
 }

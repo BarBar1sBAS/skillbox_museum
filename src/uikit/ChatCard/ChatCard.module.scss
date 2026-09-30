@@ -111,3 +111,13 @@
 [data-theme='light'] .meta {
   --text-primary: #000000;
 }
+
+.link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.link:hover {
+  text-decoration-thickness: 2px;
+}
