@@ -1,6 +1,5 @@
+import { MUSEUM_URL } from '../museum.ts'
 import styles from './Logo.module.scss'
-
-const MUSEUM_URL = 'https://cryptography-museum.ru/'
 
 export function Logo() {
   return (
