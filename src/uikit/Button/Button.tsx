@@ -12,6 +12,7 @@ type ButtonProps = {
   size?: ButtonSize
   variant?: ButtonVariant
   arrow?: boolean
+  disabled?: boolean
   onClick?: () => void
 }
 
@@ -33,14 +34,20 @@ export function Button({
   variant = 'solid',
   arrow = false,
   onClick,
+  disabled = false,
 }: ButtonProps) {
   return (
     <button
       type="button"
-      className={[styles.button, SIZE_CLASS[size], variant === 'outline' && styles.outline]
+      className={[
+        styles.button,
+        SIZE_CLASS[size],
+        variant === 'outline' && styles.outline,
+      ]
         .filter(Boolean)
         .join(' ')}
       onClick={onClick}
+      disabled={disabled}
     >
       <Text
         as="span"

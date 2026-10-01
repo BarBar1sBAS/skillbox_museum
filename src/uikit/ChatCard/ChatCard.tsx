@@ -1,12 +1,18 @@
 import { MUSEUM_URL } from '../museum.ts'
 import { Text } from '../Text/Text.tsx'
-import { decodeFrame, runBits, runShapes, useDecoded, useTick } from './cipherMotion.ts'
+import {
+  decodeFrame,
+  runBits,
+  runShapes,
+  useDecoded,
+  useTick,
+} from './cipherMotion.ts'
 import styles from './ChatCard.module.scss'
 
 export type ChatReveal = 0 | 1 | 2 | 3
 
-const CIPHER_SHAPES = '◈ □ △ ◇  ◈ □ △ ◇  ◈ □ △ ◇  ◈ □'
-const CIPHER_BITS = '0101^0110001”;1001”00@1!1001**10'
+const CIPHER_SHAPES = '01 ▧ 10 ▧  ДО ▧ Е ▧ ИЕ'
+const CIPHER_BITS = '▧ А ▧ НЫЕ  01 ▧ 10'
 
 const LINES = [
   {
@@ -29,31 +35,23 @@ const LINES = [
 
 type ChatCardProps = {
   reveal?: ChatReveal
+  animateStep?: 1 | 2 | 3
 }
 
-export function ChatCard({ reveal = 0 }: ChatCardProps) {
+export function ChatCard({ reveal = 0, animateStep }: ChatCardProps) {
   return (
     <div className={styles.card}>
       <div className={styles.header}>
-        <span className={styles.avatar} aria-hidden>
-          М
-        </span>
-        <div className={styles.meta}>
-          <Text variant="bodyMBold" color="primary">
-            Музей криптографии
-          </Text>
-          <Text variant="bodyS" color="primary" style={{ opacity: 0.75 }}>
-            Сегодня, 08:00
-          </Text>
-        </div>
+        СООБЩЕНИЕ МУЗЕЯ / {reveal === 3 ? 'РАСШИФРОВАНО' : 'ЗАШИФРОВАНО'}
       </div>
-      <hr className={styles.rule} />
+      <span className={styles.srOnly}>Открыто фрагментов: {reveal} из 3</span>
       <div className={styles.body}>
         {LINES.map((line) =>
           line.step <= reveal ? (
             <PlainLine
               key={line.plain}
               text={line.plain}
+              animate={line.step === animateStep}
               link={'link' in line ? line.link : undefined}
             />
           ) : (
@@ -71,7 +69,9 @@ function CipherLine({ cipher }: { cipher: string }) {
 
   return (
     <Text
-      className={[styles.cipher, shapes && styles.shapes].filter(Boolean).join(' ')}
+      className={[styles.cipher, shapes && styles.shapes]
+        .filter(Boolean)
+        .join(' ')}
       variant="cipher"
       color="primary"
       aria-hidden
@@ -81,10 +81,36 @@ function CipherLine({ cipher }: { cipher: string }) {
   )
 }
 
-function PlainLine({ text, link }: { text: string; link?: string }) {
-  const shown = useDecoded(text.length)
+function PlainLine({
+  text,
+  link,
+  animate,
+}: {
+  text: string
+  link?: string
+  animate: boolean
+}) {
+  const shown = useDecoded(text.length, animate)
   const frame = decodeFrame(text, shown)
 
+  if (shown >= text.length) {
+    if (!link) return <p className={styles.plain}>{text}</p>
+    const from = text.indexOf(link)
+    return (
+      <p className={styles.plain}>
+        {text.slice(0, from)}
+        <a
+          className={styles.link}
+          href={MUSEUM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {link}
+        </a>
+        {text.slice(from + link.length)}
+      </p>
+    )
+  }
   if (!link) {
     return (
       <p className={styles.plain}>
@@ -108,7 +134,12 @@ function PlainLine({ text, link }: { text: string; link?: string }) {
   return (
     <p className={styles.plain}>
       {part(0, from)}
-      <a className={styles.link} href={MUSEUM_URL} target="_blank" rel="noopener noreferrer">
+      <a
+        className={styles.link}
+        href={MUSEUM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {part(from, to)}
       </a>
       {part(to)}

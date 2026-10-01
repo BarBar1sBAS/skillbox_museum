@@ -15,7 +15,27 @@ describe('PromoCode', () => {
     expect(screen.getByText('ОТКРЫТА СКИДКА 5%')).toBeInTheDocument()
     expect(screen.getByText('CRYPTO5')).toBeInTheDocument()
 
-    await userEvent.click(screen.getByRole('button', { name: 'Скопировать CRYPTO5' }))
+    await userEvent.click(
+      screen.getByRole('button', { name: 'Скопировать CRYPTO5' }),
+    )
     expect(writeText).toHaveBeenCalledWith('CRYPTO5')
   })
+})
+
+it('предлагает ручное копирование при отказе буфера', async () => {
+  Object.defineProperty(navigator, 'clipboard', {
+    configurable: true,
+    value: { writeText: vi.fn().mockRejectedValue(new Error('denied')) },
+  })
+  render(<PromoCode percent={7} code="CRYPTO7" />)
+  await userEvent.click(
+    screen.getByRole('button', { name: 'Скопировать CRYPTO7' }),
+  )
+  expect(await screen.findByRole('status')).toHaveTextContent(
+    'Скопируй код вручную',
+  )
+  screen.getByRole('textbox', { name: 'Промокод' }).focus()
+  expect(screen.getByRole('textbox', { name: 'Промокод' })).toHaveValue(
+    'CRYPTO7',
+  )
 })

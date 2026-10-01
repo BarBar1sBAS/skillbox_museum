@@ -1,5 +1,14 @@
 .text {
+  overflow-wrap: anywhere;
+  min-width: 0;
   margin: 0;
-  line-height: 1;
+  line-height: 1.55;
   letter-spacing: 0;
+}
+h1.text,
+h2.text,
+h3.text {
+  overflow-wrap: anywhere;
+  min-width: 0;
+  line-height: 1.15;
 }

@@ -1,3 +1,4 @@
+import { SESSION_KEY } from './session'
 import { clearRunId, reportAnswer } from '@/app/stats/track.ts'
 import type { SceneNumber } from '@/uikit/index.ts'
 import { KEY_BLOCKS, type SceneKey, type SceneOutcome } from './types.ts'
@@ -25,7 +26,10 @@ export function loadAnswers(): SceneAnswers {
   }
 }
 
-export function saveAnswer(n: SceneNumber, outcome: SceneOutcome): SceneAnswers {
+export function saveAnswer(
+  n: SceneNumber,
+  outcome: SceneOutcome,
+): SceneAnswers {
   const answers = { ...loadAnswers(), [n]: outcome }
   try {
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(answers))
@@ -40,6 +44,7 @@ export function resetProgress() {
   clearRunId()
   try {
     sessionStorage.removeItem(STORAGE_KEY)
+    sessionStorage.removeItem(SESSION_KEY)
   } catch {
     return
   }
@@ -53,7 +58,8 @@ export function totalScore(answers: SceneAnswers = loadAnswers()) {
 }
 
 export function safeDecisions(answers: SceneAnswers = loadAnswers()) {
-  return Object.values(answers).filter((outcome) => outcome === 'correct').length
+  return Object.values(answers).filter((outcome) => outcome === 'correct')
+    .length
 }
 
 const ANSWERS_PER_KEY = 3

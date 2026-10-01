@@ -1,0 +1,92 @@
+.frame {
+  position: relative;
+  isolation: isolate;
+  margin: 0;
+  width: 100%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  background: #00001a;
+  clip-path: polygon(
+    0 8%,
+    40% 8%,
+    40% 0,
+    72% 0,
+    72% 5%,
+    100% 5%,
+    100% 68%,
+    94% 68%,
+    94% 90%,
+    48% 90%,
+    48% 80%,
+    42% 80%,
+    42% 100%,
+    8% 100%,
+    8% 62%,
+    0 62%
+  );
+}
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+.glitch {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  pointer-events: none;
+  opacity: 0;
+  clip-path: polygon(
+    0 24%,
+    100% 24%,
+    100% 29%,
+    0 29%,
+    0 64%,
+    100% 64%,
+    100% 69%,
+    0 69%
+  );
+}
+.fallback {
+  color: #e9e9ef;
+  padding: 24px;
+  line-height: 1.5;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .glitch {
+    animation: glitch 480ms steps(1) both;
+  }
+}
+@keyframes glitch {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translateX(8px);
+  }
+  40% {
+    opacity: 0.4;
+    transform: translateX(-5px);
+  }
+  60% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0.5;
+    transform: translateX(3px);
+  }
+}
+
+.failed {
+  clip-path: none;
+  aspect-ratio: auto;
+  min-height: 160px;
+}

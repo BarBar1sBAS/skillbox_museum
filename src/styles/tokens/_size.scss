@@ -1,7 +1,7 @@
 :root {
-  --layout-phone: 24.375rem;
-  --layout-desktop: 37.5rem;
-  --layout-gutter: 23;
+  --layout-phone: 48rem;
+  --layout-desktop: 75rem;
+  --layout-gutter: 20;
   --border-width: 1;
 
   --spacing-5: 5;
@@ -15,8 +15,8 @@
   --font-text: 'Halvar Mittelschrift', sans-serif;
 
   --font-h1-family: var(--font-display);
-  --font-h1-size: 1.625rem;
-  --font-h1-weight: 700;
+  --font-h1-size: 1.75rem;
+  --font-h1-weight: 400;
 
   --font-h2-family: var(--font-display);
   --font-h2-size: 1.25rem;
@@ -31,16 +31,16 @@
   --font-h3Bold-weight: 700;
 
   --font-cta-family: var(--font-display);
-  --font-cta-size: 1.375rem;
+  --font-cta-size: 1rem;
   --font-cta-weight: 400;
 
   --font-h4-family: var(--font-display);
-  --font-h4-size: 0.625rem;
+  --font-h4-size: 0.75rem;
   --font-h4-weight: 400;
 
   --font-eyebrow-family: var(--font-display);
   --font-eyebrow-size: 0.75rem;
-  --font-eyebrow-weight: 300;
+  --font-eyebrow-weight: 400;
 
   --font-subtitle-family: var(--font-display);
   --font-subtitle-size: 0.875rem;
@@ -51,7 +51,7 @@
   --font-kicker-weight: 500;
 
   --font-fineprint-family: var(--font-display);
-  --font-fineprint-size: 0.5rem;
+  --font-fineprint-size: 0.75rem;
   --font-fineprint-weight: 400;
 
   --font-bodyL-family: var(--font-text);
@@ -59,15 +59,15 @@
   --font-bodyL-weight: 700;
 
   --font-bodyM-family: var(--font-text);
-  --font-bodyM-size: 0.875rem;
+  --font-bodyM-size: 1rem;
   --font-bodyM-weight: 400;
 
   --font-bodyMBold-family: var(--font-text);
-  --font-bodyMBold-size: 0.875rem;
+  --font-bodyMBold-size: 1rem;
   --font-bodyMBold-weight: 700;
 
   --font-bodyS-family: var(--font-text);
-  --font-bodyS-size: 0.625rem;
+  --font-bodyS-size: 0.8125rem;
   --font-bodyS-weight: 400;
 
   --font-logo-family: var(--font-text);
@@ -81,21 +81,23 @@
 
 @media (min-width: 600px) {
   :root {
-    --font-h1-size: 2rem;
     --font-h2-size: 1.5rem;
     --font-h3-size: 1.1875rem;
     --font-h3Bold-size: 1.1875rem;
-    --font-cta-size: 1.625rem;
-    --font-h4-size: 0.75rem;
+
     --font-eyebrow-size: 0.875rem;
     --font-subtitle-size: 1rem;
     --font-kicker-size: 1rem;
-    --font-fineprint-size: 0.625rem;
+
     --font-bodyL-size: 1.125rem;
-    --font-bodyM-size: 1.0625rem;
-    --font-bodyMBold-size: 1.0625rem;
-    --font-bodyS-size: 0.75rem;
+
     --font-logo-size: 0.75rem;
     --font-cipher-size: 1.0625rem;
+  }
+}
+@media (min-width: 900px) {
+  :root {
+    --font-h1-size: 2.5rem;
+    --layout-gutter: 40;
   }
 }

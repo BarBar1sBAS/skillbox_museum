@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const NOISE = '01◈□△◇*@!'
+const NOISE = '01▧▧▧'
 
 function reducedMotion() {
   return (
@@ -18,7 +18,12 @@ export function useTick(ms: number) {
 
   useEffect(() => {
     if (reducedMotion()) return
-    const id = setInterval(() => setTick((t) => t + 1), ms)
+    let elapsed = 0
+    const id = setInterval(() => {
+      elapsed += ms
+      setTick((t) => t + 1)
+      if (elapsed >= 700) clearInterval(id)
+    }, ms)
     return () => clearInterval(id)
   }, [ms])
 
@@ -48,12 +53,17 @@ export function runBits(line: string, tick: number) {
     .join('')
 }
 
-export function useDecoded(length: number) {
-  const [shown, setShown] = useState(() => (reducedMotion() ? length : 0))
+export function useDecoded(length: number, animate = true) {
+  const [shown, setShown] = useState(() =>
+    !animate || reducedMotion() ? length : 0,
+  )
 
   useEffect(() => {
     if (shown >= length) return
-    const id = setTimeout(() => setShown((s) => Math.min(length, s + 2)), 35)
+    const id = setTimeout(
+      () => setShown((s) => Math.min(length, s + Math.ceil(length / 24))),
+      35,
+    )
     return () => clearTimeout(id)
   }, [shown, length])
 

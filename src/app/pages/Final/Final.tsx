@@ -1,19 +1,24 @@
+import { sceneVisual } from '@/app/scenes/visuals'
+import { MuseumHeader } from '@/app/MuseumHeader'
+import { PixelScene } from '@/uikit/PixelScene/PixelScene'
+import { EXHIBITION_URL } from '@/uikit/museum'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import { collectedKeys, KEY_LABEL, MAX_SCORE, resetProgress, totalScore } from '@/app/scenes/index.ts'
+import {
+  collectedKeys,
+  KEY_LABEL,
+  MAX_SCORE,
+  resetProgress,
+  totalScore,
+} from '@/app/scenes/index.ts'
 import { completeRun } from '@/app/stats/track.ts'
-import { useTheme } from '@/app/theme.ts'
 import {
   Button,
   ChatCard,
-  Decor,
-  Logo,
   Page,
   PromoCode,
-  ScenePill,
   Stack,
   Text,
-  ThemeToggle,
   TrustChip,
   type ChatReveal,
   type PromoPercent,
@@ -57,7 +62,6 @@ const FINAL: Record<KeyCount, FinalCopy> = {
 
 export function Final() {
   const navigate = useNavigate()
-  const [theme, setTheme] = useTheme()
   const keys = collectedKeys()
   const count = keys.length as KeyCount
   const final = FINAL[count]
@@ -68,50 +72,69 @@ export function Final() {
 
   return (
     <Page className={styles.page}>
-      <Decor />
-      <header className={styles.header}>
-        <Logo />
-        <ThemeToggle theme={theme} onChange={setTheme} />
-        <ScenePill label="10 сцен" />
-      </header>
+      <MuseumHeader />
+      <div className={styles.layout}>
+        <section className={styles.content}>
+          <Text variant="h3Bold" color="accent" className={styles.eyebrow}>
+            {final.eyebrow}
+          </Text>
+          <Text as="h1" variant="h1" className={styles.title}>
+            {final.title}{' '}
+            <Text as="span" variant="h1" color="accent">
+              {final.accent}
+            </Text>
+          </Text>
 
-      <Text variant="h3Bold" color="accent" className={styles.eyebrow}>
-        {final.eyebrow}
-      </Text>
-      <Text as="h1" variant="h1" className={styles.title}>
-        {final.title}{' '}
-        <Text as="span" variant="h1" color="accent">
-          {final.accent}
-        </Text>
-      </Text>
+          <ChatCard reveal={count as ChatReveal} />
 
-      <ChatCard reveal={count as ChatReveal} />
+          <div className={styles.keys}>
+            {(Object.keys(KEY_LABEL) as (keyof typeof KEY_LABEL)[]).map(
+              (key) => (
+                <TrustChip
+                  key={key}
+                  label={KEY_LABEL[key].chip}
+                  active={keys.includes(key)}
+                />
+              ),
+            )}
+          </div>
 
-      <div className={styles.keys}>
-        {(Object.keys(KEY_LABEL) as (keyof typeof KEY_LABEL)[]).map((key) => (
-          <TrustChip
-            key={key}
-            label={KEY_LABEL[key].chip}
-            active={keys.includes(key)}
+          <div className={styles.cta}>
+            <Stack gap={20}>
+              {final.promo ? (
+                <PromoCode
+                  percent={final.promo.percent}
+                  code={final.promo.code}
+                />
+              ) : null}
+              <a
+                className={styles.exhibition}
+                href={EXHIBITION_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                НА ВЫСТАВКУ ↗
+              </a>
+              <Button
+                variant="outline"
+                arrow
+                onClick={() => {
+                  resetProgress()
+                  navigate('/start')
+                }}
+              >
+                ПОВТОРИТЬ
+              </Button>
+            </Stack>
+          </div>
+        </section>
+        <aside className={styles.visual}>
+          <PixelScene
+            {...sceneVisual(10, 'intro')}
+            alt="Вечер: цифровой день завершён"
+            priority
           />
-        ))}
-      </div>
-
-      <div className={styles.cta}>
-        <Stack gap={20}>
-          {final.promo ? (
-            <PromoCode percent={final.promo.percent} code={final.promo.code} />
-          ) : null}
-          <Button
-            arrow
-            onClick={() => {
-              resetProgress()
-              navigate('/start')
-            }}
-          >
-            ПОВТОРИТЬ
-          </Button>
-        </Stack>
+        </aside>
       </div>
     </Page>
   )

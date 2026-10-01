@@ -1,57 +1,46 @@
-import { Text } from '../Text/Text.tsx'
+import { useState } from 'react'
 import styles from './PromoCode.module.scss'
-
 export type PromoPercent = 5 | 7 | 10
-
-type PromoCodeProps = {
+export function PromoCode({
+  percent,
+  code,
+}: {
   percent: PromoPercent
   code: string
-}
-
-export function PromoCode({ percent, code }: PromoCodeProps) {
+}) {
+  const [status, setStatus] = useState('')
+  const [manual, setManual] = useState(false)
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(code)
+      setStatus('Промокод скопирован')
+      setManual(false)
+    } catch {
+      setStatus('Скопируй код вручную')
+      setManual(true)
+    }
+  }
   return (
     <div className={styles.card}>
-      <div className={styles.copy}>
-        <p className={styles.label}>ОТКРЫТА СКИДКА {percent}%</p>
-        <Text variant="h3" color="onAccent">
-          Твой промокод
-        </Text>
-      </div>
+      <p className={styles.label}>ОТКРЫТА СКИДКА {percent}%</p>
       <button
-        type="button"
         className={styles.code}
+        type="button"
         aria-label={`Скопировать ${code}`}
-        onClick={() => void navigator.clipboard.writeText(code)}
+        onClick={() => void copy()}
       >
-        <svg
-          className={styles.icon}
-          width="19"
-          height="19"
-          viewBox="0 0 19 19"
-          fill="none"
-          aria-hidden
-        >
-          <rect
-            x="0.5"
-            y="4.5"
-            width="14"
-            height="14"
-            rx="2.5"
-            fill="var(--promo-bg)"
-            stroke="black"
-          />
-          <rect
-            x="4.5"
-            y="0.5"
-            width="14"
-            height="14"
-            rx="2.5"
-            fill="var(--promo-bg)"
-            stroke="black"
-          />
-        </svg>
         {code}
+        <span className={styles.copyHint} aria-hidden>КОПИРОВАТЬ</span>
       </button>
+      {status && <p role="status">{status}</p>}
+      {manual && (
+        <input
+          aria-label="Промокод"
+          readOnly
+          value={code}
+          onFocus={(e) => e.currentTarget.select()}
+        />
+      )}
     </div>
   )
 }

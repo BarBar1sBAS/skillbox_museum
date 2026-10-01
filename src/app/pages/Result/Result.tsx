@@ -1,3 +1,7 @@
+import { EXHIBITION_URL } from '@/uikit/museum'
+import { MuseumHeader } from '@/app/MuseumHeader'
+import { TrustChip } from '@/uikit/TrustChip/TrustChip'
+import { collectedKeys } from '@/app/scenes'
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import {
@@ -7,29 +11,23 @@ import {
   safeDecisions,
   totalScore,
 } from '@/app/scenes/index.ts'
-import { useTheme } from '@/app/theme.ts'
 import {
   Button,
-  Logo,
   Modal,
   Page,
   ScoreRing,
   Stack,
   StatBar,
   Text,
-  ThemeToggle,
 } from '@/uikit/index.ts'
 import bastion from '@/uikit/icons/bastion.svg'
 import styles from './Result.module.scss'
 
-const EXHIBITION_URL =
-  'https://cryptography-museum.ru/events/vystavka-kljuch-doverija-bezopasnost-v-epohu-vysokih-tehnologij'
 const CHECKLIST_URL = `${import.meta.env.BASE_URL}files/chek-list_vystavka.pdf`
 const CHECKLIST_NAME = 'Чек-лист посещения выставки.pdf'
 
 export function Result() {
   const navigate = useNavigate()
-  const [theme, setTheme] = useTheme()
   const [details, setDetails] = useState(false)
   const index = totalScore()
   const safe = safeDecisions()
@@ -38,10 +36,7 @@ export function Result() {
 
   return (
     <Page className={styles.page}>
-      <header className={styles.header}>
-        <Logo />
-        <ThemeToggle theme={theme} onChange={setTheme} />
-      </header>
+      <MuseumHeader />
 
       <Text as="h1" variant="h1" className={styles.title}>
         Твой результат
@@ -52,7 +47,9 @@ export function Result() {
           <ScoreRing value={index} />
           <div className={styles.scoreCopy}>
             <Text variant="bodyM" className={styles.scoreLabel}>
-              Твой индекс<br />цифровой безопасности
+              Твой индекс
+              <br />
+              цифровой безопасности
             </Text>
             <div className={styles.metrics}>
               <Text as="span" variant="bodyMBold" color="accent">
@@ -72,6 +69,19 @@ export function Result() {
         </div>
       </div>
 
+      <div className={styles.keys}>
+        {Object.entries(KEY_LABEL).map(([key, label]) => (
+          <TrustChip
+            key={key}
+            label={label.chip}
+            active={collectedKeys().some((k) => k === key)}
+          />
+        ))}
+      </div>
+      <p className={styles.explanation}>
+        Ключи открываются за каждые три верных ответа. Проценты в подробностях
+        показывают результат по отдельным темам.
+      </p>
       <div className={styles.exhibit}>
         <Stack gap={20}>
           <Text variant="eyebrow" color="accent">
@@ -100,7 +110,9 @@ export function Result() {
 
       <div className={styles.partner}>
         <Text variant="eyebrow" className={styles.partnerLabel}>
-          экспертная поддержка<br />проекта
+          экспертная поддержка
+          <br />
+          проекта
         </Text>
         <img
           className={styles.bastion}
@@ -111,9 +123,15 @@ export function Result() {
         />
       </div>
 
-      <a className={styles.checklist} href={CHECKLIST_URL} download={CHECKLIST_NAME}>
+      <a
+        className={styles.checklist}
+        href={CHECKLIST_URL}
+        download={CHECKLIST_NAME}
+      >
         <Text as="span" variant="eyebrow" className={styles.partnerLabel}>
-          скачать чек-лист<br />посещения выставки
+          скачать чек-лист
+          <br />
+          посещения выставки
         </Text>
         <span className={styles.downloadIcon} aria-hidden />
       </a>
@@ -130,7 +148,11 @@ export function Result() {
                 <StatBar key={key} label={KEY_LABEL[key].line} value={score} />
               ))}
               <div className={styles.insight}>
-                <Text variant="eyebrow" color="muted" className={styles.insightLead}>
+                <Text
+                  variant="eyebrow"
+                  color="muted"
+                  className={styles.insightLead}
+                >
                   <span className={styles.dot} />
                   Твой уровень
                 </Text>

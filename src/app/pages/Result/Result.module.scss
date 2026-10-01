@@ -42,7 +42,8 @@
 }
 
 .exhibit {
-  padding: calc(var(--spacing-25) * 1px) calc(var(--spacing-20) * 1px) calc(var(--spacing-20) * 1px);
+  padding: calc(var(--spacing-25) * 1px) calc(var(--spacing-20) * 1px)
+    calc(var(--spacing-20) * 1px);
 }
 
 .scoreRow {
@@ -59,7 +60,7 @@
 }
 
 .scoreLabel {
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 .metrics {
@@ -83,7 +84,7 @@
 }
 
 .exhibitBody {
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 .exhibitLink {
@@ -100,8 +101,10 @@
   width: 0.9375rem;
   height: 0.5rem;
   background: var(--text-accent);
-  mask: url('../../../uikit/icons/arrow-right-white.svg') no-repeat center / contain;
-  -webkit-mask: url('../../../uikit/icons/arrow-right-white.svg') no-repeat center / contain;
+  mask: url('../../../uikit/icons/arrow-right-white.svg') no-repeat center /
+    contain;
+  -webkit-mask: url('../../../uikit/icons/arrow-right-white.svg') no-repeat
+    center / contain;
 }
 
 .partner {
@@ -113,7 +116,7 @@
 
 .partnerLabel {
   min-width: 0;
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 .bastion {
@@ -138,7 +141,8 @@
   margin-right: 1.5rem;
   background: var(--text-accent);
   mask: url('../../../uikit/icons/download.svg') no-repeat center / contain;
-  -webkit-mask: url('../../../uikit/icons/download.svg') no-repeat center / contain;
+  -webkit-mask: url('../../../uikit/icons/download.svg') no-repeat center /
+    contain;
 }
 
 [data-theme='light'] .bastion {
@@ -170,7 +174,7 @@
 }
 
 .insightBody {
-  line-height: 1.2;
+  line-height: 1.5;
 }
 
 .dot {
@@ -181,38 +185,42 @@
   background: var(--color-lime);
 }
 
-
-[data-theme='light'] .scoreCard,
-[data-theme='light'] .exhibit,
-[data-theme='light'] .partner,
-[data-theme='light'] .checklist,
-[data-theme='light'] .details,
-[data-theme='light'] .insight {
-  border: 1px solid #b2b5bb;
-  background: #dfe3ea;
-}
-
-[data-theme='light'] .scoreCard {
-  position: relative;
-}
-
-[data-theme='light'] .scoreCard::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0.75rem;
-  height: 0.75rem;
-  background: #0c4af9;
-}
-
-[data-theme='light'] .scoreAction button {
-  --text-accent: #000000;
-
-  border-color: #38393a;
-}
-
 .scoreAction button {
   border-color: var(--color-button);
   --text-accent: var(--color-button);
+}
+
+.page {
+  max-width: 900px;
+}
+.keys {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 80px), 1fr));
+  gap: 8px;
+  margin-top: 32px;
+}
+.explanation {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.scoreCard,
+.exhibit {
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  box-shadow: none;
+}
+.details {
+  max-width: 100%;
+  width: min(500px, 100%);
+  padding-top: 60px;
+}
+
+.scoreRow,
+.metrics,
+.partner {
+  flex-wrap: wrap;
+}
+.scoreCopy {
+  min-width: 0;
 }

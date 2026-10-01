@@ -14,7 +14,9 @@ export function TrustChip({
 }: TrustChipProps) {
   return (
     <div
-      className={[styles.chip, active && styles.active].filter(Boolean).join(' ')}
+      className={[styles.chip, active && styles.active]
+        .filter(Boolean)
+        .join(' ')}
     >
       <span className={styles.icon}>
         <img src={active ? keyLime : key} alt="" width={30} height={16} />
@@ -27,6 +29,7 @@ export function TrustChip({
       >
         {label}
       </Text>
+      <span className={styles.state}>{active ? 'Получен' : 'Не получен'}</span>
     </div>
   )
 }

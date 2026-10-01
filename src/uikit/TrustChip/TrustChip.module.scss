@@ -1,87 +1,40 @@
 .chip {
-  --chip-label: var(--text-muted);
-
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  width: 5.25rem;
-  height: 4.625rem;
-  padding: calc(var(--spacing-20) * 1px);
-  gap: calc(var(--spacing-10) * 1px);
-  border: calc(var(--border-width) * 1px) solid color-mix(in srgb, var(--color-white) 50%, transparent);
-  border-radius: calc(var(--radius-xs) * 1px);
-  background: transparent;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px;
+  min-width: 0;
+  flex: 1;
+  border: 1px solid var(--border-card);
+  --chip-label: var(--text-primary);
 }
-
-.chip:not(.active) .icon img {
-  opacity: 0.5;
-}
-
-.active {
-  --chip-label: #000000;
-
-  border-color: #ffffff;
-  background: #ffffff;
-}
-
-.active .icon img {
-  filter: brightness(0);
-}
-
 .icon {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 1.85625rem;
-  height: 1.85625rem;
-  overflow: visible;
+  height: 32px;
 }
-
 .icon img {
-  width: 1.875rem;
-  height: 1rem;
-  transform: rotate(-45deg);
+  width: 42px;
+  height: 24px;
+  transform: rotate(-35deg);
 }
-
-[data-theme='light'] .chip:not(.active) {
-  --chip-label: #000000;
-
-  border: 1px solid #000000;
-  opacity: 0.5;
+.active {
+  background: var(--reward);
+  color: #00001a;
+  --chip-label: #00001a;
+  border-color: transparent;
 }
-
-[data-theme='light'] .chip:not(.active) .icon img {
-  filter: brightness(0);
-  opacity: 1;
-}
-
-[data-theme='light'] .active {
-  --chip-label: #000000;
-
-  border: 1px solid #44a700;
-  border-radius: 5px;
-  background: #c9e4eb;
-}
-
-[data-theme='light'] .active .icon img {
+.active img {
   filter: brightness(0);
 }
-
-@media (min-width: 600px) {
-  .chip {
-    width: 6.5rem;
-    height: 5.75rem;
-  }
-
-  .icon {
-    width: 2.3125rem;
-    height: 2.3125rem;
-  }
-
-  .icon img {
-    width: 2.3125rem;
-    height: 1.25rem;
-  }
+.state {
+  font-size: 11px;
+  line-height: 1.3;
+}
+.label {
+  font-size: 11px !important;
+}
+[data-theme='light'] .chip:not(.active) img {
+  filter: brightness(0);
 }

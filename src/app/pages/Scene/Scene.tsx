@@ -1,48 +1,38 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router'
-import { startRun } from '@/app/stats/track.ts'
+import { startRun } from '@/app/stats/track'
 import {
   collectedKeys,
   KEY_LABEL,
   keyEarnedAt,
+  loadAnswers,
   parseSceneNumber,
   resultCopy,
   saveAnswer,
   scenes,
-} from '@/app/scenes/index.ts'
-import type { SceneContent, SceneKey, SceneOutcome } from '@/app/scenes/types.ts'
-import { useTheme } from '@/app/theme.ts'
+} from '@/app/scenes'
+import type { SceneKey } from '@/app/scenes/types'
+import {
+  loadSceneSession,
+  saveSceneSession,
+  type SceneSession,
+} from '@/app/scenes/session'
+import { sceneVisual } from '@/app/scenes/visuals'
 import {
   Button,
   ChatBubble,
-  ChatHeader,
   ChoiceCard,
   KeyModal,
   Modal,
   Page,
-  ScenePill,
-  StatusMark,
   Text,
-  ThemeToggle,
   VoiceBubble,
   type KeyStep,
   type SceneNumber,
-  type StatusTone,
-  type Theme,
-} from '@/uikit/index.ts'
+} from '@/uikit'
+import { MuseumHeader } from '@/app/MuseumHeader'
+import { PixelScene } from '@/uikit/PixelScene/PixelScene'
 import styles from './Scene.module.scss'
-
-const STATUS: Record<SceneOutcome, { tone: StatusTone; color: string }> = {
-  correct: { tone: 'lime', color: 'var(--color-lime)' },
-  partial: { tone: 'orange', color: 'var(--color-orange)' },
-  wrong: { tone: 'red', color: 'var(--color-red)' },
-}
-
-const PROMPT = 'Как ты поступишь?'
-
-type Step = 'intro' | 'quiz' | 'result'
-
-type EarnedKey = { key: SceneKey; step: KeyStep }
 
 export function Scene() {
   const { n: raw } = useParams()
@@ -50,292 +40,193 @@ export function Scene() {
   if (n == null) return <Navigate to="/rules" replace />
   return <ScenePlay key={n} n={n} />
 }
-
 function ScenePlay({ n }: { n: SceneNumber }) {
   const navigate = useNavigate()
-  const [theme, setTheme] = useTheme()
   const scene = scenes[n]
-  const [step, setStep] = useState<Step>(scene.intro ? 'intro' : 'quiz')
-  const [picked, setPicked] = useState<0 | 1 | 2 | null>(null)
-  const [earned, setEarned] = useState<EarnedKey | null>(null)
-  const outcome = picked != null ? scene.choices[picked].outcome : null
-
+  const [session, setSession] = useState<SceneSession>(() => {
+    const saved = loadSceneSession(n)
+    const answer = loadAnswers()[n]
+    if (answer)
+      return {
+        step: 'result',
+        picked: scene.choices.findIndex((c) => c.outcome === answer) as
+          0 | 1 | 2,
+      }
+    if (saved && saved.step !== 'result') return saved
+    return { step: scene.intro ? 'intro' : 'quiz', picked: null }
+  })
+  const { step, picked } = session
+  const [earned, setEarned] = useState<{ key: SceneKey; step: KeyStep } | null>(
+    null,
+  )
+  const heading = useRef<HTMLDivElement>(null)
+  const firstRender = useRef(true)
   useEffect(() => {
     if (n === 1) void startRun()
   }, [n])
-
-  const result = step === 'result' && outcome ? resultCopy(scene, outcome) : null
-
-  if (step === 'intro' && scene.intro) {
-    return (
-      <Page
-        tone="chat"
-        data-scene={n}
-        className={[styles.photoPage, styles.introPage].join(' ')}
-      >
-        <SceneImage className={styles.bg} src={scene.intro.image} theme={theme} />
-        <header className={styles.photoHeader}>
-          <ThemeToggle theme={theme} onChange={setTheme} />
-          <ScenePill n={n} />
-        </header>
-        {scene.intro.kicker ? (
-          <p className={styles.introKicker}>{scene.intro.kicker}</p>
-        ) : null}
-        <div className={styles.titleCard}>
-          <Text as="h1" variant="h1" className={styles.introTitle}>
-            {scene.intro.title}
-          </Text>
-        </div>
-        <div className={styles.cta}>
-          <Button onClick={() => setStep('quiz')}>{scene.intro.cta}</Button>
-        </div>
-      </Page>
+  useEffect(() => {
+    saveSceneSession(n, session)
+  }, [n, session])
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false
+      return
+    }
+    heading.current?.focus()
+  }, [step])
+  const outcome = picked == null ? null : scene.choices[picked].outcome
+  const result =
+    step === 'result' && outcome ? resultCopy(scene, outcome) : null
+  const visual = sceneVisual(n, step === 'intro' ? 'intro' : 'quiz')
+  function confirm(picked: 0 | 1 | 2) {
+    const chosen = scene.choices[picked].outcome
+    const alreadyConfirmed = loadAnswers()[n] !== undefined
+    const answers = alreadyConfirmed ? loadAnswers() : saveAnswer(n, chosen)
+    const key = alreadyConfirmed ? undefined : keyEarnedAt(n, answers)
+    setEarned(
+      key ? { key, step: collectedKeys(answers).length as KeyStep } : null,
     )
+    setSession({ step: 'result', picked })
   }
-
-  if (result && outcome) {
-    const pad = String(n).padStart(2, '0')
-    const status = STATUS[outcome]
-    return (
-      <Page tone="result" className={styles.resultPage}>
-        <header className={styles.header}>
-          <Text as="span" variant="h4" color="muted">
-            РЕЗУЛЬТАТ
-          </Text>
-          <Text as="span" variant="h4" color="muted">
-            СЦЕНА {pad}/10
-          </Text>
-        </header>
-        <div className={styles.mark}>
-          <StatusMark tone={status.tone} />
-        </div>
-        <Text
-          variant="eyebrow"
-          className={styles.resultEyebrow}
-          style={{ color: status.color }}
-        >
-          {result.eyebrow}
-        </Text>
-        <Text as="h2" variant="h2" className={styles.resultTitle}>
-          {result.title}
-        </Text>
-        <Text variant="bodyM" className={styles.resultBody}>
-          {result.body}
-        </Text>
-        <Remember text={result.remember} />
-        <div className={styles.keyLine}>
-          <span
-            className={styles.dot}
-            style={{ ['--tone' as string]: status.color }}
-          />
-          <Text as="span" variant="h4">
-            {result.keyLine}
-          </Text>
-        </div>
-        <div className={styles.cta}>
-          <Button onClick={() => navigate(n < 10 ? `/scene/${n + 1}` : '/result')}>
-            {n < 10 ? 'ПРОДОЛЖИТЬ' : 'УЗНАТЬ РЕЗУЛЬТАТ'}
-          </Button>
-        </div>
-        {earned ? (
-          <Modal onClose={() => setEarned(null)}>
-            <KeyModal
-              keyName={KEY_LABEL[earned.key].chip}
-              step={earned.step}
-              onClose={() => setEarned(null)}
-            />
-          </Modal>
-        ) : null}
-      </Page>
-    )
-  }
-
   return (
-    <Quiz
-      n={n}
-      scene={scene}
-      picked={picked}
-      onPick={setPicked}
-      onConfirm={() => {
-        if (picked != null) {
-          const chosen = scene.choices[picked].outcome
-          const answers = saveAnswer(n, chosen)
-          const key = keyEarnedAt(n, answers)
-          setEarned(key ? { key, step: collectedKeys(answers).length as KeyStep } : null)
-          setStep('result')
-        }
-      }}
-    />
-  )
-}
-
-function Quiz({
-  n,
-  scene,
-  picked,
-  onPick,
-  onConfirm,
-}: {
-  n: SceneNumber
-  scene: SceneContent
-  picked: 0 | 1 | 2 | null
-  onPick: (i: 0 | 1 | 2) => void
-  onConfirm: () => void
-}) {
-  const navigate = useNavigate()
-  const [theme] = useTheme()
-  const choices = (
-    <>
-      {scene.choices.map((choice, i) => (
-        <ChoiceCard
-          key={choice.text}
-          selected={picked === i}
-          onClick={() => onPick(i as 0 | 1 | 2)}
-        >
-          {choice.text}
-        </ChoiceCard>
-      ))}
-    </>
-  )
-
-  const confirm = (
-    <div className={[styles.cta, picked == null && styles.dim].filter(Boolean).join(' ')}>
-      <Button size="l" onClick={onConfirm}>
-        ПОДТВЕРДИТЬ ВЫБОР
-      </Button>
-    </div>
-  )
-
-  if (scene.chat) {
-    return (
-      <Page tone="chat" className={styles.chatPage}>
-        <ChatHeader
-          name={scene.chat.name}
-          status={scene.chat.status}
-          onBack={() => navigate('/rules')}
-        />
-        <Text variant="bodyS" className={styles.today}>
-          Сегодня
-        </Text>
-        <div className={styles.thread}>
-          {scene.chat.messages.map((m) =>
-            m.kind === 'voice' ? (
-              <VoiceBubble key={m.text} duration={m.duration} time={m.time}>
-                {m.text}
-              </VoiceBubble>
+    <Page className={styles.page}>
+      <MuseumHeader n={n} />
+      <div className={styles.progress}>
+        <span>СЦЕНА {String(n).padStart(2, '0')} / 10</span>
+        <span>Ключи {collectedKeys().length} / 3</span>
+      </div>
+      <div className={styles.layout}>
+        <aside className={styles.visual}>
+          <PixelScene {...visual} priority />
+          <p className={styles.caption}>
+            Один день в цифровом мире / {String(n).padStart(2, '0')}
+          </p>
+        </aside>
+        <section className={styles.content}>
+          <div ref={heading} tabIndex={-1} className={styles.heading}>
+            {step === 'intro' && scene.intro ? (
+              <>
+                {scene.intro.kicker && (
+                  <p className={styles.kicker}>{scene.intro.kicker}</p>
+                )}
+                <Text as="h1" variant="h1">
+                  {scene.intro.title.replaceAll('\n', ' ')}
+                </Text>
+              </>
             ) : (
-              <ChatBubble key={m.text} time={m.time}>
-                {m.text}
-              </ChatBubble>
-            ),
+              <Text as="h1" variant="h1">
+                {result ? result.title : 'Как ты поступишь?'}
+              </Text>
+            )}
+          </div>
+          {step === 'intro' && scene.intro ? (
+            <div className={styles.cta}>
+              <Button
+                arrow
+                onClick={() => setSession({ step: 'quiz', picked: null })}
+              >
+                {scene.intro!.cta}
+              </Button>
+            </div>
+          ) : result && outcome ? (
+            <>
+              <p className={styles.status} data-outcome={outcome}>
+                {result.eyebrow}
+              </p>
+              <Text variant="bodyM">{result.body}</Text>
+              <Remember text={result.remember} />
+              <p className={styles.keyLine}>{result.keyLine}</p>
+              <Button
+                arrow
+                onClick={() => navigate(n < 10 ? `/scene/${n + 1}` : '/result')}
+              >
+                {n < 10 ? 'ПРОДОЛЖИТЬ' : 'УЗНАТЬ РЕЗУЛЬТАТ'}
+              </Button>
+            </>
+          ) : (
+            <>
+              {scene.chat ? (
+                <div className={styles.thread}>
+                  <div className={styles.chatHeader}>
+                    <button
+                      type="button"
+                      aria-label="Назад"
+                      onClick={() => navigate('/rules')}
+                    >
+                      ←
+                    </button>
+                    <strong>{scene.chat.name}</strong>
+                    <span>{scene.chat.status}</span>
+                  </div>
+                  {scene.chat.messages.map((m) =>
+                    m.kind === 'voice' ? (
+                      <VoiceBubble
+                        key={m.text}
+                        duration={m.duration}
+                        time={m.time}
+                      >
+                        {m.text}
+                      </VoiceBubble>
+                    ) : (
+                      <ChatBubble key={m.text} time={m.time}>
+                        {m.text}
+                      </ChatBubble>
+                    ),
+                  )}
+                </div>
+              ) : (
+                <p className={styles.situation}>{scene.situation}</p>
+              )}
+              <fieldset className={styles.choices}>
+                <legend className={styles.srOnly}>Выбери одно действие</legend>
+                {scene.choices.map((choice, i) => (
+                  <ChoiceCard
+                    key={choice.text}
+                    name={`scene-${n}`}
+                    selected={picked === i}
+                    onClick={() =>
+                      setSession({ step: 'quiz', picked: i as 0 | 1 | 2 })
+                    }
+                  >
+                    {choice.text}
+                  </ChoiceCard>
+                ))}
+              </fieldset>
+              <Button
+                disabled={picked == null}
+                arrow
+                onClick={picked == null ? undefined : () => confirm(picked)}
+              >
+                ПОДТВЕРДИТЬ ВЫБОР
+              </Button>
+            </>
           )}
-        </div>
-        <div className={styles.chatQuiz}>
-          <Text as="h1" variant="h1">
-            {PROMPT}
-          </Text>
-          {choices}
-          {confirm}
-        </div>
-      </Page>
-    )
-  }
-
-  return (
-    <Page
-      tone="chat"
-      data-scene={n}
-      className={[styles.photoPage, styles.photoQuizPage].join(' ')}
-    >
-      <div className={styles.photoFrame}>
-        <SceneImage className={styles.bg} src={scene.photo!} theme={theme} />
+        </section>
       </div>
-      {scene.situation ? (
-        <div className={styles.situationCard}>
-          <Text variant="bodyL">{scene.situation}</Text>
-        </div>
-      ) : null}
-      <div className={styles.sheet}>
-        <Text as="h1" variant="h1">
-          {PROMPT}
-        </Text>
-        {choices}
-        {confirm}
-      </div>
+      {earned && (
+        <Modal onClose={() => setEarned(null)}>
+          <KeyModal
+            keyName={KEY_LABEL[earned.key].chip}
+            step={earned.step}
+            onClose={() => setEarned(null)}
+          />
+        </Modal>
+      )}
     </Page>
   )
 }
-
-const DESKTOP = '(min-width: 600px)'
-
-function desktopQuery() {
-  return typeof window.matchMedia === 'function' ? window.matchMedia(DESKTOP) : null
-}
-
-function useDesktop() {
-  const [desktop, setDesktop] = useState(() => desktopQuery()?.matches ?? false)
-
-  useEffect(() => {
-    const query = desktopQuery()
-    if (!query) return
-    const update = () => setDesktop(query.matches)
-    query.addEventListener('change', update)
-    return () => query.removeEventListener('change', update)
-  }, [])
-
-  return desktop
-}
-
-export function sceneImageSources(src: string, theme: Theme, desktop: boolean) {
-  const suffixes = []
-  if (desktop && theme === 'light') suffixes.push('-desktop-light')
-  if (desktop) suffixes.push('-desktop')
-  if (theme === 'light') suffixes.push('-light')
-  suffixes.push('')
-  return suffixes.map((suffix) => src.replace(/\.png$/, `${suffix}.png`))
-}
-
-function SceneImage({
-  src,
-  theme,
-  className,
-}: {
-  src: string
-  theme: Theme
-  className?: string
-}) {
-  const desktop = useDesktop()
-  const sources = sceneImageSources(src, theme, desktop)
-  const [step, setStep] = useState(0)
-
-  return (
-    <img
-      key={`${theme}-${desktop}`}
-      className={className}
-      src={`${import.meta.env.BASE_URL}${sources[Math.min(step, sources.length - 1)].replace(/^\//, '')}`}
-      alt=""
-      onError={() => setStep((current) => current + 1)}
-    />
-  )
-}
-
-export function splitLead(text: string) {
+function splitLead(text: string) {
   const i = text.indexOf(':')
   return i >= 0
     ? { lead: text.slice(0, i + 1), rest: text.slice(i + 1) }
     : { lead: '', rest: text }
 }
-
 function Remember({ text }: { text: string }) {
   const { lead, rest } = splitLead(text)
   return (
-    <div className={styles.remember}>
-      <Text variant="bodyL">
-        <Text as="span" variant="bodyL" style={{ color: 'var(--color-lime)' }}>
-          {lead}
-        </Text>
-        {rest}
-      </Text>
-    </div>
+    <p className={styles.remember}>
+      <strong>{lead}</strong>
+      {rest}
+    </p>
   )
 }

@@ -49,3 +49,38 @@
     min-height: 4.5rem;
   }
 }
+
+.button {
+  border: 1px solid var(--color-button);
+  min-height: 56px;
+  padding: 16px 22px;
+  justify-content: space-between;
+  transition:
+    opacity 150ms ease,
+    transform 150ms var(--ease-out);
+}
+.small,
+.large {
+  min-height: 48px;
+}
+.outline {
+  border-color: var(--color-accent);
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover:not(:disabled) {
+    opacity: 0.86;
+  }
+}
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .button:active {
+    transform: none;
+  }
+}
+
+.button > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

@@ -50,3 +50,34 @@ body {
   color: var(--text-primary);
   font-family: var(--font-text);
 }
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 4px;
+}
+button,
+input,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  font: inherit;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+a {
+  color: var(--text-accent);
+}
+img {
+  max-width: 100%;
+}
+h1,
+h2,
+h3 {
+  overflow-wrap: anywhere;
+}
+p {
+  max-width: 72ch;
+}

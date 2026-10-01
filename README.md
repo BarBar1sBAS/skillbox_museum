@@ -18,7 +18,7 @@ bun run test:coverage
 
 Продакшен: `bun run build`, затем `bun run start`. Сервер [`server/index.ts`](server/index.ts) отдаёт `dist` и `/api` на порту `PORT` (по умолчанию 4173).
 
-Сторисы подхватываются из `src/uikit/**/*.stories.tsx` (см. [`.storybook/main.ts`](.storybook/main.ts)). Фон превью — `#081B55`, как в макете ([`.storybook/preview.tsx`](.storybook/preview.tsx)).
+Сторисы подхватываются из `src/uikit/**/*.stories.tsx` (см. [`.storybook/main.ts`](.storybook/main.ts)). Темы превью — светлая `#E9E9EF` и тёмная `#15141A`; переключатель в toolbar ([`.storybook/preview.tsx`](.storybook/preview.tsx)).
 
 Глобальные стили и шрифты уже подключены в превью через [`src/styles/index.scss`](src/styles/index.scss). В сторисах их не импортируют повторно.
 
@@ -53,7 +53,7 @@ import { Stack, Text, ChoiceCard } from '@/uikit/index.ts'
 
 Первая сцена открывает прохождение (`POST /api/runs`). Финал отправляет итог 0…100 и показывает промокод: `CRYPTO5`, `CRYPTO7` или `CRYPTO10` за 1, 2 или 3 ключа. Без ключей промокода нет.
 
-Тема по умолчанию тёмная. Переключатель пишет `dark` или `light` в `localStorage`.
+Тема по умолчанию светлая. Переключатель пишет `dark` или `light` в `localStorage`.
 
 ## Статистика
 
@@ -215,3 +215,27 @@ Workflow `.github/workflows/pages.yml` собирает и публикует `d
 Эта сборка использует базовый путь `/skillbox_museum/` и hash-маршруты для обновления внутренних страниц без 404.
 Обычная локальная и серверная сборка сохраняет прежние URL.
 GitHub Pages размещает только фронтенд: API статистики и серверная админка требуют отдельного сервера.
+
+## Редизайн «Ключ к доверию»
+
+Контекст продукта: [PRODUCT.md](PRODUCT.md). Палитра, композиция, типографика и движение: [DESIGN.md](DESIGN.md). Итоги проверки: [docs/visual-audit.md](docs/visual-audit.md).
+
+Начинайте изменение поведения с падающего Vitest-теста UI kit, затем реализации и рефакторинга. `Museum/Exhibition UI kit` в Storybook показывает обе темы, выбор, фокус, длинные строки, награды, шифр и отказ загрузки иллюстрации. Компоненты UI kit не зависят от состояния приложения; адаптер музейной шапки подключает сохранённую тему.
+
+`PixelScene` использует адаптивные WebP и ступенчатую маску; при ошибке выводит описание без маски. В `src/app/scenes/visuals.ts` находятся описания и источники 19 отдельных сюжетных кадров. Происхождение иллюстраций: [docs/illustrations.json](docs/illustrations.json). Старые изображения сохранены как исходные материалы, игровые экраны используют новый набор.
+
+Этап и выбор хранятся в `sessionStorage` (`scene-session-v1`). Подтверждённые ответы (`progress`) имеют приоритет при восстановлении; обновление страницы не начисляет ключ и не отправляет ответ снова. Повтор игры очищает оба состояния. `ChatCard` раскрывает только `animateStep` нового ключа, а уже открытые строки остаются неподвижными. Reduced motion отключает глич и перебор.
+
+Проверки перед push:
+
+```bash
+bun run test:coverage
+bun run lint
+bun run build
+bun run build-storybook
+bunx playwright install chromium  # один раз на новой машине
+bun run test:e2e
+VITE_GITHUB_PAGES=true bun run build
+```
+
+E2E поднимает изолированный сервер на `127.0.0.1:5180` и подменяет `/api/**`: тестовые прохождения не отправляются на рабочий сервер. Скриншоты и трассы сохраняются в `test-results/` (не коммитятся). GitHub Pages использует `/skillbox_museum/` и hash-маршруты; серверный API при этом не заменяется.

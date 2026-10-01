@@ -1,90 +1,43 @@
 .card {
-  position: relative;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  box-sizing: border-box;
   width: 100%;
-  min-height: 4.375rem;
-  padding: calc(var(--spacing-10) * 1px);
-  gap: calc(var(--spacing-10) * 1px);
-  border: calc(var(--border-width) * 1px) solid var(--border-card);
-  border-radius: 1px;
-  background: var(--gradient-note);
+  min-height: 70px;
+  padding: 18px;
+  gap: 14px;
+  border: 1px solid var(--border-card);
+  background: var(--surface);
   cursor: pointer;
   text-align: left;
 }
-
-[data-theme='light'] .card {
-  border: 1px solid #0c4af9;
-  background: #dfe3ea;
-}
-
-[data-theme='light'] .selected {
-  border: 0.1875rem solid #0c4af9;
-}
-
-.input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-}
-
 .selected {
-  border: 0.1875rem solid var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--surface));
 }
-
-.radio {
-  flex-shrink: 0;
-  width: 1.4375rem;
-  height: 1.4375rem;
+.card:focus-within {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
 }
-
-.radioOn {
-  background: var(--color-accent);
-  mask: url('../icons/radio-on.svg') no-repeat center / contain;
-  -webkit-mask: url('../icons/radio-on.svg') no-repeat center / contain;
+.input {
+  appearance: none;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border: 2px solid var(--text-muted);
+  border-radius: 50%;
+  cursor: pointer;
 }
-
-[data-theme='light'] .radioOn {
-  width: 1.625rem;
-  height: 1.625rem;
-  background: #0c4af9;
+.input:checked {
+  border-color: var(--color-accent);
+  background: radial-gradient(var(--color-accent) 0 5px, transparent 6px);
 }
-
+.input:focus-visible {
+  outline: none;
+}
 .label {
   flex: 1;
   min-width: 0;
-}
-
-.radioLight {
-  display: none;
-}
-
-[data-theme='light'] .radioDark {
-  display: none;
-}
-
-[data-theme='light'] .radioLight {
-  display: block;
-}
-
-@media (min-width: 600px) {
-  .card {
-    min-height: 5.25rem;
-    padding: 0.875rem;
-    gap: 0.875rem;
-  }
-
-  .radio {
-    width: 1.75rem;
-    height: 1.75rem;
-  }
-
-  [data-theme='light'] .radioOn {
-    width: 2rem;
-    height: 2rem;
-  }
+  line-height: 1.5;
 }

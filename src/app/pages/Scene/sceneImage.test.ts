@@ -1,40 +1,13 @@
-import { describe, expect, it } from 'vitest'
-import { sceneImageSources, splitLead } from './Scene.tsx'
-
-const src = '/images/scenes/06-intro.png'
-
-describe('sceneImageSources', () => {
-  it('сначала пробует десктопный и светлый варианты, потом обычную картинку', () => {
-    expect(sceneImageSources(src, 'light', true)).toEqual([
-      '/images/scenes/06-intro-desktop-light.png',
-      '/images/scenes/06-intro-desktop.png',
-      '/images/scenes/06-intro-light.png',
-      src,
-    ])
-  })
-
-  it('запрашивает только то, что нужно текущему экрану', () => {
-    expect(sceneImageSources(src, 'dark', true)).toEqual([
-      '/images/scenes/06-intro-desktop.png',
-      src,
-    ])
-    expect(sceneImageSources(src, 'light', false)).toEqual([
-      '/images/scenes/06-intro-light.png',
-      src,
-    ])
-    expect(sceneImageSources(src, 'dark', false)).toEqual([src])
-  })
-})
-
-describe('splitLead', () => {
-  it('делит по первому двоеточию и оставляет строку целиком, если его нет', () => {
-    expect(splitLead('Важно: не делись')).toEqual({
-      lead: 'Важно:',
-      rest: ' не делись',
-    })
-    expect(splitLead('без двоеточия')).toEqual({
-      lead: '',
-      rest: 'без двоеточия',
-    })
-  })
+import { expect, it } from 'vitest'
+import { sceneVisual } from '@/app/scenes/visuals'
+import { scenes } from '@/app/scenes'
+it('каждая сцена имеет картинку и текстовую альтернативу для обоих этапов', () => {
+  for (const scene of Object.values(scenes)) {
+    for (const step of ['intro', 'quiz'] as const) {
+      const image = sceneVisual(scene.n, step)
+      expect(image.src).toMatch(/images\/pixel\/\d{2}-(intro|quiz)\.webp$/)
+      expect(image.alt.length).toBeGreaterThan(15)
+    }
+    expect(scene.situation.length).toBeGreaterThan(10)
+  }
 })

@@ -15,11 +15,15 @@ function statsApi() {
           return
         }
         const href = pathToFileURL(join(process.cwd(), 'server/dev.ts')).href
-        void import(href).then(
-          (mod: {
-            handleNode: (req: IncomingMessage, res: ServerResponse) => Promise<void>
-          }) => mod.handleNode(req as IncomingMessage, res as ServerResponse),
-        )
+        void import(href)
+          .then(
+            (mod: {
+              handleNode: (
+                req: IncomingMessage,
+                res: ServerResponse,
+              ) => Promise<void>
+            }) => mod.handleNode(req as IncomingMessage, res as ServerResponse),
+          )
           .catch(() => {
             if (!res.headersSent) {
               res.statusCode = 500
@@ -43,12 +47,22 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
     css: true,
-    exclude: ['**/node_modules/**', '**/dist/**', '**/*.stories.tsx'],
+    exclude: [
+      'tests/e2e/**',
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/*.stories.tsx',
+    ],
     coverage: {
       provider: 'v8',
       include: ['src/**/*.{ts,tsx}'],
       exclude: ['src/main.tsx', 'src/**/*.stories.tsx', 'src/test/**'],
-      thresholds: { lines: 100, branches: 100, functions: 100, statements: 100 },
+      thresholds: {
+        lines: 100,
+        branches: 100,
+        functions: 100,
+        statements: 100,
+      },
     },
   },
 })

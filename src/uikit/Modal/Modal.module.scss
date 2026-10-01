@@ -42,3 +42,12 @@
   line-height: 1;
   cursor: pointer;
 }
+
+.dialog {
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+}
+.close {
+  width: 44px;
+  height: 44px;
+}

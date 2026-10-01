@@ -1,3 +1,4 @@
+import { ChatCard } from '../ChatCard/ChatCard'
 import { Text } from '../Text/Text.tsx'
 import styles from './KeyModal.module.scss'
 
@@ -9,13 +10,26 @@ type KeyModalProps = {
   onClose?: () => void
 }
 
-export function KeyModal({ step = 1, keyName = 'ДАННЫЕ', onClose }: KeyModalProps) {
+export function KeyModal({
+  step = 1,
+  keyName = 'ДАННЫЕ',
+  onClose,
+}: KeyModalProps) {
   return (
     <div className={styles.card}>
       {onClose ? (
-        <button type="button" className={styles.close} aria-label="Закрыть" onClick={onClose}>
+        <button
+          type="button"
+          className={styles.close}
+          aria-label="Закрыть"
+          onClick={onClose}
+        >
           <svg viewBox="0 0 18 18" aria-hidden>
-            <path d="M1 1L17 17M17 1L1 17" stroke="currentColor" strokeWidth="1.5" />
+            <path
+              d="M1 1L17 17M17 1L1 17"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
           </svg>
         </button>
       ) : null}
@@ -30,12 +44,17 @@ export function KeyModal({ step = 1, keyName = 'ДАННЫЕ', onClose }: KeyMod
         </svg>
       </span>
       <p className={styles.title}>
-        КЛЮЧ “{keyName}”
-        <span className={styles.got}>ПОЛУЧЕН</span>
+        КЛЮЧ “{keyName}”<span className={styles.got}>ПОЛУЧЕН</span>
       </p>
-      <Text variant="bodyM" color="primary" className={styles.lead} style={{ opacity: 0.7 }}>
+      <Text
+        variant="bodyM"
+        color="primary"
+        className={styles.lead}
+        style={{ opacity: 0.7 }}
+      >
         Ты собрал ключ, теперь часть сообщения расшифрована.
       </Text>
+      <ChatCard reveal={step} animateStep={step} />
       <div className={styles.step}>
         <Text as="span" variant="bodyL" color="primary">
           {step}/3

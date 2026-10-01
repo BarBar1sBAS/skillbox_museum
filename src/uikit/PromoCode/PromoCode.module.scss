@@ -1,65 +1,31 @@
 .card {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 3.375rem;
-  padding: calc(var(--spacing-10) * 1px) 1.1875rem
-    calc(var(--spacing-10) * 1px) calc(var(--spacing-10) * 1px);
-  --promo-bg: #ffffff;
-
-  background: var(--promo-bg);
-  border-radius: 1px;
-  box-shadow: var(--shadow-promo);
+  padding: 24px;
+  background: var(--reward);
+  color: #00001a;
+  display: grid;
+  gap: 12px;
 }
-
-.copy {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  color: var(--color-black);
-}
-
 .label {
+  font-size: 14px;
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 0.5rem;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0;
 }
-
 .code {
-  position: relative;
-  overflow: visible;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: calc(var(--spacing-5) * 1px);
-  border: calc(var(--border-width) * 1px) dashed var(--color-black);
-  border-radius: calc(var(--radius-s) * 1px);
   background: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  padding: 14px;
+  font: 700 24px var(--font-display);
   cursor: pointer;
-  color: var(--color-black);
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 0;
+  text-align: left;
+}
+.card p {
+  margin: 0;
+}
+.card input {
+  width: 100%;
+  padding: 12px;
+  font: inherit;
 }
 
-.icon {
-  pointer-events: none;
-  position: absolute;
-  top: -0.59375rem;
-  left: -0.71875rem;
-  width: 1.1875rem;
-  height: 1.1875rem;
-}
-
-[data-theme='light'] .card {
-  --promo-bg: #c9e4eb;
-}
+.code { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; overflow-wrap: anywhere; }
+.copyHint { font: 11px/1.4 var(--font-text); }

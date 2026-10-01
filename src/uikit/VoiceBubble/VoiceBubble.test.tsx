@@ -10,5 +10,7 @@ describe('VoiceBubble', () => {
       </VoiceBubble>,
     )
     expect(screen.getByText('00:05')).toBeInTheDocument()
+    expect(screen.getByText('Текст голосового сообщения')).toBeInTheDocument()
+    expect(screen.queryByRole('button')).not.toBeInTheDocument()
   })
 })

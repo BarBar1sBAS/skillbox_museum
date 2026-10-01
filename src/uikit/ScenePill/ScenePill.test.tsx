@@ -4,14 +4,15 @@ import { describe, expect, it, vi } from 'vitest'
 import { ScenePill } from './ScenePill.tsx'
 
 describe('ScenePill', () => {
-  it('показывает «сцена 10» кнопкой', () => {
+  it('показывает «сцена 10» как неинтерактивный индикатор', () => {
     render(<ScenePill n={10} />)
-    expect(screen.getByRole('button', { name: 'сцена 10' })).toBeInTheDocument()
+    expect(screen.getByText('сцена 10')).toBeInTheDocument()
   })
 
   it('показывает свою подпись', () => {
     render(<ScenePill label="10 сцен" />)
-    expect(screen.getByRole('button', { name: '10 сцен' })).toBeInTheDocument()
+    expect(screen.getByText('10 сцен')).toBeInTheDocument()
+    expect(screen.queryByRole('button')).not.toBeInTheDocument()
   })
 
   it('вызывает onClick', async () => {

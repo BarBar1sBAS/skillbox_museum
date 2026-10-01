@@ -1,42 +1,35 @@
-.page {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-
-  --chat-card-gap: 1.125rem;
-  --chat-card-align: left;
-  --chat-card-text-left: 1.75rem;
-  --chat-card-text-right: 0.125rem;
-  --chat-card-rule-left: 1.875rem;
-  --chat-card-rule-right: 1.0625rem;
+.layout {
+  display: grid;
+  gap: 40px;
 }
-
-.header {
+.content {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: calc(var(--spacing-20) * 1px);
-  margin-bottom: 2.8125rem;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
 }
-
 .eyebrow {
-  margin: 0 0 1rem;
-  line-height: 1.25rem;
+  color: var(--text-muted);
 }
-
 .title {
-  margin: 0 0 2rem;
-  line-height: 1;
+  line-height: 1.15;
 }
-
 .keys {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 80px), 1fr));
+  gap: 8px;
 }
-
-.cta {
-  margin-top: auto;
-  padding-top: calc(var(--spacing-25) * 1px);
+.exhibition {
+  display: block;
+  background: var(--color-button);
+  color: var(--text-on-accent);
+  padding: 20px 24px;
+  text-decoration: none;
+  font: 16px/1.5 var(--font-display);
+}
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 56px;
+  }
 }

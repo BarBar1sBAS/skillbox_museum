@@ -51,6 +51,7 @@ describe('stats', () => {
 
   it('выбирает уровень по общему счёту на границах диапазонов', () => {
     expect(LEVELS).toHaveLength(4)
+    expect(levelOf(-1).title).toBe(LEVELS[0].title)
     expect(levelOf(0).title).toBe('Осваиваюсь в цифровом мире')
     expect(levelOf(29).title).toBe('Осваиваюсь в цифровом мире')
     expect(levelOf(30).title).toBe('Замечаю тревожные сигналы')

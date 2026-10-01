@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-01",
+  "tool": "Lighthouse 13.5.0",
+  "environment": "Local production preview, mobile emulation",
+  "scores": {
+    "performance": 95,
+    "accessibility": 100,
+    "best-practices": 100
+  },
+  "metrics": {
+    "first-contentful-paint": "2.0 s",
+    "largest-contentful-paint": "2.6 s",
+    "total-blocking-time": "0 ms",
+    "cumulative-layout-shift": "0.027"
+  },
+  "limitations": "Single lab run; not field Core Web Vitals."
+}

@@ -32,3 +32,9 @@ storybook-static
 
 # исходники шрифтов от дизайнера: в сборку идут только woff2 из public/fonts
 HALVAR/
+
+.playwright-mcp/
+test-results/
+playwright-report/
+
+dist-pages/

@@ -1,3 +1,4 @@
+/* Brand HEX values; legacy names remain available to existing components. */
 :root {
   --color-navy: #182b7a;
   --color-navy-deep: #081b55;
@@ -5,7 +6,7 @@
   --color-navy-mid: #1b2e8a;
   --color-navy-night: #01011e;
   --color-navy-abyss: #000243;
-  --color-navy-screen: #071a52;
+  --color-navy-screen: var(--background-default);
   --color-navy-bar: #192b83;
   --color-cyan: #29d8e6;
   --color-lime: #9be568;
@@ -14,57 +15,64 @@
   --color-white: #ffffff;
   --color-black: #000000;
   --color-violet: #626ffa;
-
-  --color-accent: var(--color-cyan);
-  --color-button: #00cefb;
-
-  --background-default: var(--color-navy-deep);
-  --background-scene: rgb(70 71 110 / 0.5);
-  --background-banner: #00177c;
+  --color-accent: #02cefb;
+  --color-button: #02cefb;
+  --background-default: #15141a;
+  --background-scene: var(--surface);
+  --background-banner: var(--surface);
   --background-toggle: #696969;
-  --background-glass: rgb(34 43 101 / 0.7);
-  --background-glass-mid: rgb(34 43 101 / 0.6);
-  --background-glass-soft: rgb(34 43 101 / 0.5);
-  --background-modal: #0e1849;
-  --text-primary: var(--color-white);
-  --text-muted: color-mix(in srgb, var(--color-white) 50%, transparent);
-  --text-on-accent: var(--color-black);
-  --text-accent: var(--color-cyan);
-  --border-card: #36498d;
-  --gradient-choice: linear-gradient(-29.66deg, var(--color-navy-ink), var(--color-navy-mid));
-  --gradient-chat: linear-gradient(-54.36deg, var(--color-navy-ink), var(--color-navy-mid));
-  --gradient-note: linear-gradient(289.41deg, var(--color-navy-ink), var(--color-navy-mid));
-  --shadow-promo: 4px 4px 5px rgb(0 0 0 / 0.4);
-  --shadow-card: 0 4px 4px rgb(0 0 0 / 0.25);
-  --gradient-page: linear-gradient(11.6deg, var(--color-navy-deep), var(--color-navy));
-  --gradient-landing: linear-gradient(191.41deg, var(--color-navy-night), var(--color-navy-abyss));
-  --gradient-result: linear-gradient(23.7deg, #0d1642 2.14%, var(--color-navy-bar) 111%);
+  --background-glass: var(--surface);
+  --background-glass-mid: var(--surface);
+  --background-glass-soft: var(--surface);
+  --background-modal: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-muted: #bfc4ce;
+  --text-on-accent: #00001a;
+  --text-accent: #02cefb;
+  --border-card: #686c78;
+  --gradient-choice: var(--surface);
+  --gradient-chat: var(--surface);
+  --gradient-note: var(--surface);
+  --shadow-promo: none;
+  --shadow-card: none;
+  --gradient-page: var(--background-default);
+  --gradient-landing: var(--background-default);
+  --gradient-result: var(--background-default);
+  --surface: #2a2a2a;
+  --reward: #22ee88;
+  --success-text: #65eea1;
+  --warning-text: #ffc47d;
+  --danger-text: #ffaaa6;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 [data-theme='light'] {
-  --color-accent: #144ef9;
-  --color-button: #0c4af9;
-
-  --background-default: #dfe3ea;
-  --background-scene: rgb(255 255 255 / 0.5);
-  --background-glass: rgb(255 255 255 / 0.7);
-  --background-glass-mid: rgb(255 255 255 / 0.7);
-  --background-glass-soft: rgb(255 255 255 / 0.7);
-  --background-banner: #e3eaff;
+  --color-accent: #0b4af9;
+  --color-button: #0b4af9;
+  --background-default: #e9e9ef;
+  --background-scene: var(--surface);
+  --background-glass: var(--surface);
+  --background-glass-mid: var(--surface);
+  --background-glass-soft: var(--surface);
+  --background-banner: var(--surface);
   --background-modal: #ffffff;
-  --text-primary: #070a2b;
-  --text-muted: rgb(0 0 0 / 0.75);
-  --text-on-accent: #070a2b;
-  --text-accent: var(--color-accent);
-  --border-card: rgb(0 0 0 / 0.1);
-  --color-navy-screen: #dfe3ea;
+  --text-primary: #00001a;
+  --text-muted: #505264;
+  --text-on-accent: #ffffff;
+  --text-accent: #0b4af9;
+  --border-card: #a2a7b5;
+  --color-navy-screen: var(--background-default);
   --color-navy-bar: #dde6ff;
-  --gradient-page: #dfe3ea;
-  --gradient-landing: #dfe3ea;
-  --gradient-result: #dfe3ea;
-  --gradient-chat: linear-gradient(-54.36deg, #ffffff, #f5f7ff);
-  --gradient-note: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
-  --gradient-choice: linear-gradient(192.32deg, #ffffff -0.11%, #cedbff 109.62%);
-  --shadow-card: 0 4px 12px rgb(7 10 43 / 0.08);
-  --shadow-promo: 4px 4px 5px rgb(7 10 43 / 0.15);
+  --gradient-page: var(--background-default);
+  --gradient-landing: var(--background-default);
+  --gradient-result: var(--background-default);
+  --gradient-chat: var(--surface);
+  --gradient-note: var(--surface);
+  --gradient-choice: var(--surface);
+  --shadow-card: none;
+  --shadow-promo: none;
+  --surface: #ffffff;
+  --success-text: #126b43;
+  --warning-text: #87500c;
+  --danger-text: #ac2525;
 }

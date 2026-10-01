@@ -10,15 +10,16 @@ type ScenePillProps = {
 }
 
 export function ScenePill({ n, label, onClick }: ScenePillProps) {
+  const Tag = onClick ? 'button' : 'span'
   return (
-    <button
-      type="button"
-      className={[styles.pill, label && styles.plain].filter(Boolean).join(' ')}
+    <Tag
+      type={onClick ? 'button' : undefined}
+      className={styles.pill}
       onClick={onClick}
     >
       <Text as="span" variant="bodyM" color="primary">
         {label ?? `сцена ${n}`}
       </Text>
-    </button>
+    </Tag>
   )
 }

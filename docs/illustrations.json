@@ -1,0 +1,154 @@
+[
+  {
+    "file": "public/images/pixel/01-intro.webp",
+    "prompt": "Morning bedroom, clean alarm clock reading 08:00 and phone on bedside table, no posters or labels.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/01-intro-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/02-intro.webp",
+    "prompt": "Morning Moscow metro commute, passengers and foreground smartphone with a Wi-Fi pictogram, no written text or timestamps.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/02-intro-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/02-quiz.webp",
+    "prompt": "Closeup of a smartphone showing abstract wifi icon and blank login fields, blue metro carriage in background.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/02-quiz-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/03-intro.webp",
+    "prompt": "Bright morning cafe terrace, coffee, croissant and QR menu placard.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/03-intro-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/03-quiz.webp",
+    "prompt": "Morning cafe closeup, coffee, QR placard and phone.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/03-quiz-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/04-intro.webp",
+    "prompt": "Shared workspace with public desktop computer and chair, sunlight through blinds.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/04-intro-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/04-quiz.webp",
+    "prompt": "Daytime shared coworking computer, padlock icon and two blank save-password controls.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/04-quiz-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/05-intro.webp",
+    "prompt": "Sunny afternoon Moscow riverside with a centered electric rental scooter.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/05-intro-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/05-quiz.webp",
+    "prompt": "Sunny afternoon closeup of phone permission icons and toggles, rental scooter in background.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/05-quiz-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/06-intro.webp",
+    "prompt": "Phone with a bank notification on arrival home, afternoon hallway.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/06-intro-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/06-quiz.webp",
+    "prompt": "Closeup of phone with bank notification and card pictogram in afternoon hallway.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/06-quiz-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/07-intro.webp",
+    "prompt": "Evening music venue table with drinks and pizza, phone ringing on table, festival lights behind.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/07-intro-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/07-quiz.webp",
+    "prompt": "Closeup smartphone incoming call with anonymous silhouette icon and abstract SMS notification, venue behind.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/07-quiz-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/08-intro.webp",
+    "prompt": "Evening cafe food court table with pizza, drink, receipt, bank card, pass and friend in background.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/08-intro-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/08-quiz.webp",
+    "prompt": "Overhead closeup phone photographing pizza table with receipt, bank card and pass, location pin on screen. No legible numbers.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/08-quiz-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/09-intro.webp",
+    "prompt": "Cozy apartment at night, smart speaker on cabinet, router and security camera.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/09-intro-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/09-quiz.webp",
+    "prompt": "Closeup router, smart camera and phone with device network icons and alert symbol.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/09-quiz-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/10-intro.webp",
+    "prompt": "Bedroom at night, smartphone glowing on bedside table next to clock, moonlit window.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/10-intro-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/10-quiz.webp",
+    "prompt": "Closeup phone with padlock and warning notification on dark bedside table, no text.",
+    "source": "OpenAI image_gen, 2026-10-01",
+    "responsive_file": "public/images/pixel/10-quiz-768.webp",
+    "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  }
+]

@@ -9,7 +9,6 @@ export type { ChatReveal } from './ChatCard/ChatCard.tsx'
 export { KeyModal } from './KeyModal/KeyModal.tsx'
 export type { KeyStep } from './KeyModal/KeyModal.tsx'
 export { Modal } from './Modal/Modal.tsx'
-export { Decor } from './Decor/Decor.tsx'
 export { Page } from './Page/Page.tsx'
 export type { PageTone } from './Page/Page.tsx'
 export { ScenePill } from './ScenePill/ScenePill.tsx'
@@ -40,3 +39,6 @@ export {
   TEXT_COLORS,
   TEXT_VARIANTS,
 } from './tokens.ts'
+
+export { PixelScene } from './PixelScene/PixelScene'
+export { MuseumHeader } from './MuseumHeader/MuseumHeader'

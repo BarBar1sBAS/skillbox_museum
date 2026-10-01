@@ -1,35 +1,16 @@
 .page {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
+  width: 100%;
   min-height: 100dvh;
-  max-width: var(--layout-phone);
+  max-width: var(--layout-desktop);
   margin: 0 auto;
-  padding: calc(var(--spacing-25) * 1px) calc(var(--layout-gutter) * 1px);
+  padding: 24px calc(var(--layout-gutter) * 1px) 40px;
+  background: var(--background-default);
 }
-
-.landing {
-  background: var(--gradient-landing);
-}
-
-.default {
-  background: var(--gradient-page);
-}
-
-.chat {
-  background: var(--color-navy-screen);
-}
-
+.landing,
+.default,
+.chat,
 .result {
-  background: var(--gradient-result);
-}
-
-[data-theme='light'] .chat {
-  background: var(--gradient-page);
-}
-
-@media (min-width: 600px) {
-  .page {
-    max-width: var(--layout-desktop);
-  }
+  background: var(--background-default);
 }
