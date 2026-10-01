@@ -27,6 +27,9 @@
   text-decoration: none;
   font: 16px/1.5 var(--font-display);
 }
+.shareStatus {
+  text-align: center;
+}
 @media (min-width: 900px) {
   .layout {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);

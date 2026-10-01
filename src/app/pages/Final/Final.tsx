@@ -3,7 +3,7 @@ import { useTheme } from '@/app/theme'
 import { MuseumHeader } from '@/app/MuseumHeader'
 import { PixelScene } from '@/uikit/PixelScene/PixelScene'
 import { EXHIBITION_URL } from '@/uikit/museum'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import {
   collectedKeys,
@@ -25,6 +25,7 @@ import {
   type PromoPercent,
 } from '@/uikit/index.ts'
 import styles from './Final.module.scss'
+import { shareResult } from './share.ts'
 
 type KeyCount = 0 | 1 | 2 | 3
 
@@ -67,10 +68,12 @@ export function Final() {
   const keys = collectedKeys()
   const count = keys.length as KeyCount
   const final = FINAL[count]
+  const score = Math.round((totalScore() / MAX_SCORE) * 100)
+  const [shareStatus, setShareStatus] = useState('')
 
   useEffect(() => {
-    void completeRun(Math.round((totalScore() / MAX_SCORE) * 100))
-  }, [])
+    void completeRun(score)
+  }, [score])
 
   return (
     <Page className={styles.page}>
@@ -127,6 +130,27 @@ export function Final() {
               >
                 ПОВТОРИТЬ
               </Button>
+              <Button
+                onClick={() => {
+                  setShareStatus('')
+                  void shareResult({ score, keyCount: count })
+                    .then(setShareStatus)
+                    .catch(() =>
+                      setShareStatus('Не удалось подготовить карточку.'),
+                    )
+                }}
+              >
+                ПОДЕЛИТЬСЯ С ДРУЗЬЯМИ
+              </Button>
+              {shareStatus ? (
+                <Text
+                  variant="bodyS"
+                  color="muted"
+                  className={styles.shareStatus}
+                >
+                  <span role="status">{shareStatus}</span>
+                </Text>
+              ) : null}
             </Stack>
           </div>
         </section>
