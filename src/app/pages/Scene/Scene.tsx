@@ -82,8 +82,9 @@ function ScenePlay({ n }: { n: SceneNumber }) {
   const visual = sceneVisual(n, step === 'intro' ? 'intro' : 'quiz', theme)
   function confirm(picked: 0 | 1 | 2) {
     const chosen = scene.choices[picked].outcome
-    const alreadyConfirmed = loadAnswers()[n] !== undefined
-    const answers = alreadyConfirmed ? loadAnswers() : saveAnswer(n, chosen)
+    const saved = loadAnswers()
+    const alreadyConfirmed = saved[n] !== undefined
+    const answers = alreadyConfirmed ? saved : saveAnswer(n, chosen)
     const key = alreadyConfirmed ? undefined : keyEarnedAt(n, answers)
     setEarned(
       key ? { key, step: collectedKeys(answers).length as KeyStep } : null,
@@ -127,7 +128,7 @@ function ScenePlay({ n }: { n: SceneNumber }) {
                 arrow
                 onClick={() => setSession({ step: 'quiz', picked: null })}
               >
-                {scene.intro!.cta}
+                {scene.intro.cta}
               </Button>
             </div>
           ) : result && outcome ? (

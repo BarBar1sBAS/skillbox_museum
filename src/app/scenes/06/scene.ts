@@ -2,13 +2,10 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 6,
-  quiz: 'photo',
   intro: {
     title: 'НА ТЕЛЕФОН ПРИХОДИТ УВЕДОМЛЕНИЕ ОТ БАНКА',
     cta: 'ВЗЯТЬ ТЕЛЕФОН',
-    image: '/images/scenes/06-intro.png',
   },
-  photo: '/images/scenes/06-quiz.png',
   situation:
     'Банк сообщает: «Списание 1 500 ₽. Карта •• 4821. Сегодня, 16:45». Ты не узнаёшь эту операцию.\n\nТы вспоминаешь, что по пути домой ты снял немного наличных в ближайшем банкомате.\nВсё прошло как обычно: деньги получил, карта осталась у тебя.',
   remember:

@@ -2,13 +2,10 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 2,
-  quiz: 'photo',
   intro: {
     title: 'ПОКА ЕДЕШЬ\nВ МЕТРО,\nРЕШАЕШЬ ПОДКЛЮЧИТЬСЯ\nК БЕСПЛАТНОМУ WI‑FI',
     cta: 'ЗАЙТИ В ВАГОН',
-    image: '/images/scenes/02-intro.png',
   },
-  photo: '/images/scenes/02-quiz.png',
   situation:
     'Приложение запрашивает личные данные. Страница Metro_Free_WiFi предлагает заполнить номер телефона, электронную почту и дату рождения для доступа к Wi-Fi.',
   remember:

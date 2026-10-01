@@ -2,7 +2,6 @@ import type { SceneNumber } from '@/uikit/index.ts'
 
 export type SceneKey = 'trust' | 'data' | 'access'
 export type SceneOutcome = 'correct' | 'partial' | 'wrong'
-export type SceneQuiz = 'chat' | 'photo'
 
 export const KEY_LABEL = {
   trust: { chip: 'ДОВЕРИЕ', line: 'Доверие' },
@@ -37,7 +36,6 @@ export type SceneIntro = {
   kicker?: string
   title: string
   cta: string
-  image: string
 }
 
 export type SceneChatMessage =
@@ -52,9 +50,7 @@ export type SceneChat = {
 
 export type SceneContent = {
   n: SceneNumber
-  quiz: SceneQuiz
   intro?: SceneIntro
-  photo?: string
   chat?: SceneChat
   situation: string
   remember: string

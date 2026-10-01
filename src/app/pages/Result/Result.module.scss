@@ -2,13 +2,6 @@
   gap: calc(var(--spacing-20) * 1px);
 }
 
-.header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: calc(var(--spacing-20) * 1px);
-}
-
 .title {
   font-size: 2rem;
 }

@@ -2,13 +2,10 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 3,
-  quiz: 'photo',
   intro: {
     title: 'ЗАВТРАКАТЬ БЫЛО НЕКОГДА,\nИ ТЫ РЕШАЕШЬ ЗАСКОЧИТЬ В КАФЕ ЗА КОФЕ',
     cta: 'СЕСТЬ ЗА СТОЛИК',
-    image: '/images/scenes/03-intro.png',
   },
-  photo: '/images/scenes/03-quiz.png',
   situation:
     'Сканируешь QR-код на столе, чтобы открыть меню. Но загружается страница с таким текстом:\n\n«Для доступа подтвердите карту. Будет списано 20 рублей, сумма вернётся автоматически».\n\nКафе тебе хорошо знакомо, такой QR-код на каждом столе, а тебе уже пора идти.',
   remember:

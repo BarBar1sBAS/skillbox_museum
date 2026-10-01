@@ -2,13 +2,10 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 10,
-  quiz: 'photo',
   intro: {
     title: 'ДЕНЬ ЗАКОНЧИЛСЯ.\nНА ТЕЛЕФОН\nПРИХОДИТ\nОПОВЕЩЕНИЕ',
     cta: 'ОТКРЫТЬ ОПОВЕЩЕНИЕ',
-    image: '/images/scenes/10-intro.png',
   },
-  photo: '/images/scenes/10-quiz.png',
   situation:
     'На телефоне два уведомления: «Обнаружен вход с нового устройства. Это были вы? Москва · Windows PC · 18:24». Менеджер паролей сообщает: «Пароль от этого аккаунта найден в утечке данных». Ты не входил с нового устройства, а этот пароль используешь и в других сервисах.',
   remember:

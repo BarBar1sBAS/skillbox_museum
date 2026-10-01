@@ -40,3 +40,21 @@ it('раскрывает только новый фрагмент и сохра�
   expect(vi.getTimerCount()).toBe(0)
  } finally { view.unmount(); vi.useRealTimers() }
 })
+
+it('сохраняет доступную ссылку во время расшифровки и после неё', () => {
+  vi.useFakeTimers()
+  const view = render(<ChatCard reveal={3} animateStep={3} />)
+  try {
+    const link = screen.getByRole('link', { name: 'Музея криптографии' })
+    expect(link).toHaveAttribute('href', MUSEUM_URL)
+    expect(link.querySelector('[aria-hidden]')?.textContent).not.toBe('Музея криптографии')
+    for (let i = 0; i < 26; i++) act(() => { vi.advanceTimersByTime(35) })
+    expect(screen.getByRole('link', { name: 'Музея криптографии' })).toBe(link)
+    expect(link.textContent).toBe('Музея криптографии')
+    expect(link.querySelector('[aria-hidden]')).toBeNull()
+    expect(vi.getTimerCount()).toBe(0)
+  } finally {
+    view.unmount()
+    vi.useRealTimers()
+  }
+})

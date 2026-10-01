@@ -2,13 +2,10 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 9,
-  quiz: 'photo',
   intro: {
     title: 'ЗАХОДИШЬ ДОМОЙ\nИ СЛЫШИШЬ\nУВЕДОМЛЕНИЕ ОТ\nУМНОЙ КОЛОНКИ',
     cta: 'ПОПРОСИТЬ ПОВТОРИТЬ',
-    image: '/images/scenes/09-intro.png',
   },
-  photo: '/images/scenes/09-quiz.png',
   situation:
     'Колонка сообщает: «Обнаружено новое устройство в вашей сети».\n\nВспоминаешь о недавно подключенной умной камере, где остались заводские настройки',
   remember:

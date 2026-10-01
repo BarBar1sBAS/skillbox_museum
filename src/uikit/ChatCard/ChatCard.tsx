@@ -93,43 +93,17 @@ function PlainLine({
   const shown = useDecoded(text.length, animate)
   const frame = decodeFrame(text, shown)
 
-  if (shown >= text.length) {
-    if (!link) return <p className={styles.plain}>{text}</p>
-    const from = text.indexOf(link)
-    return (
-      <p className={styles.plain}>
-        {text.slice(0, from)}
-        <a
-          className={styles.link}
-          href={MUSEUM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {link}
-        </a>
-        {text.slice(from + link.length)}
-      </p>
+  const part = (start: number, end?: number) =>
+    shown >= text.length ? text.slice(start, end) : (
+      <>
+        <span className={styles.srOnly}>{text.slice(start, end)}</span>
+        <span aria-hidden>{frame.slice(start, end)}</span>
+      </>
     )
-  }
-  if (!link) {
-    return (
-      <p className={styles.plain}>
-        <span className={styles.srOnly}>{text}</span>
-        <span aria-hidden>{frame}</span>
-      </p>
-    )
-  }
 
-  // кадр расшифровки режется на те же куски, что и текст,
-  // поэтому ссылка проявляется вместе с остальной строкой
+  if (!link) return <p className={styles.plain}>{part(0)}</p>
   const from = text.indexOf(link)
   const to = from + link.length
-  const part = (start: number, end?: number) => (
-    <>
-      <span className={styles.srOnly}>{text.slice(start, end)}</span>
-      <span aria-hidden>{frame.slice(start, end)}</span>
-    </>
-  )
 
   return (
     <p className={styles.plain}>

@@ -2,13 +2,10 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 4,
-  quiz: 'photo',
   intro: {
     title: 'ТЕБЕ СРОЧНО НУЖНО СКАЧАТЬ ФАЙЛ ИЗ ОБЛАКА ПО РАБОТЕ',
     cta: 'ПОДОЙТИ К КОМПЬЮТЕРУ',
-    image: '/images/scenes/04-intro.png',
   },
-  photo: '/images/scenes/04-quiz.png',
   situation: 'Сайт запрашивает разрешение на сохранение пароля',
   remember:
     'Важно: чужое устройство — не место для твоих данных.',

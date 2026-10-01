@@ -2,13 +2,10 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 7,
-  quiz: 'photo',
   intro: {
     title: 'ЗВОНОК С НЕЗНАКОМОГО НОМЕРА',
     cta: 'ОТВЕТИТЬ НА ЗВОНОК',
-    image: '/images/scenes/07-intro.png',
   },
-  photo: '/images/scenes/07-quiz.png',
   situation:
     '“Это служба поддержки вашего оператора. По вашему номеру нужно подтвердить продление договора, иначе завтра он будет заблокирован. Продиктуйте код из SMS, пожалуйста”.',
   remember:

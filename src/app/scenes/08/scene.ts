@@ -2,13 +2,10 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 8,
-  quiz: 'photo',
   intro: {
     title: 'ТЫ ХОЧЕШЬ СДЕЛАТЬ ФОТО, КАК ТЫ ПРОВОДИШЬ ВЕЧЕР',
     cta: 'СДЕЛАТЬ ФОТО',
-    image: '/images/scenes/08-intro.png',
   },
-  photo: '/images/scenes/08-quiz.png',
   situation:
     'Ты делаешь снимок: напиток, кусок пиццы, чек, твой пропуск, банковская карта краем попала в кадр, а на фоне видно лицо друга. Приложение предлагает сразу добавить геометку.',
   remember:

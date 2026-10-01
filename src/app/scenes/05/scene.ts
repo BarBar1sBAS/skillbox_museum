@@ -2,14 +2,11 @@ import type { SceneContent } from '../types.ts'
 
 export const scene: SceneContent = {
   n: 5,
-  quiz: 'photo',
   intro: {
     title:
       'ПОСЛЕ ОБЕДА ТЕБЕ НАДО БЫТЬ НА ДРУГОМ КОНЦЕ ГОРОДА. МОЖНО БЫСТРО ДОЕХАТЬ НА САМОКАТЕ!',
     cta: 'ВЗЯТЬ САМОКАТ',
-    image: '/images/scenes/05-intro.png',
   },
-  photo: '/images/scenes/05-quiz.png',
   situation:
     'Приложение аренды запрашивает сразу несколько разрешений: постоянный доступ к геолокации, контактам, камере, микрофону, уведомлениям и отслеживанию действий.',
   remember:

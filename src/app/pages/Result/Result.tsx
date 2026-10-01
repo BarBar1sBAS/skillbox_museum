@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import {
   KEY_LABEL,
+  loadAnswers,
   keyScores,
   levelOf,
   safeDecisions,
@@ -29,9 +30,11 @@ const CHECKLIST_NAME = 'Чек-лист посещения выставки.pdf'
 export function Result() {
   const navigate = useNavigate()
   const [details, setDetails] = useState(false)
-  const index = totalScore()
-  const safe = safeDecisions()
-  const scores = keyScores()
+  const answers = loadAnswers()
+  const keys = collectedKeys(answers)
+  const index = totalScore(answers)
+  const safe = safeDecisions(answers)
+  const scores = keyScores(answers)
   const level = levelOf(index)
 
   return (
@@ -74,7 +77,7 @@ export function Result() {
           <TrustChip
             key={key}
             label={label.chip}
-            active={collectedKeys().some((k) => k === key)}
+            active={keys.some((k) => k === key)}
           />
         ))}
       </div>
