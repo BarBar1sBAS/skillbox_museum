@@ -1,4 +1,5 @@
 import { sceneVisual } from '@/app/scenes/visuals'
+import { useTheme } from '@/app/theme'
 import { MuseumHeader } from '@/app/MuseumHeader'
 import { PixelScene } from '@/uikit/PixelScene/PixelScene'
 import { useNavigate } from 'react-router'
@@ -12,6 +13,7 @@ const STEPS = [
 ]
 
 export function Start() {
+  const [theme] = useTheme()
   const navigate = useNavigate()
 
   return (
@@ -59,8 +61,7 @@ export function Start() {
         </div>
         <div className={styles.art}>
           <PixelScene
-            {...sceneVisual(1, 'intro')}
-            alt="Утро цифрового дня: телефон и часы у кровати"
+            {...sceneVisual(1, 'intro', theme)}
             priority
           />
           <ChatCard />

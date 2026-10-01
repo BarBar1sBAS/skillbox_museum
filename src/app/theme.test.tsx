@@ -39,6 +39,16 @@ describe('theme', () => {
     expect(document.documentElement.dataset.theme).toBe('dark')
   })
 
+  it('синхронизирует тему между переключателем и другими компонентами', async () => {
+    const user = userEvent.setup()
+    render(<><Probe /><Probe /></>)
+    await user.click(screen.getAllByRole('button')[0])
+    expect(screen.getAllByText('dark')).toHaveLength(2)
+    expect(document.documentElement.dataset.theme).toBe('dark')
+    await user.click(screen.getAllByRole('button')[1])
+    expect(screen.getAllByText('light')).toHaveLength(2)
+  })
+
   it('переживает сломанный localStorage и переключает тему через хук', async () => {
     const getItem = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
       throw new Error('blocked')

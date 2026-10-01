@@ -155,9 +155,10 @@
 }
 
 .details {
-  width: 20.4375rem;
+  width: 500px;
   max-width: 100%;
-  padding: 2.75rem calc(var(--spacing-20) * 1px) calc(var(--spacing-20) * 1px);
+  padding: 0 20px 20px;
+  border: 0;
   --text-muted: color-mix(in srgb, var(--text-primary) 75%, transparent);
 }
 
@@ -209,11 +210,6 @@
   background: var(--surface);
   border: 1px solid var(--border-card);
   box-shadow: none;
-}
-.details {
-  max-width: 100%;
-  width: min(500px, 100%);
-  padding-top: 60px;
 }
 
 .scoreRow,

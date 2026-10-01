@@ -90,3 +90,14 @@ it('поддерживает прямой обход и Shift+Tab с конте�
   await user.tab({ shift: true })
   expect(screen.getByRole('button', { name: 'Три' })).toHaveFocus()
 })
+
+it('даёт клавиатурный доступ к прокручиваемому содержимому под крестиком', async () => {
+  const user = userEvent.setup()
+  render(<Modal closeButton onClose={() => {}}>Статистика</Modal>)
+  const close = screen.getByRole('dialog').querySelector('button')!
+  expect(close).toHaveFocus()
+  await user.tab()
+  expect(screen.getByRole('region', { name: 'Содержимое окна' })).toHaveFocus()
+  await user.tab()
+  expect(close).toHaveFocus()
+})

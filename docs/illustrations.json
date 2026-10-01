@@ -150,5 +150,176 @@
     "responsive_file": "public/images/pixel/10-quiz-768.webp",
     "style": "Original 8-bit pixel art, hard square pixel clusters, navy / royal blue / cyan palette with warm accents; central safe area for stepped image mask.",
     "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/01-intro-dark.webp",
+    "responsive_file": "public/images/pixel/01-intro-dark-768.webp",
+    "theme": "dark",
+    "edit_target": "public/images/pixel/01-intro.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the NIGHTTIME / dark theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Evening/night: deep navy blue sky with moon and a few stars replacing the sun wherever sky is visible, cool blue ambient shadows, warm amber lamps and window lights, subtle screen glow. Remove direct sunlight and sun rays. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 01-intro-dark.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/02-intro-dark.webp",
+    "responsive_file": "public/images/pixel/02-intro-dark-768.webp",
+    "theme": "dark",
+    "edit_target": "public/images/pixel/02-intro.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the NIGHTTIME / dark theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Evening/night: deep navy blue sky with moon and a few stars replacing the sun wherever sky is visible, cool blue ambient shadows, warm amber lamps and window lights, subtle screen glow. Remove direct sunlight and sun rays. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 02-intro-dark.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/02-quiz-light.webp",
+    "responsive_file": "public/images/pixel/02-quiz-light-768.webp",
+    "theme": "light",
+    "edit_target": "public/images/pixel/02-quiz.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the DAYTIME / light theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Bright morning/day sunlight, pale blue sky, soft warm sunlight and readable natural colors; replace the moon and stars with sun and light clouds wherever sky is visible, daylight through windows, artificial lights subdued. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 02-quiz-light.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/03-intro-dark.webp",
+    "responsive_file": "public/images/pixel/03-intro-dark-768.webp",
+    "theme": "dark",
+    "edit_target": "public/images/pixel/03-intro.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the NIGHTTIME / dark theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Evening/night: deep navy blue sky with moon and a few stars replacing the sun wherever sky is visible, cool blue ambient shadows, warm amber lamps and window lights, subtle screen glow. Remove direct sunlight and sun rays. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 03-intro-dark.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/03-quiz-dark.webp",
+    "responsive_file": "public/images/pixel/03-quiz-dark-768.webp",
+    "theme": "dark",
+    "edit_target": "public/images/pixel/03-quiz.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the NIGHTTIME / dark theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Evening/night: deep navy blue sky with moon and a few stars replacing the sun wherever sky is visible, cool blue ambient shadows, warm amber lamps and window lights, subtle screen glow. Remove direct sunlight and sun rays. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 03-quiz-dark.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/04-intro-dark.webp",
+    "responsive_file": "public/images/pixel/04-intro-dark-768.webp",
+    "theme": "dark",
+    "edit_target": "public/images/pixel/04-intro.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the NIGHTTIME / dark theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Evening/night: deep navy blue sky with moon and a few stars replacing the sun wherever sky is visible, cool blue ambient shadows, warm amber lamps and window lights, subtle screen glow. Remove direct sunlight and sun rays. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 04-intro-dark.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/04-quiz-dark.webp",
+    "responsive_file": "public/images/pixel/04-quiz-dark-768.webp",
+    "theme": "dark",
+    "edit_target": "public/images/pixel/04-quiz.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the NIGHTTIME / dark theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Evening/night: deep navy blue sky with moon and a few stars replacing the sun wherever sky is visible, cool blue ambient shadows, warm amber lamps and window lights, subtle screen glow. Remove direct sunlight and sun rays. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 04-quiz-dark.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/05-intro-dark.webp",
+    "responsive_file": "public/images/pixel/05-intro-dark-768.webp",
+    "theme": "dark",
+    "edit_target": "public/images/pixel/05-intro.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the NIGHTTIME / dark theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Evening/night: deep navy blue sky with moon and a few stars replacing the sun wherever sky is visible, cool blue ambient shadows, warm amber lamps and window lights, subtle screen glow. Remove direct sunlight and sun rays. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 05-intro-dark.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/05-quiz-dark.webp",
+    "responsive_file": "public/images/pixel/05-quiz-dark-768.webp",
+    "theme": "dark",
+    "edit_target": "public/images/pixel/05-quiz.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the NIGHTTIME / dark theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Evening/night: deep navy blue sky with moon and a few stars replacing the sun wherever sky is visible, cool blue ambient shadows, warm amber lamps and window lights, subtle screen glow. Remove direct sunlight and sun rays. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 05-quiz-dark.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/06-intro-dark.webp",
+    "responsive_file": "public/images/pixel/06-intro-dark-768.webp",
+    "theme": "dark",
+    "edit_target": "public/images/pixel/06-intro.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the NIGHTTIME / dark theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Evening/night: deep navy blue sky with moon and a few stars replacing the sun wherever sky is visible, cool blue ambient shadows, warm amber lamps and window lights, subtle screen glow. Remove direct sunlight and sun rays. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 06-intro-dark.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/06-quiz-dark.webp",
+    "responsive_file": "public/images/pixel/06-quiz-dark-768.webp",
+    "theme": "dark",
+    "edit_target": "public/images/pixel/06-quiz.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the NIGHTTIME / dark theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Evening/night: deep navy blue sky with moon and a few stars replacing the sun wherever sky is visible, cool blue ambient shadows, warm amber lamps and window lights, subtle screen glow. Remove direct sunlight and sun rays. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 06-quiz-dark.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/07-intro-light.webp",
+    "responsive_file": "public/images/pixel/07-intro-light-768.webp",
+    "theme": "light",
+    "edit_target": "public/images/pixel/07-intro.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the DAYTIME / light theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Bright morning/day sunlight, pale blue sky, soft warm sunlight and readable natural colors; replace the moon and stars with sun and light clouds wherever sky is visible, daylight through windows, artificial lights subdued. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 07-intro-light.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/07-quiz-light.webp",
+    "responsive_file": "public/images/pixel/07-quiz-light-768.webp",
+    "theme": "light",
+    "edit_target": "public/images/pixel/07-quiz.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the DAYTIME / light theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Bright morning/day sunlight, pale blue sky, soft warm sunlight and readable natural colors; replace the moon and stars with sun and light clouds wherever sky is visible, daylight through windows, artificial lights subdued. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 07-quiz-light.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/08-intro-light.webp",
+    "responsive_file": "public/images/pixel/08-intro-light-768.webp",
+    "theme": "light",
+    "edit_target": "public/images/pixel/08-intro.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the DAYTIME / light theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Bright morning/day sunlight, pale blue sky, soft warm sunlight and readable natural colors; replace the moon and stars with sun and light clouds wherever sky is visible, daylight through windows, artificial lights subdued. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 08-intro-light.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/08-quiz-light.webp",
+    "responsive_file": "public/images/pixel/08-quiz-light-768.webp",
+    "theme": "light",
+    "edit_target": "public/images/pixel/08-quiz.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the DAYTIME / light theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Bright morning/day sunlight, pale blue sky, soft warm sunlight and readable natural colors; replace the moon and stars with sun and light clouds wherever sky is visible, daylight through windows, artificial lights subdued. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 08-quiz-light.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/09-intro-light.webp",
+    "responsive_file": "public/images/pixel/09-intro-light-768.webp",
+    "theme": "light",
+    "edit_target": "public/images/pixel/09-intro.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the DAYTIME / light theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Bright morning/day sunlight, pale blue sky, soft warm sunlight and readable natural colors; replace the moon and stars with sun and light clouds wherever sky is visible, daylight through windows, artificial lights subdued. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 09-intro-light.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/09-quiz-light.webp",
+    "responsive_file": "public/images/pixel/09-quiz-light-768.webp",
+    "theme": "light",
+    "edit_target": "public/images/pixel/09-quiz.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the DAYTIME / light theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Bright morning/day sunlight, pale blue sky, soft warm sunlight and readable natural colors; replace the moon and stars with sun and light clouds wherever sky is visible, daylight through windows, artificial lights subdued. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 09-quiz-light.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/10-intro-light.webp",
+    "responsive_file": "public/images/pixel/10-intro-light-768.webp",
+    "theme": "light",
+    "edit_target": "public/images/pixel/10-intro.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the DAYTIME / light theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Bright morning/day sunlight, pale blue sky, soft warm sunlight and readable natural colors; replace the moon and stars with sun and light clouds wherever sky is visible, daylight through windows, artificial lights subdued. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 10-intro-light.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
+  },
+  {
+    "file": "public/images/pixel/10-quiz-light.webp",
+    "responsive_file": "public/images/pixel/10-quiz-light-768.webp",
+    "theme": "light",
+    "edit_target": "public/images/pixel/10-quiz.webp",
+    "prompt": "Edit this exact existing pixel-art game illustration for the DAYTIME / light theme. Preserve the exact composition, camera angle, objects, people, furniture, architecture, phone screen symbols, and blocky pixel-art style. Change ONLY the time of day and environmental lighting. Bright morning/day sunlight, pale blue sky, soft warm sunlight and readable natural colors; replace the moon and stars with sun and light clouds wherever sky is visible, daylight through windows, artificial lights subdued. Keep foreground subjects clearly readable. No new text, no borders, no collage. Landscape 1536x1024. Save the output image to a local file and return its path. Asset ID 10-quiz-light.",
+    "source": "OpenAI built-in image_gen, 2026-10-01",
+    "export": "1536×1024 and 768×512 WebP, quality 88; nearest-neighbour resize."
   }
 ]

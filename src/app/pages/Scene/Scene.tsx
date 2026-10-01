@@ -18,6 +18,7 @@ import {
   type SceneSession,
 } from '@/app/scenes/session'
 import { sceneVisual } from '@/app/scenes/visuals'
+import { useTheme } from '@/app/theme'
 import {
   Button,
   ChatBubble,
@@ -41,6 +42,7 @@ export function Scene() {
   return <ScenePlay key={n} n={n} />
 }
 function ScenePlay({ n }: { n: SceneNumber }) {
+  const [theme] = useTheme()
   const navigate = useNavigate()
   const scene = scenes[n]
   const [session, setSession] = useState<SceneSession>(() => {
@@ -77,7 +79,7 @@ function ScenePlay({ n }: { n: SceneNumber }) {
   const outcome = picked == null ? null : scene.choices[picked].outcome
   const result =
     step === 'result' && outcome ? resultCopy(scene, outcome) : null
-  const visual = sceneVisual(n, step === 'intro' ? 'intro' : 'quiz')
+  const visual = sceneVisual(n, step === 'intro' ? 'intro' : 'quiz', theme)
   function confirm(picked: 0 | 1 | 2) {
     const chosen = scene.choices[picked].outcome
     const alreadyConfirmed = loadAnswers()[n] !== undefined

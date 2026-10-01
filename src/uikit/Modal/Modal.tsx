@@ -72,7 +72,9 @@ export function Modal({
         aria-label="Информация об игре"
         role="dialog"
         aria-modal="true"
-        className={styles.dialog}
+        className={[styles.dialog, closeButton && styles.withClose]
+          .filter(Boolean)
+          .join(' ')}
       >
         {closeButton ? (
           <button
@@ -84,7 +86,14 @@ export function Modal({
             ×
           </button>
         ) : null}
-        {children}
+        <div
+          className={styles.content}
+          tabIndex={closeButton ? 0 : undefined}
+          role={closeButton ? 'region' : undefined}
+          aria-label={closeButton ? 'Содержимое окна' : undefined}
+        >
+          {children}
+        </div>
       </div>
     </div>
   )

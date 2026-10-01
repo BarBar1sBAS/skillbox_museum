@@ -1,4 +1,5 @@
 import { sceneVisual } from '@/app/scenes/visuals'
+import { useTheme } from '@/app/theme'
 import { MuseumHeader } from '@/app/MuseumHeader'
 import { PixelScene } from '@/uikit/PixelScene/PixelScene'
 import { EXHIBITION_URL } from '@/uikit/museum'
@@ -61,6 +62,7 @@ const FINAL: Record<KeyCount, FinalCopy> = {
 }
 
 export function Final() {
+  const [theme] = useTheme()
   const navigate = useNavigate()
   const keys = collectedKeys()
   const count = keys.length as KeyCount
@@ -130,8 +132,7 @@ export function Final() {
         </section>
         <aside className={styles.visual}>
           <PixelScene
-            {...sceneVisual(10, 'intro')}
-            alt="Вечер: цифровой день завершён"
+            {...sceneVisual(10, 'intro', theme)}
             priority
           />
         </aside>

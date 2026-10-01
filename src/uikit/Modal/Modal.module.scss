@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--spacing-25) * 1px);
+  padding: 24px;
   background: rgb(0 0 0 / 0.7);
 }
 
@@ -19,21 +19,24 @@
 
 .dialog {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: max-content;
+  max-height: 100%;
   max-width: 100%;
 }
 
 .close {
   appearance: none;
   position: absolute;
-  top: calc(var(--spacing-14) * 1px);
+  top: 8px;
   right: calc(var(--spacing-14) * 1px);
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -43,11 +46,24 @@
   cursor: pointer;
 }
 
-.dialog {
-  max-height: calc(100dvh - 48px);
-  overflow-y: auto;
+.withClose {
+  padding-top: 60px;
+  background: var(--surface);
+  border: 1px solid var(--border-card);
 }
-.close {
-  width: 44px;
-  height: 44px;
+
+.content {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.content:focus-visible {
+  outline-offset: -3px;
+}
+
+@media (max-width: 480px) {
+  .overlay {
+    padding: 12px;
+  }
 }
